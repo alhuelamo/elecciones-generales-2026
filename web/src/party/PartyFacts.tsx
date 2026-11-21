@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
+import { LINK_CHIP_CLASSES } from "./linkChip";
 import type { Language, PartyProfile } from "../contract/types";
 
 export function PartyFacts(props: { profile: PartyProfile }) {
@@ -26,7 +27,7 @@ export function PartyFacts(props: { profile: PartyProfile }) {
           </Fact>
         )}
       </dl>
-      <ul className="mt-3 flex flex-wrap gap-4">
+      <ul className="mt-3 flex flex-wrap gap-2">
         <ExternalLink href={profile.website} label={t("links.website")} />
         <ExternalLink
           href={profile.programmeUrl}
@@ -55,7 +56,7 @@ function ExternalLink(props: { href: string | null; label: string }) {
         href={props.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="underline"
+        className={LINK_CHIP_CLASSES}
       >
         {props.label}
       </a>

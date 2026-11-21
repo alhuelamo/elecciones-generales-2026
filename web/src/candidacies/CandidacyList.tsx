@@ -46,7 +46,7 @@ export function CandidacyList(props: {
           </label>
         ))}
       </div>
-      <ul className="mt-3 divide-y">
+      <ul className="mt-3 divide-y divide-gray-200 dark:divide-gray-700">
         {ordered.map((candidacy) => (
           <li key={candidacy.slug}>
             <CandidacyRow
@@ -75,15 +75,35 @@ function CandidacyRow(props: {
       props.partyCatalog?.parties[candidacy.partyKey]?.logo) ||
     null;
   return (
-    <a href={props.href} className="flex items-center gap-3 py-2">
-      <PartyBadge acronym={candidacy.acronym} logo={logo} size="small" />
-      <span className="flex flex-col">
+    <a
+      href={props.href}
+      className="group flex min-h-11 items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-blue-600 dark:hover:bg-gray-800 dark:focus-visible:bg-gray-800 dark:focus-visible:outline-blue-400"
+    >
+      <PartyBadge
+        acronym={candidacy.acronym}
+        denomination={candidacy.denomination}
+        logo={logo}
+        size="small"
+      />
+      <span className="flex min-w-0 flex-1 flex-col">
         <span>{candidacy.denomination}</span>
         {candidacy.isCoalition && (
           <span className="text-xs">{t("coalition")}</span>
         )}
         <Results2023Line candidacy={candidacy} />
       </span>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 20 20"
+        className="h-5 w-5 shrink-0 opacity-50 group-hover:opacity-100 group-focus-visible:opacity-100"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M7 4l6 6-6 6" />
+      </svg>
     </a>
   );
 }

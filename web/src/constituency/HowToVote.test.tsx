@@ -19,4 +19,19 @@ describe("HowToVote", () => {
     const help = screen.getByText(/sepia/);
     expect(help).toHaveTextContent("hasta 3");
   });
+
+  it("shows an envelope swatch per chamber", () => {
+    const { rerender } = render(
+      <HowToVote chamber="congreso" maxMarks={null} />,
+    );
+    expect(screen.getByTestId("envelope-swatch")).toHaveAttribute(
+      "data-chamber",
+      "congreso",
+    );
+    rerender(<HowToVote chamber="senado" maxMarks={3} />);
+    expect(screen.getByTestId("envelope-swatch")).toHaveAttribute(
+      "data-chamber",
+      "senado",
+    );
+  });
 });

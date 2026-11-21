@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { PARTIES_EDIT_URL } from "../config";
 import type { Chamber, PartyProfile } from "../contract/types";
 import {
@@ -37,7 +37,26 @@ function renderDetail(
   );
 }
 
+afterEach(cleanup);
+
 describe("PartyDetail", () => {
+  it("scrolls to the top on mount", () => {
+    const scrollTo = vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+    renderDetail();
+    expect(scrollTo).toHaveBeenCalledWith(0, 0);
+    scrollTo.mockRestore();
+  });
+
+  it("shows facts and links before the candidate list", () => {
+    renderDetail();
+    const facts = screen.getByRole("link", { name: "Web oficial" });
+    const candidates = screen.getByRole("list", { name: "Candidatos" });
+    expect(
+      facts.compareDocumentPosition(candidates) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+  });
+
   it("renders denomination, acronym and badge", () => {
     renderDetail();
     expect(
