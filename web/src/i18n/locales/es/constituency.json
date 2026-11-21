@@ -1,0 +1,14 @@
+{
+  "seats": {
+    "congreso_one": "Se elige {{count}} diputado",
+    "congreso_other": "Se eligen {{count}} diputados",
+    "senado_one": "Se elige {{count}} senador · puedes marcar hasta {{maxMarks}}",
+    "senado_other": "Se eligen {{count}} senadores · puedes marcar hasta {{maxMarks}}"
+  },
+  "howToVote": {
+    "title": "Cómo votar",
+    "congreso": "Papeleta y sobre blancos. Elige una sola papeleta de candidatura (lista cerrada) y métela en el sobre blanco sin tachar ni añadir nada.",
+    "senado": "Papeleta y sobre sepia. Una única papeleta con todos los candidatos: marca con una cruz hasta {{maxMarks}}, de la misma o de distintas candidaturas."
+  },
+  "tabsLabel": "Cámara"
+}

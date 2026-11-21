@@ -1,0 +1,14 @@
+{
+  "seats": {
+    "congreso_one": "S'escull {{count}} diputat",
+    "congreso_other": "S'escullen {{count}} diputats",
+    "senado_one": "S'escull {{count}} senador · pots marcar-ne fins a {{maxMarks}}",
+    "senado_other": "S'escullen {{count}} senadors · pots marcar-ne fins a {{maxMarks}}"
+  },
+  "howToVote": {
+    "title": "Com votar",
+    "congreso": "Papereta i sobre blancs. Tria una sola papereta de candidatura (llista tancada) i posa-la al sobre blanc sense ratllar ni afegir res.",
+    "senado": "Papereta i sobre sèpia. Una única papereta amb tots els candidats: marca amb una creu fins a {{maxMarks}}, de la mateixa o de diferents candidatures."
+  },
+  "tabsLabel": "Cambra"
+}
