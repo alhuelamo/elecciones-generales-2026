@@ -30,7 +30,7 @@
         "required": ["code", "name", "aliases", "congreso", "senado"],
         "properties": {
           "code": { "type": "string", "pattern": "^\\d{5}$" },
-          "name": { "type": "string", "minLength": 1 },
+          "name": { "$ref": "#/$defs/localizedName" },
           "aliases": { "type": "array", "items": { "type": "string" } },
           "congreso": { "type": "string", "pattern": "^\\d{2}$" },
           "senado": { "type": "string", "pattern": "^\\d{2}(-[a-z-]+)?$" }
@@ -39,21 +39,22 @@
     }
   },
   "$defs": {
+    "localizedName": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["es", "ca"],
+      "properties": {
+        "es": { "type": "string", "minLength": 1 },
+        "ca": { "type": "string", "minLength": 1 }
+      }
+    },
     "constituency": {
       "type": "object",
       "additionalProperties": false,
       "required": ["id", "name", "seats", "maxMarks"],
       "properties": {
         "id": { "type": "string", "pattern": "^\\d{2}(-[a-z-]+)?$" },
-        "name": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["es", "ca"],
-          "properties": {
-            "es": { "type": "string", "minLength": 1 },
-            "ca": { "type": "string", "minLength": 1 }
-          }
-        },
+        "name": { "$ref": "#/$defs/localizedName" },
         "seats": { "type": "integer", "minimum": 1 },
         "maxMarks": { "type": ["integer", "null"], "minimum": 1 }
       }

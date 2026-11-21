@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeAll, describe, expect, it, vi } from "vitest";
+import i18next from "i18next";
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { fixtureIndex } from "../test/fixtures";
 import { MunicipalitySearch } from "./MunicipalitySearch";
 
@@ -28,6 +29,28 @@ describe("MunicipalitySearch", () => {
     const option = await screen.findByRole("option");
     expect(option).toHaveTextContent("Palma");
     expect(option).toHaveTextContent("Illes Balears");
+  });
+
+  afterEach(async () => {
+    await i18next.changeLanguage("es");
+  });
+
+  it("shows only the spanish name when searching the catalan alias", async () => {
+    renderSearch();
+    await userEvent.type(screen.getByRole("combobox"), "alacant");
+    const option = await screen.findByRole("option");
+    expect(option).toHaveTextContent("Alicante");
+    expect(option).not.toHaveTextContent("Alacant");
+    expect(option).not.toHaveTextContent("/");
+  });
+
+  it("shows only the catalan name and province in catalan", async () => {
+    await i18next.changeLanguage("ca");
+    renderSearch();
+    await userEvent.type(screen.getByRole("combobox"), "san sebastian");
+    const option = await screen.findByRole("option");
+    expect(option).toHaveTextContent("Sant Sebastià");
+    expect(option).not.toHaveTextContent("San Sebastián");
   });
 
   it("selects with Enter", async () => {

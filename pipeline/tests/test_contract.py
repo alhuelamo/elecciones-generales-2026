@@ -66,3 +66,12 @@ def test_unknown_constituency_reference_is_reported(tmp_path):
     write_json(tmp_path / "municipalities.json", index)
 
     assert any("99" in error for error in validate_data_dir(tmp_path))
+
+
+def test_monolingual_municipality_name_is_reported(tmp_path):
+    copy_tree(WEB_DATA, tmp_path)
+    index = read_json(tmp_path / "municipalities.json")
+    index["municipalities"][0]["name"] = "Barcelona"
+    write_json(tmp_path / "municipalities.json", index)
+
+    assert any("name" in error for error in validate_data_dir(tmp_path))

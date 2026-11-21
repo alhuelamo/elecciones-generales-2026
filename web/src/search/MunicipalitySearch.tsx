@@ -68,7 +68,7 @@ export function MunicipalitySearch({
               value={municipality}
               className="cursor-pointer px-3 py-2 text-gray-900 data-[focus]:bg-gray-100 dark:text-gray-100 dark:data-[focus]:bg-gray-700"
             >
-              <span>{municipality.name}</span>{" "}
+              <span>{municipality.name[language]}</span>{" "}
               <span className="text-sm text-gray-600 dark:text-gray-300">
                 {provinceName(municipality)}
               </span>

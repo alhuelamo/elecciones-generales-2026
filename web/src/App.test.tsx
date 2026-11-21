@@ -130,6 +130,40 @@ describe("App", () => {
     expect(document.documentElement.lang).toBe("ca");
   });
 
+  it("titles the tab in spanish on home", async () => {
+    await openAt("#/es");
+    await waitFor(() =>
+      expect(document.title).toBe("Elecciones Generales 2026"),
+    );
+  });
+
+  it("titles the tab with municipality and chamber in the current language", async () => {
+    await openAt("#/ca/08101/senado");
+    await waitFor(() =>
+      expect(document.title).toBe(
+        "L'Hospitalet de Llobregat · Senat · Eleccions Generals 2026",
+      ),
+    );
+  });
+
+  it("titles the tab with the party on detail", async () => {
+    await openAt("#/es/08019/congreso/pea");
+    await waitFor(() =>
+      expect(document.title).toBe(
+        "PEA · Barcelona · Congreso · Elecciones Generales 2026",
+      ),
+    );
+  });
+
+  it("titles the tab on the about page", async () => {
+    await openAt("#/es/about");
+    await waitFor(() =>
+      expect(document.title).toBe(
+        "Acerca de esta web · Elecciones Generales 2026",
+      ),
+    );
+  });
+
   it("shows demo banner for fixture dataset", async () => {
     await openAt("#/es");
     expect(await screen.findByText(/Datos de demostración/)).toBeVisible();

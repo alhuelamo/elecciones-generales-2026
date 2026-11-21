@@ -7,10 +7,12 @@ import httpx
 
 from elecciones_pipeline.build import BuildError, BuildPaths, build_dataset
 from elecciones_pipeline.fetch import USER_AGENT, fetch_sources
+from elecciones_pipeline.labels import LABELS_FILE, fetch_labels_csv, refresh_labels
 
 PIPELINE_DIR = Path(__file__).parents[2]
 DATA_DIR = PIPELINE_DIR / "data"
 RAW_DIR = DATA_DIR / "raw"
+VENDOR_DIR = DATA_DIR / "vendor"
 DEFAULT_OUTPUT_DIR = PIPELINE_DIR.parent / "web" / "public" / "data"
 
 
@@ -18,6 +20,8 @@ def main(argv: list[str] | None = None) -> int:
     arguments = _build_parser().parse_args(argv)
     if arguments.command == "fetch":
         return _fetch()
+    if arguments.command == "refresh-labels":
+        return _refresh_labels()
     if arguments.command == "build":
         return _build(Path(arguments.output))
     return 0
@@ -27,6 +31,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="elecciones")
     commands = parser.add_subparsers(dest="command")
     commands.add_parser("fetch")
+    commands.add_parser("refresh-labels")
     build = commands.add_parser("build")
     build.add_argument("--output", default=str(DEFAULT_OUTPUT_DIR))
     return parser
@@ -36,6 +41,12 @@ def _fetch() -> int:
     with httpx.Client(headers={"User-Agent": USER_AGENT}) as client:
         for path in fetch_sources(DATA_DIR / "sources.yaml", RAW_DIR, client):
             print(f"fetched {path}")
+    return 0
+
+
+def _refresh_labels() -> int:
+    count = refresh_labels(fetch_labels_csv, VENDOR_DIR / LABELS_FILE)
+    print(f"{count} municipality labels -> {VENDOR_DIR / LABELS_FILE}")
     return 0
 
 

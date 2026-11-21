@@ -4,6 +4,8 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
+from elecciones_pipeline.labels import MunicipalityLabels
+
 FIRST_DATA_ROW = 4
 POSTPOSED_ARTICLES = {
     article.casefold()
@@ -33,13 +35,39 @@ def display_name(official_name: str) -> str:
     return "/".join(_display_part(part) for part in official_name.split("/"))
 
 
-def search_aliases(official_name: str) -> list[str]:
+def localized_names(
+    official_name: str, labels: MunicipalityLabels | None
+) -> dict[str, str]:
+    labels = labels or MunicipalityLabels(es="", ca="")
+    return {
+        "es": labels.es or _fallback_name(official_name, labels.ca),
+        "ca": labels.ca or _fallback_name(official_name, labels.es),
+    }
+
+
+def search_aliases(official_name: str, names: dict[str, str]) -> list[str]:
     parts = official_name.split("/")
-    if len(parts) > 1:
-        return [_display_part(part) for part in parts]
-    if display_name(official_name) != official_name:
-        return [official_name]
-    return []
+    candidates = [
+        official_name,
+        *(part.strip() for part in parts),
+        display_name(official_name),
+        *(_display_part(part) for part in parts),
+        names["es"],
+        names["ca"],
+    ]
+    unique = list(dict.fromkeys(candidates))
+    return [alias for alias in unique if alias != names["es"] or alias != names["ca"]]
+
+
+def _fallback_name(official_name: str, other_language_label: str) -> str:
+    parts = [_display_part(part) for part in official_name.split("/")]
+    if len(parts) == 2 and other_language_label:
+        remaining = [
+            part for part in parts if part.casefold() != other_language_label.casefold()
+        ]
+        if len(remaining) == 1:
+            return remaining[0]
+    return display_name(official_name)
 
 
 def _read_sheet(sheet) -> list[IneMunicipality]:

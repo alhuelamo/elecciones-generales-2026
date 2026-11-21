@@ -73,35 +73,50 @@
   "municipalities": [
     {
       "code": "08019",
-      "name": "Barcelona",
+      "name": {
+        "es": "Barcelona",
+        "ca": "Barcelona"
+      },
       "aliases": [],
       "congreso": "08",
       "senado": "08"
     },
     {
       "code": "08101",
-      "name": "L'Hospitalet de Llobregat",
-      "aliases": ["Hospitalet de Llobregat, L'"],
+      "name": {
+        "es": "Hospitalet de Llobregat",
+        "ca": "L'Hospitalet de Llobregat"
+      },
+      "aliases": ["Hospitalet de Llobregat, L'", "L'Hospitalet de Llobregat"],
       "congreso": "08",
       "senado": "08"
     },
     {
       "code": "07040",
-      "name": "Palma",
-      "aliases": [],
+      "name": {
+        "es": "Palma de Mallorca",
+        "ca": "Palma"
+      },
+      "aliases": ["Palma de Mallorca"],
       "congreso": "07",
       "senado": "07-mallorca"
     },
     {
       "code": "07024",
-      "name": "Formentera",
+      "name": {
+        "es": "Formentera",
+        "ca": "Formentera"
+      },
       "aliases": [],
       "congreso": "07",
       "senado": "07-formentera"
     },
     {
       "code": "51001",
-      "name": "Ceuta",
+      "name": {
+        "es": "Ceuta",
+        "ca": "Ceuta"
+      },
       "aliases": [],
       "congreso": "51",
       "senado": "51"

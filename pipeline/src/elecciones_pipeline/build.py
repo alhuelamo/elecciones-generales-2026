@@ -20,9 +20,10 @@ from elecciones_pipeline.constituencies import (
     load_constituencies,
 )
 from elecciones_pipeline.contract import CHAMBERS, validate_data_dir
+from elecciones_pipeline.labels import LABELS_FILE, MunicipalityLabels, read_labels
 from elecciones_pipeline.municipalities import (
     IneMunicipality,
-    display_name,
+    localized_names,
     read_ine_municipalities,
     search_aliases,
 )
@@ -58,6 +59,7 @@ class BuildError(Exception):
 class _Inputs:
     registry: ConstituencyRegistry
     municipalities: list[IneMunicipality]
+    labels: dict[str, MunicipalityLabels]
     document: SourceDocument
     candidacies: list[ParsedCandidacy]
     catalog: PartyCatalog
@@ -74,7 +76,10 @@ def build_dataset(paths: BuildPaths, generated_at: datetime) -> BuildReport:
     _write_dataset(paths.output_dir, index, ballots, inputs)
     _validate_output(paths.output_dir)
     return BuildReport(
-        warnings=tuple(_count_warnings(inputs, grouped)),
+        warnings=tuple(
+            _count_warnings(inputs, grouped)
+            + _label_warnings(inputs, municipality_entries)
+        ),
         ballot_count=len(ballots),
         municipality_count=len(municipality_entries),
     )
@@ -96,6 +101,7 @@ def _load_inputs(paths: BuildPaths) -> _Inputs:
     return _Inputs(
         registry=load_constituencies(paths.data_dir),
         municipalities=read_ine_municipalities(paths.raw_dir / INE_FILE),
+        labels=read_labels(paths.data_dir / "vendor" / LABELS_FILE),
         document=document,
         candidacies=parse_candidacies(document),
         catalog=load_party_catalog(paths.data_dir / "parties.yaml"),
@@ -129,20 +135,27 @@ def _constituency_id(registry: ConstituencyRegistry, candidacy: ParsedCandidacy)
 
 
 def _municipality_entries(inputs: _Inputs) -> list[dict]:
-    registry = inputs.registry
     try:
         return [
-            {
-                "code": municipality.code,
-                "name": display_name(municipality.official_name),
-                "aliases": search_aliases(municipality.official_name),
-                CONGRESO: registry.congreso_id_for(municipality.code),
-                SENADO: registry.senado_id_for(municipality.code),
-            }
+            _municipality_entry(municipality, inputs)
             for municipality in inputs.municipalities
         ]
     except UnmappedIslandMunicipality as error:
         raise BuildError(f"island municipality without island: {error}") from error
+
+
+def _municipality_entry(municipality: IneMunicipality, inputs: _Inputs) -> dict:
+    registry = inputs.registry
+    names = localized_names(
+        municipality.official_name, inputs.labels.get(municipality.code)
+    )
+    return {
+        "code": municipality.code,
+        "name": names,
+        "aliases": search_aliases(municipality.official_name, names),
+        CONGRESO: registry.congreso_id_for(municipality.code),
+        SENADO: registry.senado_id_for(municipality.code),
+    }
 
 
 def _validate_coverage(entries: list[dict], grouped: dict) -> None:
@@ -241,6 +254,24 @@ def _candidate_json(candidate: ParsedCandidate) -> dict:
         "name": candidate.name,
         "substituteNames": list(candidate.substitute_names),
     }
+
+
+def _label_warnings(inputs: _Inputs, entries: list[dict]) -> list[str]:
+    unlabelled = [
+        entry["code"]
+        for entry in entries
+        if entry["code"] not in inputs.labels
+        or not all((inputs.labels[entry["code"]].es, inputs.labels[entry["code"]].ca))
+    ]
+    bilingual = [
+        entry["code"]
+        for entry in entries
+        if "/" in entry["name"]["es"] or "/" in entry["name"]["ca"]
+    ]
+    return [
+        f"{len(unlabelled)} municipalities missing a Wikidata es/ca label",
+        f"{len(bilingual)} municipality names still contain '/': {bilingual}",
+    ]
 
 
 def _count_warnings(inputs: _Inputs, grouped: dict) -> list[str]:

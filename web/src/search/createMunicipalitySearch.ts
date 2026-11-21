@@ -6,14 +6,14 @@ export const MAX_RESULTS = 10;
 
 interface SearchEntry {
   municipality: Municipality;
-  normalizedName: string;
+  normalizedNames: string[];
   normalizedAliases: string[];
 }
 
 function toEntry(municipality: Municipality): SearchEntry {
   return {
     municipality,
-    normalizedName: normalizeForSearch(municipality.name),
+    normalizedNames: Object.values(municipality.name).map(normalizeForSearch),
     normalizedAliases: municipality.aliases.map(normalizeForSearch),
   };
 }
@@ -23,7 +23,7 @@ function compact(text: string): string {
 }
 
 function forms(entry: SearchEntry): string[] {
-  return [entry.normalizedName, ...entry.normalizedAliases];
+  return [...entry.normalizedNames, ...entry.normalizedAliases];
 }
 
 function isExactMatch(entry: SearchEntry, query: string): boolean {
@@ -57,7 +57,7 @@ export function createMunicipalitySearch(
     ignoreLocation: true,
     includeScore: true,
     keys: [
-      { name: "normalizedName", weight: 2 },
+      { name: "normalizedNames", weight: 2 },
       { name: "normalizedAliases", weight: 1 },
     ],
   });

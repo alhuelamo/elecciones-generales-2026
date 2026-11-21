@@ -11,7 +11,7 @@ export interface ConstituencySummary {
 
 export interface Municipality {
   code: string;
-  name: string;
+  name: LocalizedText;
   aliases: string[];
   congreso: string;
   senado: string;

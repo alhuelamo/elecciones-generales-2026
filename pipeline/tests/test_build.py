@@ -51,12 +51,26 @@ def test_formentera_has_its_own_senado_ballot(build_inputs):
     assert (ballot["seats"], ballot["maxMarks"]) == (1, 1)
 
 
-def test_hospitalet_display_name_and_alias(build_inputs):
+def test_hospitalet_names_per_language_and_aliases(build_inputs):
     build_dataset(build_inputs, GENERATED_AT)
 
     entry = municipality(build_inputs, "08101")
-    assert entry["name"] == "L'Hospitalet de Llobregat"
-    assert entry["aliases"] == ["Hospitalet de Llobregat, L'"]
+    assert entry["name"]["ca"] == "L'Hospitalet de Llobregat"
+    assert "Hospitalet de Llobregat, L'" in entry["aliases"]
+
+
+def test_missing_labels_fall_back_to_display_name(build_inputs):
+    labels_path = build_inputs.data_dir / "vendor" / "wikidata_municipality_labels.csv"
+    labels_path.write_text("code,es,ca\n")
+
+    report = build_dataset(build_inputs, GENERATED_AT)
+
+    entry = municipality(build_inputs, "08101")
+    assert entry["name"] == {
+        "es": "L'Hospitalet de Llobregat",
+        "ca": "L'Hospitalet de Llobregat",
+    }
+    assert any("missing a Wikidata" in warning for warning in report.warnings)
 
 
 def test_assign_slugs_disambiguates():

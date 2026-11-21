@@ -64,14 +64,14 @@ web/        Vite + React + TypeScript + Tailwind v4 + Headless UI, yarn 4
     "senado":   [{ "id": "07-mallorca", "name": { "es": "Mallorca", "ca": "Mallorca" }, "seats": 3, "maxMarks": 2 }]
   },
   "municipalities": [
-    { "code": "08101", "name": "L'Hospitalet de Llobregat", "aliases": ["Hospitalet de Llobregat, L'"], "congreso": "08", "senado": "08" }
+    { "code": "08101", "name": { "es": "Hospitalet de Llobregat", "ca": "L'Hospitalet de Llobregat" }, "aliases": ["Hospitalet de Llobregat, L'", "Hospitalet de Llobregat", "L'Hospitalet de Llobregat"], "congreso": "08", "senado": "08" }
   ]
 }
 ```
 - `dataset`: `"fixture"` or `"boe-2026"`. Fixture data triggers a visible "demo data" banner.
 - `generatedAt`: pipeline build timestamp (UTC ISO 8601), shown on About.
-- `municipality.name`: INE official name with postposed article moved to front; bilingual names keep the slash (`Alacant/Alicante`).
-- `aliases`: every other searchable form (each side of a slash, the raw INE form).
+- `municipality.name`: `{ es, ca }`, one monolingual name per language (never contains a slash when a label exists). Source: Wikidata labels by INE code (`pipeline/data/vendor/wikidata_municipality_labels.csv`); when a label is missing, the matching part of a slash INE name if unambiguous, else the INE name with postposed article moved to front (`Coruña, A` -> `A Coruña`).
+- `aliases`: searchable forms in either language, deduped: raw INE form, each side of a slash, display forms and both language labels. The UI shows only `name[language]` and searches names and aliases.
 - `congreso` = province code; `senado` = Senado constituency id.
 
 ### `data/{congreso|senado}/{constituencyId}.json` — `ballot.schema.json`

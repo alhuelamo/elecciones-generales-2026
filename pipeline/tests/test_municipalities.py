@@ -3,8 +3,10 @@ from pathlib import Path
 import pytest
 from openpyxl import Workbook
 
+from elecciones_pipeline.labels import MunicipalityLabels
 from elecciones_pipeline.municipalities import (
     display_name,
+    localized_names,
     read_ine_municipalities,
     search_aliases,
 )
@@ -60,17 +62,47 @@ def test_display_name(official, shown):
     assert display_name(official) == shown
 
 
+ALICANTE = MunicipalityLabels("Alicante", "Alacant")
+SAN_SEBASTIAN = MunicipalityLabels("San Sebastián", "Sant Sebastià")
+NO_LABELS = MunicipalityLabels("", "")
+
+
 @pytest.mark.parametrize(
-    "official, aliases",
+    "official, labels, es, ca",
     [
-        ("Alicante/Alacant", ["Alicante", "Alacant"]),
-        ("Donostia/San Sebastián", ["Donostia", "San Sebastián"]),
-        ("Coruña, A", ["Coruña, A"]),
-        ("Barcelona", []),
+        ("Alicante/Alacant", ALICANTE, "Alicante", "Alacant"),
+        ("Donostia/San Sebastián", SAN_SEBASTIAN, "San Sebastián", "Sant Sebastià"),
+        ("Coruña, A", NO_LABELS, "A Coruña", "A Coruña"),
+        ("Coruña, A", None, "A Coruña", "A Coruña"),
+        ("Alicante/Alacant", MunicipalityLabels("Alicante", ""), "Alicante", "Alacant"),
+        ("Alicante/Alacant", MunicipalityLabels("", "Alacant"), "Alicante", "Alacant"),
+        ("Alicante/Alacant", NO_LABELS, "Alicante/Alacant", "Alicante/Alacant"),
+        ("Elche/Elx", MunicipalityLabels("Elche", "Elx"), "Elche", "Elx"),
+        ("Barcelona", MunicipalityLabels("Barcelona", ""), "Barcelona", "Barcelona"),
     ],
 )
-def test_search_aliases(official, aliases):
-    assert search_aliases(official) == aliases
+def test_localized_names(official, labels, es, ca):
+    assert localized_names(official, labels) == {"es": es, "ca": ca}
+
+
+def test_aliases_cover_both_languages_and_official_form():
+    names = localized_names("Donostia/San Sebastián", SAN_SEBASTIAN)
+    assert search_aliases("Donostia/San Sebastián", names) == [
+        "Donostia/San Sebastián",
+        "Donostia",
+        "San Sebastián",
+        "Sant Sebastià",
+    ]
+
+
+def test_aliases_keep_raw_postposed_article_form():
+    names = localized_names("Coruña, A", NO_LABELS)
+    assert "Coruña, A" in search_aliases("Coruña, A", names)
+
+
+def test_aliases_are_empty_when_every_form_is_the_shown_name():
+    names = localized_names("Barcelona", MunicipalityLabels("Barcelona", "Barcelona"))
+    assert search_aliases("Barcelona", names) == []
 
 
 @pytest.mark.skipif(

@@ -9,6 +9,7 @@ import { MunicipalitySearch } from "./search/MunicipalitySearch";
 import { DemoBanner } from "./shell/DemoBanner";
 import { Footer } from "./shell/Footer";
 import { Header } from "./shell/Header";
+import { useDocumentTitle } from "./shell/useDocumentTitle";
 import { useBallotData, type BallotData } from "./shell/useBallotData";
 import { replaceRoute, useLanguageRoute } from "./shell/useLanguageRoute";
 
@@ -51,6 +52,7 @@ export function App() {
   const data = useBallotData(route);
   const [notice, setNotice] = useState<Notice | null>(null);
   useFallbackRedirects(route, data, setNotice);
+  useDocumentTitle(route, data);
 
   if (route === null) return null;
   const activeNotice = notice?.hash === buildHash(route) ? notice.key : null;

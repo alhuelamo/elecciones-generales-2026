@@ -59,7 +59,7 @@ describe("ConstituencyView", () => {
   it("shows the constituency name and seat summary for senado", () => {
     renderSenado();
     expect(
-      screen.getByRole("heading", { level: 1, name: "Palma" }),
+      screen.getByRole("heading", { level: 1, name: "Palma de Mallorca" }),
     ).toBeInTheDocument();
     expect(screen.getByText("Mallorca")).toBeInTheDocument();
     expect(
