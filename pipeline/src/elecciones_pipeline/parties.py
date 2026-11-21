@@ -42,6 +42,9 @@ class PartyCatalog:
     def match(self, acronym: str) -> str | None:
         return self._key_by_alias_slug.get(slugify(acronym))
 
+    def match_candidacy(self, acronym: str, denomination: str) -> str | None:
+        return self.match(acronym) or self.match(denomination)
+
     def to_json(self, logos: dict[str, LogoRecord]) -> dict:
         return {
             "parties": {

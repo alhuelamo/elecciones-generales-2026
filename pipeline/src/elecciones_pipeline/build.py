@@ -238,7 +238,7 @@ def _candidacy_json(catalog: PartyCatalog, candidacy: ParsedCandidacy, slug: str
         "boeOrder": header.boe_order,
         "denomination": header.denomination,
         "acronym": header.acronym,
-        "partyKey": catalog.match(header.acronym),
+        "partyKey": catalog.match_candidacy(header.acronym, header.denomination),
         "isCoalition": header.is_coalition,
         "candidates": [_candidate_json(item) for item in candidacy.candidates],
         "substitutes": (

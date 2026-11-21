@@ -210,7 +210,7 @@ salf:
   website: https://seacabolafiesta.com
   programmeUrl: null
   leader: Alvise Pérez
-  founded: 2024
+  founded: null
   seats2023: null
   wikipedia:
     es: https://es.wikipedia.org/wiki/Se_Acabó_la_Fiesta
@@ -222,8 +222,8 @@ d21:
   - D21
   website: null
   programmeUrl: null
-  leader: Miriam González
-  founded: 2026
+  leader: null
+  founded: null
   seats2023: null
   wikipedia:
     es: null
@@ -232,6 +232,11 @@ senado-de-progreso:
   name: Senado de Progreso
   tier: full
   aliases:
+  - SENADO DE PROGRESO
+  - SENADO DE PROGRESO [SDP (PSOE-IU-MS)]
+  - SENADO DE PROGRESO [SDP (PSOE-COMPROMIS-EUPV)]
+  - SENADO DE PROGRESO [SDP (PSOE-MS)]
+  - SENADO DE PROGRESO DE ARAGÓN [SDP (PSOE-CHA-IU-MS)]
   - SDP (PSOE-CHA-IU-MS)
   - SDP (PSOE-COMPROMIS-EUPV)
   - SDP (PSOE-IU-MS)
@@ -538,4 +543,17 @@ valencia-unida:
   tier: basic
   aliases:
   - VLC
+  website: null
+escanos-en-blanco:
+  name: Escaños en Blanco
+  tier: basic
+  aliases:
+  - ESCAÑOS EN BLANCO PARA DEJAR ESCAÑOS VACIOS
+  - Escanos en Branco para deixar Escanos Baleiros
+  website: null
+frente-obrero:
+  name: Frente Obrero
+  tier: basic
+  aliases:
+  - FRENTE OBRERO
   website: null

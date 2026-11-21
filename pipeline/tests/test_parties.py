@@ -36,6 +36,22 @@ def test_unknown_acronym_returns_none(catalog):
     assert catalog.match("NOPE") is None
 
 
+def test_match_candidacy_uses_acronym_when_present(catalog):
+    assert catalog.match_candidacy("PSC-PSOE", "ANYTHING") == "psoe"
+
+
+def test_match_candidacy_falls_back_to_denomination_when_acronym_empty(catalog):
+    assert catalog.match_candidacy("", "PSOE") == "psoe"
+
+
+def test_match_candidacy_falls_back_to_denomination_when_acronym_unmatched(catalog):
+    assert catalog.match_candidacy("NOPE", "Psoe") == "psoe"
+
+
+def test_match_candidacy_unknown_returns_none(catalog):
+    assert catalog.match_candidacy("", "NOPE") is None
+
+
 def test_duplicate_alias_across_parties_raises(tmp_path):
     path = tmp_path / "parties.yaml"
     path.write_text("a: {name: A, aliases: [X-Y]}\nb: {name: B, aliases: [x y]}\n")
@@ -62,6 +78,7 @@ def test_logo_path_and_missing_logo_is_null(catalog, logos):
     assert parties["pp"]["logo"] is None
 
 
-def test_empty_yaml_gives_empty_catalog():
-    catalog = load_party_catalog(PIPELINE_DIR / "data" / "parties.yaml")
-    assert catalog.to_json({}) == {"parties": {}}
+def test_empty_yaml_gives_empty_catalog(tmp_path):
+    path = tmp_path / "parties.yaml"
+    path.write_text("{}", encoding="utf-8")
+    assert load_party_catalog(path).to_json({}) == {"parties": {}}
