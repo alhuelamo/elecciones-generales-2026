@@ -14,7 +14,7 @@ CONSTITUENCY_NAME_COLUMN = 4
 VALID_VOTES_COLUMN = 13
 FIRST_CANDIDATE_COLUMN = 17
 PROVINCE_DISTRICT = 9
-COMBINED_ISLANDS = {"eivissa-formentera": ("07-eivissa", "07-formentera")}
+COMBINED_ISLAND_DISTRICTS = {"eivissa-formentera"}
 
 
 class SenadoXlsxSource:
@@ -54,8 +54,8 @@ def _constituency_ids(row: tuple) -> tuple[str, ...]:
     if row[ISLAND_DISTRICT_COLUMN] == PROVINCE_DISTRICT:
         return (province_code,)
     slug = slugify(row[CONSTITUENCY_NAME_COLUMN])
-    if slug in COMBINED_ISLANDS:
-        return COMBINED_ISLANDS[slug]
+    if slug in COMBINED_ISLAND_DISTRICTS:
+        return ()
     return (f"{province_code}-{slug}",)
 
 

@@ -71,9 +71,13 @@ def test_senado_islands_use_spec_ids():
     assert votes_of(results, "07-mallorca", "PP").seats == 2
 
 
-def test_senado_combined_eivissa_formentera_feeds_both_constituencies():
+def test_senado_combined_eivissa_formentera_district_is_not_attributed_to_either_island():
     results = senado_results()
 
-    for constituency_id in ("07-eivissa", "07-formentera"):
-        assert votes_of(results, constituency_id, "PP").votes == 23472
-    assert results.valid_votes[("senado", "07-eivissa")] == 58115
+    assert not [
+        item
+        for item in results.candidacies
+        if item.constituency_id in ("07-eivissa", "07-formentera")
+    ]
+    assert ("senado", "07-eivissa") not in results.valid_votes
+    assert ("senado", "07-formentera") not in results.valid_votes
