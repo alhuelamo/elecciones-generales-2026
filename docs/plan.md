@@ -283,12 +283,12 @@ class ConstituencyRegistry:
 ```python
 def test_congreso_seats_sum_to_350(registry): assert sum(c.seats for c in registry.congreso) == 350
 def test_ceuta_and_melilla_elect_one_deputy(registry): assert [registry.get("congreso", p).seats for p in ("51","52")] == [1, 1]
-def test_senado_has_208_seats_in_59_constituencies(registry):
-    assert (len(registry.senado), sum(c.seats for c in registry.senado)) == (59, 208)
+def test_senado_has_209_seats_in_60_constituencies(registry):
+    assert (len(registry.senado), sum(c.seats for c in registry.senado)) == (60, 209)
 @pytest.mark.parametrize("seats, marks", [(4, 3), (3, 2), (2, 1), (1, 1)])
 def test_senado_max_marks(seats, marks): assert senado_max_marks(seats) == marks
 def test_mallorca_max_marks_is_two(registry): assert registry.get("senado", "07-mallorca").max_marks == 2
-@pytest.mark.parametrize("name, island", [("Palma","07-mallorca"), ("Formentera","07-eivissa"),
+@pytest.mark.parametrize("name, island", [("Palma","07-mallorca"), ("Formentera","07-formentera"),
     ("Eivissa","07-eivissa"), ("Ciutadella de Menorca","07-menorca"), ("Teguise","35-lanzarote"),
     ("Valverde","38-el-hierro"), ("San Sebastián de la Gomera","38-la-gomera")])
 def test_island_municipalities(registry, name, island): assert registry.senado_id_for(code_of(name)) == island
