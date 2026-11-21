@@ -1,6 +1,55 @@
 import argparse
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+import httpx
+
+from elecciones_pipeline.build import BuildError, BuildPaths, build_dataset
+from elecciones_pipeline.fetch import USER_AGENT, fetch_sources
+
+PIPELINE_DIR = Path(__file__).parents[2]
+DATA_DIR = PIPELINE_DIR / "data"
+RAW_DIR = DATA_DIR / "raw"
+DEFAULT_OUTPUT_DIR = PIPELINE_DIR.parent / "web" / "public" / "data"
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> int:
+    arguments = _build_parser().parse_args(argv)
+    if arguments.command == "fetch":
+        return _fetch()
+    if arguments.command == "build":
+        return _build(Path(arguments.output))
+    return 0
+
+
+def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="elecciones")
-    parser.parse_args()
+    commands = parser.add_subparsers(dest="command")
+    commands.add_parser("fetch")
+    build = commands.add_parser("build")
+    build.add_argument("--output", default=str(DEFAULT_OUTPUT_DIR))
+    return parser
+
+
+def _fetch() -> int:
+    with httpx.Client(headers={"User-Agent": USER_AGENT}) as client:
+        for path in fetch_sources(DATA_DIR / "sources.yaml", RAW_DIR, client):
+            print(f"fetched {path}")
+    return 0
+
+
+def _build(output_dir: Path) -> int:
+    paths = BuildPaths(DATA_DIR, RAW_DIR, output_dir)
+    try:
+        report = build_dataset(paths, datetime.now(timezone.utc))
+    except BuildError as error:
+        print(f"build failed: {error}", file=sys.stderr)
+        return 1
+    for warning in report.warnings:
+        print(f"warning: {warning}")
+    print(
+        f"{report.ballot_count} ballots, "
+        f"{report.municipality_count} municipalities -> {output_dir}"
+    )
+    return 0
