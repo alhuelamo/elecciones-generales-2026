@@ -1,0 +1,29 @@
+{
+  "title": "Acerca de esta web",
+  "disclaimer": "Esta web es independiente. No está afiliada a ningún partido político, institución pública ni administración electoral. Comprueba siempre la información oficial.",
+  "sources": {
+    "title": "Fuentes de datos",
+    "boeCandidacies": "BOE: candidaturas proclamadas (BOE-A-2026-23103)",
+    "boeConvocation": "BOE: Real Decreto 806/2026 de convocatoria y escaños (BOE-A-2026-20742)",
+    "ine": "INE: relación de municipios (26codmun)",
+    "islands": "CodeForSpain: correspondencia municipio-isla (licencia PDDL 1.0)",
+    "interior": "Ministerio del Interior: resultados de 2023",
+    "parties": "Fichas de partidos: fichero curado parties.yaml",
+    "partiesHint": "Abierto a correcciones."
+  },
+  "logos": {
+    "title": "Créditos de los logos",
+    "intro": "Los logos proceden de Wikimedia Commons.",
+    "listLabel": "Logos de partidos",
+    "by": "de {{author}}",
+    "source": "Fuente"
+  },
+  "updated": {
+    "label": "Última actualización"
+  },
+  "report": {
+    "title": "¿Has visto un error?",
+    "link": "Informar de un error"
+  },
+  "license": "El código de esta web se publica con licencia MIT."
+}

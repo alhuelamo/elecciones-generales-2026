@@ -1,0 +1,29 @@
+{
+  "title": "Sobre aquest web",
+  "disclaimer": "Aquest web és independent. No està afiliat a cap partit polític, institució pública ni administració electoral. Comprova sempre la informació oficial.",
+  "sources": {
+    "title": "Fonts de dades",
+    "boeCandidacies": "BOE: candidatures proclamades (BOE-A-2026-23103)",
+    "boeConvocation": "BOE: Reial decret 806/2026 de convocatòria i escons (BOE-A-2026-20742)",
+    "ine": "INE: relació de municipis (26codmun)",
+    "islands": "CodeForSpain: correspondència municipi-illa (llicència PDDL 1.0)",
+    "interior": "Ministeri de l'Interior: resultats de 2023",
+    "parties": "Fitxes de partits: fitxer curat parties.yaml",
+    "partiesHint": "Obert a correccions."
+  },
+  "logos": {
+    "title": "Crèdits dels logotips",
+    "intro": "Els logotips provenen de Wikimedia Commons.",
+    "listLabel": "Logotips de partits",
+    "by": "de {{author}}",
+    "source": "Font"
+  },
+  "updated": {
+    "label": "Última actualització"
+  },
+  "report": {
+    "title": "Has vist un error?",
+    "link": "Informar d'un error"
+  },
+  "license": "El codi d'aquest web es publica amb llicència MIT."
+}
