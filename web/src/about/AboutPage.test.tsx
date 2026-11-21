@@ -39,6 +39,7 @@ describe("AboutPage", () => {
     SOURCE_URLS.boeConvocation,
     SOURCE_URLS.ine,
     SOURCE_URLS.interior,
+    SOURCE_URLS.codeForSpain,
     SOURCE_URLS.commons,
     SOURCE_URLS.partiesYaml,
   ])("links to %s", (url) => {

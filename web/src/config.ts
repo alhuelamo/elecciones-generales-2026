@@ -16,6 +16,8 @@ export const SOURCE_URLS = {
   boeConvocation: "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-20742",
   ine: "https://www.ine.es/daco/daco42/codmun/26codmun.xlsx",
   interior: "https://infoelectoral.interior.gob.es",
+  codeForSpain:
+    "https://github.com/codeforspain/ds-organizacion-administrativa",
   commons: "https://commons.wikimedia.org",
   partiesYaml: `${REPO_URL}/blob/main/pipeline/data/parties.yaml`,
 } as const;

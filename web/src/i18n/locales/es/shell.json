@@ -1,0 +1,18 @@
+{
+  "navigation": "Navegación principal",
+  "about": "Acerca de",
+  "language": { "label": "Idioma" },
+  "demoBanner": "Datos de demostración: no son las candidaturas reales.",
+  "footer": {
+    "neutrality": "Web no oficial e independiente, sin afiliación con ningún partido ni institución. Orden por defecto: publicación en el BOE.",
+    "sources": { "boe": "BOE", "ine": "INE", "interior": "Interior" }
+  },
+  "notice": {
+    "unknownMunicipality": "No encontramos ese municipio. Búscalo de nuevo.",
+    "unknownParty": "No encontramos esa candidatura en esta circunscripción. Te mostramos todas."
+  },
+  "home": {
+    "title": "Encuentra tu municipio",
+    "intro": "Consulta las candidaturas al Congreso y al Senado del 29 de noviembre de 2026."
+  }
+}

@@ -39,7 +39,11 @@ export function AboutPage({ generatedAt, partyCatalog }: AboutPageProps) {
               </a>
             </li>
           ))}
-          <li>{t("sources.islands")}</li>
+          <li>
+            <a href={SOURCE_URLS.codeForSpain} rel="noopener noreferrer">
+              {t("sources.islands")}
+            </a>
+          </li>
           <li>
             <a href={SOURCE_URLS.commons} rel="noopener noreferrer">
               Wikimedia Commons
