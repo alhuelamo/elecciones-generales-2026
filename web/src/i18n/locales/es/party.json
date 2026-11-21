@@ -1,0 +1,22 @@
+{
+  "back": "Volver a la papeleta",
+  "candidates": "Candidatos",
+  "substitutes": "Suplentes",
+  "substitute": "Suplente",
+  "substitutesOf": "Suplentes: {{names}}",
+  "senadoMarks": "Puedes marcar hasta {{maxMarks}} candidatos en total",
+  "coalition": "Coalición",
+  "facts": {
+    "title": "Datos del partido",
+    "leader": "Cabeza de lista",
+    "founded": "Fundación",
+    "seats2023": "Escaños en 2023",
+    "seats2023Value": "Congreso {{congreso}} · Senado {{senado}}"
+  },
+  "links": {
+    "website": "Web oficial",
+    "programme": "Programa",
+    "wikipedia": "Wikipedia"
+  },
+  "editOnGithub": "Editar en GitHub"
+}

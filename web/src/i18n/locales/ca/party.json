@@ -1,0 +1,22 @@
+{
+  "back": "Tornar a la papereta",
+  "candidates": "Candidats",
+  "substitutes": "Suplents",
+  "substitute": "Suplent",
+  "substitutesOf": "Suplents: {{names}}",
+  "senadoMarks": "Pots marcar fins a {{maxMarks}} candidats en total",
+  "coalition": "Coalició",
+  "facts": {
+    "title": "Dades del partit",
+    "leader": "Cap de llista",
+    "founded": "Fundació",
+    "seats2023": "Escons el 2023",
+    "seats2023Value": "Congrés {{congreso}} · Senat {{senado}}"
+  },
+  "links": {
+    "website": "Web oficial",
+    "programme": "Programa",
+    "wikipedia": "Viquipèdia"
+  },
+  "editOnGithub": "Edita a GitHub"
+}
