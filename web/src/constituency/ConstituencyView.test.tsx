@@ -62,7 +62,9 @@ describe("ConstituencyView", () => {
       screen.getByRole("heading", { level: 1, name: "Palma" }),
     ).toBeInTheDocument();
     expect(screen.getByText("Mallorca")).toBeInTheDocument();
-    expect(screen.getByText(/hasta 2/, { selector: "p" })).toBeInTheDocument();
+    expect(
+      screen.getByText(/Se eligen 3 senadores.*hasta 2/),
+    ).toBeInTheDocument();
   });
 
   it("renders the candidacy list with links", () => {
