@@ -5,8 +5,10 @@ import type { Candidacy, Chamber, Language } from "./contract/types";
 import { ConstituencyView } from "./constituency/ConstituencyView";
 import { PartyDetail } from "./party/PartyDetail";
 import { buildHash, type Route } from "./routing/route";
+import { WhereToVote } from "./constituency/WhereToVote";
 import { MunicipalitySearch } from "./search/MunicipalitySearch";
 import { DemoBanner } from "./shell/DemoBanner";
+import { ElectionBanner } from "./shell/ElectionBanner";
 import { Footer } from "./shell/Footer";
 import { Header } from "./shell/Header";
 import { useDocumentTitle } from "./shell/useDocumentTitle";
@@ -59,6 +61,7 @@ export function App() {
 
   return (
     <div className="flex min-h-screen flex-col bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+      <ElectionBanner />
       <Header
         language={route.language}
         onLanguageChange={(language) => navigate({ ...route, language })}
@@ -139,6 +142,7 @@ function HomePage(props: {
           })
         }
       />
+      <WhereToVote />
     </section>
   );
 }

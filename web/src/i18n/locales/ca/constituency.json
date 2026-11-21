@@ -10,5 +10,9 @@
     "congreso": "Papereta i sobre blancs. Tria una sola papereta de candidatura (llista tancada) i posa-la al sobre blanc sense ratllar ni afegir res.",
     "senado": "Papereta i sobre sèpia. Una única papereta amb tots els candidats: marca amb una creu fins a {{maxMarks}}, de la mateixa o de diferents candidatures."
   },
-  "tabsLabel": "Cambra"
+  "tabsLabel": "Cambra",
+  "whereToVote": {
+    "text": "No saps on et toca votar?",
+    "link": "Consulta la teva mesa i local electoral a l'INE"
+  }
 }

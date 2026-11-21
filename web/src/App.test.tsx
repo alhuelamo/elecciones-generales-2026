@@ -74,6 +74,18 @@ describe("App", () => {
     await waitFor(() => expect(window.location.hash).toBe("#/es"));
   });
 
+  it("focuses the municipality search on the home view", async () => {
+    await openAt("#/es");
+    expect(await screen.findByRole("combobox")).toHaveFocus();
+  });
+
+  it("focuses the search again when navigating back to home", async () => {
+    await openAt("#/es/08019");
+    await screen.findByText(/Se eligen 32 diputados/);
+    window.location.hash = "#/es";
+    expect(await screen.findByRole("combobox")).toHaveFocus();
+  });
+
   it("renders Barcelona Congreso ballot", async () => {
     await openAt("#/es/08019");
     expect(await screen.findByText(/Se eligen 32 diputados/)).toBeVisible();

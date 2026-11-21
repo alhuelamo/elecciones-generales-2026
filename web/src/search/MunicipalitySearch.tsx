@@ -49,6 +49,7 @@ export function MunicipalitySearch({
         <ComboboxInput
           className="w-full rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
           placeholder={t("placeholder")}
+          autoFocus
           onChange={(event) => setQuery(event.target.value)}
         />
       </label>

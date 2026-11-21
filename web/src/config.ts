@@ -16,6 +16,8 @@ export const SOURCE_URLS = {
   boeConvocation: "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-20742",
   ine: "https://www.ine.es/daco/daco42/codmun/26codmun.xlsx",
   interior: "https://infoelectoral.interior.gob.es",
+  pollingStationLookup:
+    "https://sede.ine.gob.es/tramite/consulta_mesas_locales/",
   codeForSpain:
     "https://github.com/codeforspain/ds-organizacion-administrativa",
   commons: "https://commons.wikimedia.org",

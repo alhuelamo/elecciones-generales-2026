@@ -1,11 +1,17 @@
 {
   "navigation": "Navegació principal",
   "about": "Sobre aquesta web",
-  "language": { "label": "Idioma" },
+  "language": {
+    "label": "Idioma"
+  },
   "demoBanner": "Dades de demostració: no són les candidatures reals.",
   "footer": {
     "neutrality": "Web no oficial i independent, sense afiliació amb cap partit ni institució. Ordre per defecte: publicació al BOE.",
-    "sources": { "boe": "BOE", "ine": "INE", "interior": "Interior" }
+    "sources": {
+      "boe": "BOE",
+      "ine": "INE",
+      "interior": "Interior"
+    }
   },
   "notice": {
     "unknownMunicipality": "No trobem aquest municipi. Torna a cercar-lo.",
@@ -14,5 +20,10 @@
   "home": {
     "title": "Troba el teu municipi",
     "intro": "Consulta les candidatures al Congrés i al Senat del 29 de novembre de 2026."
+  },
+  "electionBanner": {
+    "today": "Avui és el dia de les eleccions.",
+    "over": "La jornada electoral ha acabat.",
+    "results": "Consulta els resultats oficials"
   }
 }

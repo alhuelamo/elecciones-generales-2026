@@ -10,5 +10,9 @@
     "congreso": "Papeleta y sobre blancos. Elige una sola papeleta de candidatura (lista cerrada) y métela en el sobre blanco sin tachar ni añadir nada.",
     "senado": "Papeleta y sobre sepia. Una única papeleta con todos los candidatos: marca con una cruz hasta {{maxMarks}}, de la misma o de distintas candidaturas."
   },
-  "tabsLabel": "Cámara"
+  "tabsLabel": "Cámara",
+  "whereToVote": {
+    "text": "¿No sabes dónde te toca votar?",
+    "link": "Consulta tu mesa y local electoral en el INE"
+  }
 }

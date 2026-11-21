@@ -11,6 +11,7 @@ import type {
 } from "../contract/types";
 import { ChamberTabs } from "./ChamberTabs";
 import { HowToVote } from "./HowToVote";
+import { WhereToVote } from "./WhereToVote";
 import { SeatsSummary } from "./SeatsSummary";
 
 export function ConstituencyView(props: {
@@ -38,6 +39,7 @@ export function ConstituencyView(props: {
         maxMarks={ballot.maxMarks}
       />
       <HowToVote chamber={ballot.chamber} maxMarks={ballot.maxMarks} />
+      <WhereToVote />
       <CandidacyList
         candidacies={ballot.candidacies}
         chamber={ballot.chamber}
