@@ -1,0 +1,573 @@
+{
+  "chamber": "congreso",
+  "constituencyId": "08",
+  "seats": 32,
+  "maxMarks": null,
+  "sources": [
+    {
+      "label": "BOE-A-2026-23103",
+      "url": "https://www.boe.es/diario_boe/xml.php?id=BOE-A-2026-23103"
+    }
+  ],
+  "candidacies": [
+    {
+      "slug": "pea",
+      "boeOrder": 1,
+      "denomination": "PARTIDO EJEMPLO A",
+      "acronym": "PEA",
+      "partyKey": "pea",
+      "isCoalition": false,
+      "candidates": [
+        {
+          "position": 1,
+          "name": "Candidata Ejemplo A1",
+          "substituteNames": []
+        },
+        {
+          "position": 2,
+          "name": "Candidata Ejemplo A2",
+          "substituteNames": []
+        },
+        {
+          "position": 3,
+          "name": "Candidata Ejemplo A3",
+          "substituteNames": []
+        },
+        {
+          "position": 4,
+          "name": "Candidata Ejemplo A4",
+          "substituteNames": []
+        },
+        {
+          "position": 5,
+          "name": "Candidata Ejemplo A5",
+          "substituteNames": []
+        },
+        {
+          "position": 6,
+          "name": "Candidata Ejemplo A6",
+          "substituteNames": []
+        },
+        {
+          "position": 7,
+          "name": "Candidata Ejemplo A7",
+          "substituteNames": []
+        },
+        {
+          "position": 8,
+          "name": "Candidata Ejemplo A8",
+          "substituteNames": []
+        },
+        {
+          "position": 9,
+          "name": "Candidata Ejemplo A9",
+          "substituteNames": []
+        },
+        {
+          "position": 10,
+          "name": "Candidata Ejemplo A10",
+          "substituteNames": []
+        },
+        {
+          "position": 11,
+          "name": "Candidata Ejemplo A11",
+          "substituteNames": []
+        },
+        {
+          "position": 12,
+          "name": "Candidata Ejemplo A12",
+          "substituteNames": []
+        },
+        {
+          "position": 13,
+          "name": "Candidata Ejemplo A13",
+          "substituteNames": []
+        },
+        {
+          "position": 14,
+          "name": "Candidata Ejemplo A14",
+          "substituteNames": []
+        },
+        {
+          "position": 15,
+          "name": "Candidata Ejemplo A15",
+          "substituteNames": []
+        },
+        {
+          "position": 16,
+          "name": "Candidata Ejemplo A16",
+          "substituteNames": []
+        },
+        {
+          "position": 17,
+          "name": "Candidata Ejemplo A17",
+          "substituteNames": []
+        },
+        {
+          "position": 18,
+          "name": "Candidata Ejemplo A18",
+          "substituteNames": []
+        },
+        {
+          "position": 19,
+          "name": "Candidata Ejemplo A19",
+          "substituteNames": []
+        },
+        {
+          "position": 20,
+          "name": "Candidata Ejemplo A20",
+          "substituteNames": []
+        },
+        {
+          "position": 21,
+          "name": "Candidata Ejemplo A21",
+          "substituteNames": []
+        },
+        {
+          "position": 22,
+          "name": "Candidata Ejemplo A22",
+          "substituteNames": []
+        },
+        {
+          "position": 23,
+          "name": "Candidata Ejemplo A23",
+          "substituteNames": []
+        },
+        {
+          "position": 24,
+          "name": "Candidata Ejemplo A24",
+          "substituteNames": []
+        },
+        {
+          "position": 25,
+          "name": "Candidata Ejemplo A25",
+          "substituteNames": []
+        },
+        {
+          "position": 26,
+          "name": "Candidata Ejemplo A26",
+          "substituteNames": []
+        },
+        {
+          "position": 27,
+          "name": "Candidata Ejemplo A27",
+          "substituteNames": []
+        },
+        {
+          "position": 28,
+          "name": "Candidata Ejemplo A28",
+          "substituteNames": []
+        },
+        {
+          "position": 29,
+          "name": "Candidata Ejemplo A29",
+          "substituteNames": []
+        },
+        {
+          "position": 30,
+          "name": "Candidata Ejemplo A30",
+          "substituteNames": []
+        },
+        {
+          "position": 31,
+          "name": "Candidata Ejemplo A31",
+          "substituteNames": []
+        },
+        {
+          "position": 32,
+          "name": "Candidata Ejemplo A32",
+          "substituteNames": []
+        }
+      ],
+      "substitutes": [
+        {
+          "position": 1,
+          "name": "Suplente Ejemplo A1",
+          "substituteNames": []
+        },
+        {
+          "position": 2,
+          "name": "Suplente Ejemplo A2",
+          "substituteNames": []
+        }
+      ],
+      "results2023": {
+        "votes": 1000000,
+        "percentage": 34.12,
+        "seats": 12,
+        "asAcronyms": ["PEA"]
+      }
+    },
+    {
+      "slug": "peb",
+      "boeOrder": 2,
+      "denomination": "PARTIDO EJEMPLO B",
+      "acronym": "PEB",
+      "partyKey": null,
+      "isCoalition": false,
+      "candidates": [
+        {
+          "position": 1,
+          "name": "Candidata Ejemplo B1",
+          "substituteNames": []
+        },
+        {
+          "position": 2,
+          "name": "Candidata Ejemplo B2",
+          "substituteNames": []
+        },
+        {
+          "position": 3,
+          "name": "Candidata Ejemplo B3",
+          "substituteNames": []
+        },
+        {
+          "position": 4,
+          "name": "Candidata Ejemplo B4",
+          "substituteNames": []
+        },
+        {
+          "position": 5,
+          "name": "Candidata Ejemplo B5",
+          "substituteNames": []
+        },
+        {
+          "position": 6,
+          "name": "Candidata Ejemplo B6",
+          "substituteNames": []
+        },
+        {
+          "position": 7,
+          "name": "Candidata Ejemplo B7",
+          "substituteNames": []
+        },
+        {
+          "position": 8,
+          "name": "Candidata Ejemplo B8",
+          "substituteNames": []
+        },
+        {
+          "position": 9,
+          "name": "Candidata Ejemplo B9",
+          "substituteNames": []
+        },
+        {
+          "position": 10,
+          "name": "Candidata Ejemplo B10",
+          "substituteNames": []
+        },
+        {
+          "position": 11,
+          "name": "Candidata Ejemplo B11",
+          "substituteNames": []
+        },
+        {
+          "position": 12,
+          "name": "Candidata Ejemplo B12",
+          "substituteNames": []
+        },
+        {
+          "position": 13,
+          "name": "Candidata Ejemplo B13",
+          "substituteNames": []
+        },
+        {
+          "position": 14,
+          "name": "Candidata Ejemplo B14",
+          "substituteNames": []
+        },
+        {
+          "position": 15,
+          "name": "Candidata Ejemplo B15",
+          "substituteNames": []
+        },
+        {
+          "position": 16,
+          "name": "Candidata Ejemplo B16",
+          "substituteNames": []
+        },
+        {
+          "position": 17,
+          "name": "Candidata Ejemplo B17",
+          "substituteNames": []
+        },
+        {
+          "position": 18,
+          "name": "Candidata Ejemplo B18",
+          "substituteNames": []
+        },
+        {
+          "position": 19,
+          "name": "Candidata Ejemplo B19",
+          "substituteNames": []
+        },
+        {
+          "position": 20,
+          "name": "Candidata Ejemplo B20",
+          "substituteNames": []
+        },
+        {
+          "position": 21,
+          "name": "Candidata Ejemplo B21",
+          "substituteNames": []
+        },
+        {
+          "position": 22,
+          "name": "Candidata Ejemplo B22",
+          "substituteNames": []
+        },
+        {
+          "position": 23,
+          "name": "Candidata Ejemplo B23",
+          "substituteNames": []
+        },
+        {
+          "position": 24,
+          "name": "Candidata Ejemplo B24",
+          "substituteNames": []
+        },
+        {
+          "position": 25,
+          "name": "Candidata Ejemplo B25",
+          "substituteNames": []
+        },
+        {
+          "position": 26,
+          "name": "Candidata Ejemplo B26",
+          "substituteNames": []
+        },
+        {
+          "position": 27,
+          "name": "Candidata Ejemplo B27",
+          "substituteNames": []
+        },
+        {
+          "position": 28,
+          "name": "Candidata Ejemplo B28",
+          "substituteNames": []
+        },
+        {
+          "position": 29,
+          "name": "Candidata Ejemplo B29",
+          "substituteNames": []
+        },
+        {
+          "position": 30,
+          "name": "Candidata Ejemplo B30",
+          "substituteNames": []
+        },
+        {
+          "position": 31,
+          "name": "Candidata Ejemplo B31",
+          "substituteNames": []
+        },
+        {
+          "position": 32,
+          "name": "Candidata Ejemplo B32",
+          "substituteNames": []
+        }
+      ],
+      "substitutes": [
+        {
+          "position": 1,
+          "name": "Suplente Ejemplo B1",
+          "substituteNames": []
+        },
+        {
+          "position": 2,
+          "name": "Suplente Ejemplo B2",
+          "substituteNames": []
+        }
+      ],
+      "results2023": null
+    },
+    {
+      "slug": "coalicion-ejemplo",
+      "boeOrder": 3,
+      "denomination": "COALICION EJEMPLO C-D",
+      "acronym": "CEC-D",
+      "partyKey": null,
+      "isCoalition": true,
+      "candidates": [
+        {
+          "position": 1,
+          "name": "Candidata Ejemplo C1",
+          "substituteNames": []
+        },
+        {
+          "position": 2,
+          "name": "Candidata Ejemplo C2",
+          "substituteNames": []
+        },
+        {
+          "position": 3,
+          "name": "Candidata Ejemplo C3",
+          "substituteNames": []
+        },
+        {
+          "position": 4,
+          "name": "Candidata Ejemplo C4",
+          "substituteNames": []
+        },
+        {
+          "position": 5,
+          "name": "Candidata Ejemplo C5",
+          "substituteNames": []
+        },
+        {
+          "position": 6,
+          "name": "Candidata Ejemplo C6",
+          "substituteNames": []
+        },
+        {
+          "position": 7,
+          "name": "Candidata Ejemplo C7",
+          "substituteNames": []
+        },
+        {
+          "position": 8,
+          "name": "Candidata Ejemplo C8",
+          "substituteNames": []
+        },
+        {
+          "position": 9,
+          "name": "Candidata Ejemplo C9",
+          "substituteNames": []
+        },
+        {
+          "position": 10,
+          "name": "Candidata Ejemplo C10",
+          "substituteNames": []
+        },
+        {
+          "position": 11,
+          "name": "Candidata Ejemplo C11",
+          "substituteNames": []
+        },
+        {
+          "position": 12,
+          "name": "Candidata Ejemplo C12",
+          "substituteNames": []
+        },
+        {
+          "position": 13,
+          "name": "Candidata Ejemplo C13",
+          "substituteNames": []
+        },
+        {
+          "position": 14,
+          "name": "Candidata Ejemplo C14",
+          "substituteNames": []
+        },
+        {
+          "position": 15,
+          "name": "Candidata Ejemplo C15",
+          "substituteNames": []
+        },
+        {
+          "position": 16,
+          "name": "Candidata Ejemplo C16",
+          "substituteNames": []
+        },
+        {
+          "position": 17,
+          "name": "Candidata Ejemplo C17",
+          "substituteNames": []
+        },
+        {
+          "position": 18,
+          "name": "Candidata Ejemplo C18",
+          "substituteNames": []
+        },
+        {
+          "position": 19,
+          "name": "Candidata Ejemplo C19",
+          "substituteNames": []
+        },
+        {
+          "position": 20,
+          "name": "Candidata Ejemplo C20",
+          "substituteNames": []
+        },
+        {
+          "position": 21,
+          "name": "Candidata Ejemplo C21",
+          "substituteNames": []
+        },
+        {
+          "position": 22,
+          "name": "Candidata Ejemplo C22",
+          "substituteNames": []
+        },
+        {
+          "position": 23,
+          "name": "Candidata Ejemplo C23",
+          "substituteNames": []
+        },
+        {
+          "position": 24,
+          "name": "Candidata Ejemplo C24",
+          "substituteNames": []
+        },
+        {
+          "position": 25,
+          "name": "Candidata Ejemplo C25",
+          "substituteNames": []
+        },
+        {
+          "position": 26,
+          "name": "Candidata Ejemplo C26",
+          "substituteNames": []
+        },
+        {
+          "position": 27,
+          "name": "Candidata Ejemplo C27",
+          "substituteNames": []
+        },
+        {
+          "position": 28,
+          "name": "Candidata Ejemplo C28",
+          "substituteNames": []
+        },
+        {
+          "position": 29,
+          "name": "Candidata Ejemplo C29",
+          "substituteNames": []
+        },
+        {
+          "position": 30,
+          "name": "Candidata Ejemplo C30",
+          "substituteNames": []
+        },
+        {
+          "position": 31,
+          "name": "Candidata Ejemplo C31",
+          "substituteNames": []
+        },
+        {
+          "position": 32,
+          "name": "Candidata Ejemplo C32",
+          "substituteNames": []
+        }
+      ],
+      "substitutes": [
+        {
+          "position": 1,
+          "name": "Suplente Ejemplo C1",
+          "substituteNames": []
+        },
+        {
+          "position": 2,
+          "name": "Suplente Ejemplo C2",
+          "substituteNames": []
+        }
+      ],
+      "results2023": {
+        "votes": 250000,
+        "percentage": 8.5,
+        "seats": 2,
+        "asAcronyms": ["PEC", "PED"]
+      }
+    }
+  ]
+}

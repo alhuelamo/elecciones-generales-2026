@@ -1,0 +1,63 @@
+{
+  "chamber": "senado",
+  "constituencyId": "51",
+  "seats": 2,
+  "maxMarks": 1,
+  "sources": [
+    {
+      "label": "BOE-A-2026-23103",
+      "url": "https://www.boe.es/diario_boe/xml.php?id=BOE-A-2026-23103"
+    }
+  ],
+  "candidacies": [
+    {
+      "slug": "pea",
+      "boeOrder": 1,
+      "denomination": "PARTIDO EJEMPLO A",
+      "acronym": "PEA",
+      "partyKey": "pea",
+      "isCoalition": false,
+      "candidates": [
+        {
+          "position": 1,
+          "name": "Candidata Ejemplo A1",
+          "substituteNames": ["Suplente Ejemplo A1A", "Suplente Ejemplo A1B"]
+        },
+        {
+          "position": 2,
+          "name": "Candidata Ejemplo A2",
+          "substituteNames": ["Suplente Ejemplo A2A", "Suplente Ejemplo A2B"]
+        }
+      ],
+      "substitutes": [],
+      "results2023": {
+        "votes": 120000,
+        "percentage": null,
+        "seats": 2,
+        "asAcronyms": ["PEA"]
+      }
+    },
+    {
+      "slug": "peb",
+      "boeOrder": 2,
+      "denomination": "PARTIDO EJEMPLO B",
+      "acronym": "PEB",
+      "partyKey": null,
+      "isCoalition": false,
+      "candidates": [
+        {
+          "position": 1,
+          "name": "Candidata Ejemplo B1",
+          "substituteNames": ["Suplente Ejemplo B1A", "Suplente Ejemplo B1B"]
+        },
+        {
+          "position": 2,
+          "name": "Candidata Ejemplo B2",
+          "substituteNames": ["Suplente Ejemplo B2A", "Suplente Ejemplo B2B"]
+        }
+      ],
+      "substitutes": [],
+      "results2023": null
+    }
+  ]
+}

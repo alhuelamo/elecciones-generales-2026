@@ -1,0 +1,40 @@
+{
+  "parties": {
+    "pea": {
+      "key": "pea",
+      "name": "Partido Ejemplo A",
+      "logo": {
+        "path": "logos/pea.svg",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ejemplo.svg",
+        "license": "CC BY-SA 4.0",
+        "author": "Autora Ejemplo"
+      },
+      "website": "https://example.org/pea",
+      "programmeUrl": "https://example.org/pea/programa",
+      "leader": "Candidata Ejemplo A1",
+      "founded": 1979,
+      "seats2023": {
+        "congreso": 12,
+        "senado": 2
+      },
+      "wikipedia": {
+        "es": "https://es.wikipedia.org/wiki/Partido_Ejemplo_A",
+        "ca": "https://ca.wikipedia.org/wiki/Partit_Exemple_A"
+      }
+    },
+    "peb": {
+      "key": "peb",
+      "name": "Partido Ejemplo B",
+      "logo": null,
+      "website": null,
+      "programmeUrl": null,
+      "leader": null,
+      "founded": null,
+      "seats2023": null,
+      "wikipedia": {
+        "es": null,
+        "ca": null
+      }
+    }
+  }
+}

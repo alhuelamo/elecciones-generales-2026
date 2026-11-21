@@ -1,0 +1,110 @@
+{
+  "dataset": "fixture",
+  "generatedAt": "2026-11-20T10:00:00Z",
+  "constituencies": {
+    "congreso": [
+      {
+        "id": "07",
+        "name": {
+          "es": "Illes Balears",
+          "ca": "Illes Balears"
+        },
+        "seats": 8,
+        "maxMarks": null
+      },
+      {
+        "id": "08",
+        "name": {
+          "es": "Barcelona",
+          "ca": "Barcelona"
+        },
+        "seats": 32,
+        "maxMarks": null
+      },
+      {
+        "id": "51",
+        "name": {
+          "es": "Ceuta",
+          "ca": "Ceuta"
+        },
+        "seats": 1,
+        "maxMarks": null
+      }
+    ],
+    "senado": [
+      {
+        "id": "07-eivissa-formentera",
+        "name": {
+          "es": "Eivissa-Formentera",
+          "ca": "Eivissa-Formentera"
+        },
+        "seats": 1,
+        "maxMarks": 1
+      },
+      {
+        "id": "07-mallorca",
+        "name": {
+          "es": "Mallorca",
+          "ca": "Mallorca"
+        },
+        "seats": 3,
+        "maxMarks": 2
+      },
+      {
+        "id": "08",
+        "name": {
+          "es": "Barcelona",
+          "ca": "Barcelona"
+        },
+        "seats": 4,
+        "maxMarks": 3
+      },
+      {
+        "id": "51",
+        "name": {
+          "es": "Ceuta",
+          "ca": "Ceuta"
+        },
+        "seats": 2,
+        "maxMarks": 1
+      }
+    ]
+  },
+  "municipalities": [
+    {
+      "code": "08019",
+      "name": "Barcelona",
+      "aliases": [],
+      "congreso": "08",
+      "senado": "08"
+    },
+    {
+      "code": "08101",
+      "name": "L'Hospitalet de Llobregat",
+      "aliases": ["Hospitalet de Llobregat, L'"],
+      "congreso": "08",
+      "senado": "08"
+    },
+    {
+      "code": "07040",
+      "name": "Palma",
+      "aliases": [],
+      "congreso": "07",
+      "senado": "07-mallorca"
+    },
+    {
+      "code": "07024",
+      "name": "Formentera",
+      "aliases": [],
+      "congreso": "07",
+      "senado": "07-eivissa-formentera"
+    },
+    {
+      "code": "51001",
+      "name": "Ceuta",
+      "aliases": [],
+      "congreso": "51",
+      "senado": "51"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ballot.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "chamber",
+    "constituencyId",
+    "seats",
+    "maxMarks",
+    "sources",
+    "candidacies"
+  ],
+  "properties": {
+    "chamber": { "enum": ["congreso", "senado"] },
+    "constituencyId": { "type": "string", "pattern": "^\\d{2}(-[a-z-]+)?$" },
+    "seats": { "type": "integer", "minimum": 1 },
+    "maxMarks": { "type": ["integer", "null"], "minimum": 1 },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "url"],
+        "properties": {
+          "label": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "pattern": "^https?://" }
+        }
+      }
+    },
+    "candidacies": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/candidacy" }
+    }
+  },
+  "$defs": {
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["position", "name", "substituteNames"],
+      "properties": {
+        "position": { "type": "integer", "minimum": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "substituteNames": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "results2023": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["votes", "percentage", "seats", "asAcronyms"],
+      "properties": {
+        "votes": { "type": "integer", "minimum": 0 },
+        "percentage": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+        "seats": { "type": "integer", "minimum": 0 },
+        "asAcronyms": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "candidacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slug",
+        "boeOrder",
+        "denomination",
+        "acronym",
+        "partyKey",
+        "isCoalition",
+        "candidates",
+        "substitutes",
+        "results2023"
+      ],
+      "properties": {
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "boeOrder": { "type": "integer", "minimum": 1 },
+        "denomination": { "type": "string", "minLength": 1 },
+        "acronym": { "type": "string" },
+        "partyKey": { "type": ["string", "null"] },
+        "isCoalition": { "type": "boolean" },
+        "candidates": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/candidate" }
+        },
+        "substitutes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/candidate" }
+        },
+        "results2023": {
+          "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/results2023" }]
+        }
+      }
+    }
+  }
+}

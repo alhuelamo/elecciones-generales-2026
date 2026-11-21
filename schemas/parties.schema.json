@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "parties.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["parties"],
+  "properties": {
+    "parties": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/party" }
+    }
+  },
+  "$defs": {
+    "nullableUrl": { "type": ["string", "null"] },
+    "party": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "name",
+        "logo",
+        "website",
+        "programmeUrl",
+        "leader",
+        "founded",
+        "seats2023",
+        "wikipedia"
+      ],
+      "properties": {
+        "key": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "logo": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["path", "sourceUrl", "license", "author"],
+              "properties": {
+                "path": { "type": "string" },
+                "sourceUrl": { "type": "string" },
+                "license": { "type": "string" },
+                "author": { "type": "string" }
+              }
+            }
+          ]
+        },
+        "website": { "$ref": "#/$defs/nullableUrl" },
+        "programmeUrl": { "$ref": "#/$defs/nullableUrl" },
+        "leader": { "type": ["string", "null"] },
+        "founded": { "type": ["integer", "null"] },
+        "seats2023": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["congreso", "senado"],
+              "properties": {
+                "congreso": { "type": "integer", "minimum": 0 },
+                "senado": { "type": "integer", "minimum": 0 }
+              }
+            }
+          ]
+        },
+        "wikipedia": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["es", "ca"],
+          "properties": {
+            "es": { "$ref": "#/$defs/nullableUrl" },
+            "ca": { "$ref": "#/$defs/nullableUrl" }
+          }
+        }
+      }
+    }
+  }
+}

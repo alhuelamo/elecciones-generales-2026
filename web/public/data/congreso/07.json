@@ -1,0 +1,213 @@
+{
+  "chamber": "congreso",
+  "constituencyId": "07",
+  "seats": 8,
+  "maxMarks": null,
+  "sources": [
+    {
+      "label": "BOE-A-2026-23103",
+      "url": "https://www.boe.es/diario_boe/xml.php?id=BOE-A-2026-23103"
+    }
+  ],
+  "candidacies": [
+    {
+      "slug": "pea",
+      "boeOrder": 1,
+      "denomination": "PARTIDO EJEMPLO A",
+      "acronym": "PEA",
+      "partyKey": "pea",
+      "isCoalition": false,
+      "candidates": [
+        {
+          "position": 1,
+          "name": "Candidata Ejemplo A1",
+          "substituteNames": []
+        },
+        {
+          "position": 2,
+          "name": "Candidata Ejemplo A2",
+          "substituteNames": []
+        },
+        {
+          "position": 3,
+          "name": "Candidata Ejemplo A3",
+          "substituteNames": []
+        },
+        {
+          "position": 4,
+          "name": "Candidata Ejemplo A4",
+          "substituteNames": []
+        },
+        {
+          "position": 5,
+          "name": "Candidata Ejemplo A5",
+          "substituteNames": []
+        },
+        {
+          "position": 6,
+          "name": "Candidata Ejemplo A6",
+          "substituteNames": []
+        },
+        {
+          "position": 7,
+          "name": "Candidata Ejemplo A7",
+          "substituteNames": []
+        },
+        {
+          "position": 8,
+          "name": "Candidata Ejemplo A8",
+          "substituteNames": []
+        }
+      ],
+      "substitutes": [
+        {
+          "position": 1,
+          "name": "Suplente Ejemplo A1",
+          "substituteNames": []
+        },
+        {
+          "position": 2,
+          "name": "Suplente Ejemplo A2",
+          "substituteNames": []
+        }
+      ],
+      "results2023": {
+        "votes": 1000000,
+        "percentage": 34.12,
+        "seats": 12,
+        "asAcronyms": ["PEA"]
+      }
+    },
+    {
+      "slug": "peb",
+      "boeOrder": 2,
+      "denomination": "PARTIDO EJEMPLO B",
+      "acronym": "PEB",
+      "partyKey": null,
+      "isCoalition": false,
+      "candidates": [
+        {
+          "position": 1,
+          "name": "Candidata Ejemplo B1",
+          "substituteNames": []
+        },
+        {
+          "position": 2,
+          "name": "Candidata Ejemplo B2",
+          "substituteNames": []
+        },
+        {
+          "position": 3,
+          "name": "Candidata Ejemplo B3",
+          "substituteNames": []
+        },
+        {
+          "position": 4,
+          "name": "Candidata Ejemplo B4",
+          "substituteNames": []
+        },
+        {
+          "position": 5,
+          "name": "Candidata Ejemplo B5",
+          "substituteNames": []
+        },
+        {
+          "position": 6,
+          "name": "Candidata Ejemplo B6",
+          "substituteNames": []
+        },
+        {
+          "position": 7,
+          "name": "Candidata Ejemplo B7",
+          "substituteNames": []
+        },
+        {
+          "position": 8,
+          "name": "Candidata Ejemplo B8",
+          "substituteNames": []
+        }
+      ],
+      "substitutes": [
+        {
+          "position": 1,
+          "name": "Suplente Ejemplo B1",
+          "substituteNames": []
+        },
+        {
+          "position": 2,
+          "name": "Suplente Ejemplo B2",
+          "substituteNames": []
+        }
+      ],
+      "results2023": null
+    },
+    {
+      "slug": "coalicion-ejemplo",
+      "boeOrder": 3,
+      "denomination": "COALICION EJEMPLO C-D",
+      "acronym": "CEC-D",
+      "partyKey": null,
+      "isCoalition": true,
+      "candidates": [
+        {
+          "position": 1,
+          "name": "Candidata Ejemplo C1",
+          "substituteNames": []
+        },
+        {
+          "position": 2,
+          "name": "Candidata Ejemplo C2",
+          "substituteNames": []
+        },
+        {
+          "position": 3,
+          "name": "Candidata Ejemplo C3",
+          "substituteNames": []
+        },
+        {
+          "position": 4,
+          "name": "Candidata Ejemplo C4",
+          "substituteNames": []
+        },
+        {
+          "position": 5,
+          "name": "Candidata Ejemplo C5",
+          "substituteNames": []
+        },
+        {
+          "position": 6,
+          "name": "Candidata Ejemplo C6",
+          "substituteNames": []
+        },
+        {
+          "position": 7,
+          "name": "Candidata Ejemplo C7",
+          "substituteNames": []
+        },
+        {
+          "position": 8,
+          "name": "Candidata Ejemplo C8",
+          "substituteNames": []
+        }
+      ],
+      "substitutes": [
+        {
+          "position": 1,
+          "name": "Suplente Ejemplo C1",
+          "substituteNames": []
+        },
+        {
+          "position": 2,
+          "name": "Suplente Ejemplo C2",
+          "substituteNames": []
+        }
+      ],
+      "results2023": {
+        "votes": 250000,
+        "percentage": 8.5,
+        "seats": 2,
+        "asAcronyms": ["PEC", "PED"]
+      }
+    }
+  ]
+}
