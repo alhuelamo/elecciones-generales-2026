@@ -1,0 +1,7 @@
+{
+  "appTitle": "Elecciones Generales 2026",
+  "chamber": { "congreso": "Congreso", "senado": "Senado" },
+  "language": { "es": "Castellano", "ca": "Català" },
+  "loading": "Cargando…",
+  "loadError": "No se han podido cargar los datos. Inténtalo de nuevo."
+}
