@@ -1,1 +1,541 @@
-{}
+psoe:
+  name: Partido Socialista Obrero Español
+  tier: full
+  aliases:
+  - PSOE
+  - PSC
+  - PSdeG-PSOE
+  - PSN-PSOE
+  - PSIB-PSOE
+  website: https://www.psoe.es
+  programmeUrl: null
+  leader: Pedro Sánchez
+  founded: 1879
+  seats2023:
+    congreso: 121
+    senado: 72
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Partido_Socialista_Obrero_Español
+    ca: https://ca.wikipedia.org/wiki/Partit_Socialista_Obrer_Espanyol
+pp:
+  name: Partido Popular
+  tier: full
+  aliases:
+  - PP
+  website: https://www.pp.es
+  programmeUrl: null
+  leader: Alberto Núñez Feijóo
+  founded: 1989
+  seats2023:
+    congreso: 137
+    senado: 120
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Partido_Popular
+    ca: https://ca.wikipedia.org/wiki/Partit_Popular_(Espanya)
+upn-pp:
+  name: Unión del Pueblo Navarro en coalición con el Partido Popular
+  tier: full
+  aliases:
+  - UPN-PP
+  website: https://www.upn.org/
+  programmeUrl: null
+  leader: null
+  founded: null
+  seats2023: null
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Unión_del_Pueblo_Navarro
+    ca: null
+vox:
+  name: Vox
+  tier: full
+  aliases:
+  - VOX
+  website: https://www.voxespana.es
+  programmeUrl: null
+  leader: Santiago Abascal
+  founded: 2013
+  seats2023:
+    congreso: 33
+    senado: 0
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Vox_(partido_político)
+    ca: https://ca.wikipedia.org/wiki/Vox
+frente-amplio:
+  name: Frente Amplio
+  tier: full
+  aliases:
+  - FA
+  - FRENTE AMPLIO-FRONTE AMPLA
+  - FRENTE AMPLIO - FRONTE AMPLA
+  - FRENTE AMPLIO-FRONTE ZABALA
+  - COMUNS-FRONT AMPLI
+  - C-DEM
+  - ARAMÉS-EU-MS
+  - CHA-IU-MS-FRENTE AMPLIO
+  website: https://frenteamplio.info
+  programmeUrl: null
+  leader: Ada Colau
+  founded: 2026
+  seats2023: null
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Frente_Amplio_(España)
+    ca: https://ca.wikipedia.org/wiki/Front_Ampli_(Espanya)
+podemos:
+  name: Podemos
+  tier: full
+  aliases:
+  - PODEMOS
+  - PAZ,CASA Y TRABAJO
+  website: https://podemos.info
+  programmeUrl: null
+  leader: Ione Belarra
+  founded: 2014
+  seats2023: null
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Podemos
+    ca: https://ca.wikipedia.org/wiki/Podem
+erc:
+  name: Esquerra Republicana de Catalunya
+  tier: full
+  aliases:
+  - ERC
+  website: https://www.esquerra.cat
+  programmeUrl: null
+  leader: Oriol Junqueras
+  founded: 1931
+  seats2023:
+    congreso: 7
+    senado: 3
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Esquerra_Republicana_de_Catalunya
+    ca: https://ca.wikipedia.org/wiki/Esquerra_Republicana_de_Catalunya
+junts:
+  name: Junts per Catalunya
+  tier: full
+  aliases:
+  - JxCat
+  - Junts
+  website: https://junts.cat
+  programmeUrl: null
+  leader: Carles Puigdemont
+  founded: 2020
+  seats2023:
+    congreso: 7
+    senado: 1
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Junts_per_Catalunya_(partido_político)
+    ca: https://ca.wikipedia.org/wiki/Junts_per_Catalunya_(partit_polític)
+eh-bildu:
+  name: Euskal Herria Bildu
+  tier: full
+  aliases:
+  - EH BILDU
+  website: https://www.ehbildu.eus
+  programmeUrl: null
+  leader: Arnaldo Otegi
+  founded: 2012
+  seats2023:
+    congreso: 6
+    senado: 4
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Euskal_Herria_Bildu
+    ca: https://ca.wikipedia.org/wiki/Euskal_Herria_Bildu
+pnv:
+  name: Partido Nacionalista Vasco
+  tier: full
+  aliases:
+  - EAJ-PNV
+  - PNV
+  website: https://www.eaj-pnv.eus
+  programmeUrl: null
+  leader: Aitor Esteban
+  founded: 1895
+  seats2023:
+    congreso: 5
+    senado: 4
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Partido_Nacionalista_Vasco
+    ca: https://ca.wikipedia.org/wiki/Partit_Nacionalista_Basc
+bng:
+  name: Bloque Nacionalista Galego
+  tier: full
+  aliases:
+  - BNG
+  - B.N.G.
+  website: https://www.bng.gal
+  programmeUrl: null
+  leader: Ana Pontón
+  founded: 1982
+  seats2023:
+    congreso: 1
+    senado: 0
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Bloque_Nacionalista_Galego
+    ca: https://ca.wikipedia.org/wiki/Bloc_Nacionalista_Gallec
+cc:
+  name: Coalición Canaria-Municipalistas Primero Canarias
+  tier: full
+  aliases:
+  - CCa-1.ºCAN
+  - 1.ºCAN-CCa
+  - CC
+  website: https://coalicioncanaria.org
+  programmeUrl: null
+  leader: Fernando Clavijo
+  founded: 1993
+  seats2023:
+    congreso: 1
+    senado: 0
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Coalición_Canaria
+    ca: https://ca.wikipedia.org/wiki/Coalició_Canària
+compromis:
+  name: 'Compromís: Front Valencià'
+  tier: full
+  aliases:
+  - COMPROMIS-EUPV-PODEM-ERPV
+  website: https://compromis.net
+  programmeUrl: null
+  leader: null
+  founded: 2010
+  seats2023: null
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Compromís:_Front_Valencià
+    ca: null
+salf:
+  name: Se Acabó la Fiesta
+  tier: full
+  aliases:
+  - SALF
+  website: https://seacabolafiesta.com
+  programmeUrl: null
+  leader: Alvise Pérez
+  founded: 2024
+  seats2023: null
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Se_Acabó_la_Fiesta
+    ca: https://ca.wikipedia.org/wiki/S'ha_Acabat_la_Festa
+d21:
+  name: Democracia para el Siglo 21
+  tier: full
+  aliases:
+  - D21
+  website: null
+  programmeUrl: null
+  leader: Miriam González
+  founded: 2026
+  seats2023: null
+  wikipedia:
+    es: null
+    ca: null
+senado-de-progreso:
+  name: Senado de Progreso
+  tier: full
+  aliases:
+  - SDP (PSOE-CHA-IU-MS)
+  - SDP (PSOE-COMPROMIS-EUPV)
+  - SDP (PSOE-IU-MS)
+  - SDP (PSOE-IUN NEB-MS-BATZARRE)
+  - SDP (PSOE-MM-IU-MS)
+  - SDP (PSOE-MS)
+  - PSOE-IU-MS
+  - PSOE-MS
+  - PSOE-EZAN IU-MS
+  website: null
+  programmeUrl: null
+  leader: null
+  founded: null
+  seats2023: null
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Senado_de_Progreso
+    ca: null
+alternativa-malaguena:
+  name: Alternativa Malagueña
+  tier: basic
+  aliases:
+  - '29'
+  website: null
+tercera-edad-en-accion:
+  name: Tercera Edad en Acción
+  tier: basic
+  aliases:
+  - 3e
+  website: null
+agrupacion-herrena-independiente:
+  name: Agrupación Herreña Independiente
+  tier: basic
+  aliases:
+  - A.H.I.
+  website: null
+adelante-andalucia:
+  name: Adelante Andalucía
+  tier: basic
+  aliases:
+  - ADELANTE ANDALUCÍA
+  website: null
+agenda-valenciana:
+  name: Agenda Valenciana
+  tier: basic
+  aliases:
+  - AGENDA VALENCIANA
+  website: null
+alhora:
+  name: Alhora
+  tier: basic
+  aliases:
+  - ALHORA
+  website: null
+asamblea-herrena:
+  name: Asamblea Herreña
+  tier: basic
+  aliases:
+  - ASAMBLEA HERREÑA
+  website: null
+agrupacion-socialista-gomera:
+  name: Agrupación Socialista Gomera
+  tier: basic
+  aliases:
+  - ASG
+  website: null
+convergents:
+  name: Convergents
+  tier: basic
+  aliases:
+  - CNV
+  website: null
+partido-drago-canarias:
+  name: Partido Drago Canarias
+  tier: basic
+  aliases:
+  - D.R.G
+  website: null
+eguzkilore:
+  name: Eguzkilore
+  tier: basic
+  aliases:
+  - EGUZKILORE
+  website: null
+eh-bildu-erc:
+  name: Euskal Herria Bildu-Esquerra Republicana de Catalunya
+  tier: basic
+  aliases:
+  - EH BILDU-ERC
+  website: null
+erc-eh-bildu:
+  name: Esquerra Republicana de Catalunya-Euskal Herria Bildu
+  tier: basic
+  aliases:
+  - ERC-EH BILDU
+  website: null
+elak-pcte:
+  name: Euskadiko Langileen Alderdi Komunista/Partido Comunista de los Trabajadores de Euskadi
+  tier: basic
+  aliases:
+  - ELAK/PCTE
+  - PCTE/ELAK
+  website: null
+escanos-en-blanco:
+  name: Escaños en Blanco para Dejar Escaños Vacíos
+  tier: basic
+  aliases:
+  - ESCAÑOS EN BLANCO
+  website: null
+federacion-independientes-aragon:
+  name: Federación de los Independientes de Aragón
+  tier: basic
+  aliases:
+  - F.I.A.
+  - FIA
+  website: null
+falange-espanola-jons:
+  name: Falange Española de las JONS
+  tier: basic
+  aliases:
+  - FE de las JONS
+  website: null
+frente-obrero:
+  name: Frente Obrero
+  tier: basic
+  aliases:
+  - FO
+  website: null
+formentera-viva:
+  name: Formentera Viva
+  tier: basic
+  aliases:
+  - FV
+  website: null
+geroa-bai:
+  name: Geroa Bai
+  tier: basic
+  aliases:
+  - GBAI
+  website: http://www.geroabai.com
+iustitia-europa:
+  name: Iustitia Europa
+  tier: basic
+  aliases:
+  - IE
+  website: null
+iniciativa-por-la-gomera:
+  name: Iniciativa por La Gomera
+  tier: basic
+  aliases:
+  - IxLG
+  website: null
+liberacion-canaria:
+  name: Liberación Canaria
+  tier: basic
+  aliases:
+  - LIB
+  website: null
+mundo-mas-justo:
+  name: Por un Mundo Más Justo
+  tier: basic
+  aliases:
+  - MUNDO+JUSTO
+  website: null
+unidad-del-pueblo-canario:
+  name: Unidad del Pueblo Canario
+  tier: basic
+  aliases:
+  - NC-BC, PODEMOS, IU, SUMAR
+  website: null
+nuevo-extremenismo:
+  name: Nuevo Extremeñismo-Adelante Extremadura
+  tier: basic
+  aliases:
+  - NEX
+  website: null
+proyecto-alantre:
+  name: Proyecto Alantre
+  tier: basic
+  aliases:
+  - P. ALANTRE
+  website: null
+partido-democrata-social-jubilados-europeos:
+  name: Partido Demócrata Social Jubilados Europeos
+  tier: basic
+  aliases:
+  - P.D.S.J.E.
+  website: null
+pacma:
+  name: Partido Animalista con el Medio Ambiente
+  tier: basic
+  aliases:
+  - PACMA
+  website: https://pacma.es
+pancal-urci:
+  name: Partido Nacionalista de Castilla y León-Unión Reformista Ciudadana
+  tier: basic
+  aliases:
+  - PANCAL-URCI
+  website: null
+partido-autonomos:
+  name: Partido Autónomos
+  tier: basic
+  aliases:
+  - PARTIDO AUTÓNOMOS
+  website: null
+pcpc:
+  name: Partido Comunista del Pueblo Canario
+  tier: basic
+  aliases:
+  - PCPC
+  website: null
+pctc:
+  name: Partit Comunista dels Treballadors de Catalunya
+  tier: basic
+  aliases:
+  - PCTC
+  website: null
+pcte:
+  name: Partido Comunista de los Trabajadores de España
+  tier: basic
+  aliases:
+  - PCTE
+  website: https://www.pcte.es
+pctg:
+  name: Partido Comunista dos Traballadores da Galiza
+  tier: basic
+  aliases:
+  - PCTG
+  website: null
+feministas-al-congreso:
+  name: Feministas al Congreso
+  tier: basic
+  aliases:
+  - PFAC
+  website: null
+partido-humanista:
+  name: Partido Humanista
+  tier: basic
+  aliases:
+  - PH
+  website: null
+prepal:
+  name: Partido Regionalista del País Leonés
+  tier: basic
+  aliases:
+  - PREPAL
+  website: null
+acord-de-progres-per-mallorca:
+  name: Acord de Progrés per Mallorca
+  tier: basic
+  aliases:
+  - PSIB-PSOE-MÉS PER MALLORCA-SUMAR-EUIB
+  website: null
+formentera-al-senat:
+  name: Formentera al Senat
+  tier: basic
+  aliases:
+  - PSOE-GxF-M.SUMAR
+  website: null
+menorca-al-senat:
+  name: Menorca al Senat
+  tier: basic
+  aliases:
+  - PSOE-MÉS PER MENORCA-EM-EU-PODEMOS
+  website: null
+eivissa-al-senat:
+  name: Eivissa al Senat
+  tier: basic
+  aliases:
+  - PSOE-SUMAR-EUIB-ARA EIVISSA-PODEM
+  website: null
+partido-unionista-estado-de-espana:
+  name: Partido Unionista Estado de España
+  tier: basic
+  aliases:
+  - PUEDE
+  website: null
+renacer-renaixer:
+  name: Renacer Renaixer
+  tier: basic
+  aliases:
+  - RRB
+  website: null
+sa-unio:
+  name: Sa Unió de Formentera
+  tier: basic
+  aliases:
+  - SA UNIÓ
+  website: null
+soria-ya:
+  name: Soria ¡Ya!
+  tier: basic
+  aliases:
+  - SY
+  website: http://www.soriaya.org/
+teruel-existe:
+  name: Teruel Existe
+  tier: basic
+  aliases:
+  - TERUEL EXISTE
+  website: https://teruelexiste.info/
+valencia-unida:
+  name: Valencia Unida
+  tier: basic
+  aliases:
+  - VLC
+  website: null
