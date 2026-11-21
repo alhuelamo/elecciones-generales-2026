@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - name: Check formatting, imports and run tests
+        working-directory: pipeline
+        run: |
+          uv run black --check .
+          uv run isort --check .
+          uv run pytest
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install and check web
+        working-directory: web
+        run: |
+          corepack enable
+          yarn install --immutable
+          yarn format:check
+          yarn test
+          yarn build
