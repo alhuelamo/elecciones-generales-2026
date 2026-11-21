@@ -1,0 +1,60 @@
+07-mallorca:
+  es: Mallorca
+  ca: Mallorca
+  seats: 3
+  islaIds: ["073"]
+  headingNames: [Mallorca]
+07-menorca:
+  es: Menorca
+  ca: Menorca
+  seats: 1
+  islaIds: ["074"]
+  headingNames: [Menorca]
+07-eivissa-formentera:
+  es: Ibiza-Formentera
+  ca: Eivissa-Formentera
+  seats: 1
+  islaIds: ["071", "072"]
+  headingNames: [Eivissa, Ibiza, Formentera]
+35-gran-canaria:
+  es: Gran Canaria
+  ca: Gran Canària
+  seats: 3
+  islaIds: ["352"]
+  headingNames: [Gran Canaria]
+35-fuerteventura:
+  es: Fuerteventura
+  ca: Fuerteventura
+  seats: 1
+  islaIds: ["351"]
+  headingNames: [Fuerteventura]
+35-lanzarote:
+  es: Lanzarote
+  ca: Lanzarote
+  seats: 1
+  islaIds: ["353"]
+  headingNames: [Lanzarote]
+38-tenerife:
+  es: Tenerife
+  ca: Tenerife
+  seats: 3
+  islaIds: ["384"]
+  headingNames: [Tenerife]
+38-la-palma:
+  es: La Palma
+  ca: La Palma
+  seats: 1
+  islaIds: ["383"]
+  headingNames: [La Palma]
+38-la-gomera:
+  es: La Gomera
+  ca: La Gomera
+  seats: 1
+  islaIds: ["381"]
+  headingNames: [La Gomera]
+38-el-hierro:
+  es: El Hierro
+  ca: El Hierro
+  seats: 1
+  islaIds: ["382"]
+  headingNames: [El Hierro]

@@ -1,0 +1,303 @@
+'01':
+  boeNames:
+  - ARABA/ÁLAVA
+  - ÀLABA
+  - ÁLAVA
+  - ARABA
+  ca: Àlaba
+  es: Araba/Álava
+'02':
+  boeNames:
+  - ALBACETE
+  ca: Albacete
+  es: Albacete
+'03':
+  boeNames:
+  - ALICANTE/ALACANT
+  - ALACANT
+  - ALICANTE
+  ca: Alacant
+  es: Alicante/Alacant
+'04':
+  boeNames:
+  - ALMERÍA
+  - ALMERIA
+  ca: Almeria
+  es: Almería
+'05':
+  boeNames:
+  - ÁVILA
+  - ÀVILA
+  ca: Àvila
+  es: Ávila
+'06':
+  boeNames:
+  - BADAJOZ
+  ca: Badajoz
+  es: Badajoz
+'07':
+  boeNames:
+  - ILLES BALEARS
+  - BALEARS
+  - BALEARS, ILLES
+  - BALEARES
+  ca: Illes Balears
+  es: Illes Balears
+08:
+  boeNames:
+  - BARCELONA
+  ca: Barcelona
+  es: Barcelona
+09:
+  boeNames:
+  - BURGOS
+  ca: Burgos
+  es: Burgos
+'10':
+  boeNames:
+  - CÁCERES
+  - CÀCERES
+  ca: Càceres
+  es: Cáceres
+'11':
+  boeNames:
+  - CÁDIZ
+  - CADIS
+  ca: Cadis
+  es: Cádiz
+'12':
+  boeNames:
+  - CASTELLÓN/CASTELLÓ
+  - CASTELLÓ
+  - CASTELLÓN
+  ca: Castelló
+  es: Castellón/Castelló
+'13':
+  boeNames:
+  - CIUDAD REAL
+  - CIUTAT REIAL
+  ca: Ciutat Reial
+  es: Ciudad Real
+'14':
+  boeNames:
+  - CÓRDOBA
+  - CÒRDOVA
+  ca: Còrdova
+  es: Córdoba
+'15':
+  boeNames:
+  - A CORUÑA
+  - A CORUNYA
+  - CORUÑA, A
+  - CORUÑA (A)
+  - LA CORUÑA
+  ca: A Corunya
+  es: A Coruña
+'16':
+  boeNames:
+  - CUENCA
+  - CONCA
+  ca: Conca
+  es: Cuenca
+'17':
+  boeNames:
+  - GIRONA
+  - GERONA
+  ca: Girona
+  es: Girona
+'18':
+  boeNames:
+  - GRANADA
+  ca: Granada
+  es: Granada
+'19':
+  boeNames:
+  - GUADALAJARA
+  ca: Guadalajara
+  es: Guadalajara
+'20':
+  boeNames:
+  - GIPUZKOA
+  - GUIPÚZCOA
+  ca: Gipuzkoa
+  es: Gipuzkoa
+'21':
+  boeNames:
+  - HUELVA
+  ca: Huelva
+  es: Huelva
+'22':
+  boeNames:
+  - HUESCA
+  - OSCA
+  ca: Osca
+  es: Huesca
+'23':
+  boeNames:
+  - JAÉN
+  ca: Jaén
+  es: Jaén
+'24':
+  boeNames:
+  - LEÓN
+  - LLEÓ
+  ca: Lleó
+  es: León
+'25':
+  boeNames:
+  - LLEIDA
+  - LÉRIDA
+  ca: Lleida
+  es: Lleida
+'26':
+  boeNames:
+  - LA RIOJA
+  - RIOJA, LA
+  - RIOJA (LA)
+  ca: La Rioja
+  es: La Rioja
+'27':
+  boeNames:
+  - LUGO
+  ca: Lugo
+  es: Lugo
+'28':
+  boeNames:
+  - MADRID
+  ca: Madrid
+  es: Madrid
+'29':
+  boeNames:
+  - MÁLAGA
+  - MÀLAGA
+  ca: Màlaga
+  es: Málaga
+'30':
+  boeNames:
+  - MURCIA
+  - MÚRCIA
+  ca: Múrcia
+  es: Murcia
+'31':
+  boeNames:
+  - NAVARRA
+  ca: Navarra
+  es: Navarra
+'32':
+  boeNames:
+  - OURENSE
+  - ORENSE
+  ca: Ourense
+  es: Ourense
+'33':
+  boeNames:
+  - ASTURIAS
+  - ASTÚRIES
+  - ASTURIAS, PRINCIPADO DE
+  ca: Astúries
+  es: Asturias
+'34':
+  boeNames:
+  - PALENCIA
+  ca: Palencia
+  es: Palencia
+'35':
+  boeNames:
+  - LAS PALMAS
+  - PALMAS, LAS
+  - PALMAS (LAS)
+  ca: Las Palmas
+  es: Las Palmas
+'36':
+  boeNames:
+  - PONTEVEDRA
+  ca: Pontevedra
+  es: Pontevedra
+'37':
+  boeNames:
+  - SALAMANCA
+  ca: Salamanca
+  es: Salamanca
+'38':
+  boeNames:
+  - SANTA CRUZ DE TENERIFE
+  ca: Santa Cruz de Tenerife
+  es: Santa Cruz de Tenerife
+'39':
+  boeNames:
+  - CANTABRIA
+  - CANTÀBRIA
+  ca: Cantàbria
+  es: Cantabria
+'40':
+  boeNames:
+  - SEGOVIA
+  - SEGÒVIA
+  ca: Segòvia
+  es: Segovia
+'41':
+  boeNames:
+  - SEVILLA
+  ca: Sevilla
+  es: Sevilla
+'42':
+  boeNames:
+  - SORIA
+  - SÒRIA
+  ca: Sòria
+  es: Soria
+'43':
+  boeNames:
+  - TARRAGONA
+  ca: Tarragona
+  es: Tarragona
+'44':
+  boeNames:
+  - TERUEL
+  - TEROL
+  ca: Terol
+  es: Teruel
+'45':
+  boeNames:
+  - TOLEDO
+  ca: Toledo
+  es: Toledo
+'46':
+  boeNames:
+  - VALENCIA/VALÈNCIA
+  - VALÈNCIA
+  - VALENCIA
+  ca: València
+  es: Valencia/València
+'47':
+  boeNames:
+  - VALLADOLID
+  ca: Valladolid
+  es: Valladolid
+'48':
+  boeNames:
+  - BIZKAIA
+  - VIZCAYA
+  ca: Bizkaia
+  es: Bizkaia
+'49':
+  boeNames:
+  - ZAMORA
+  ca: Zamora
+  es: Zamora
+'50':
+  boeNames:
+  - ZARAGOZA
+  - SARAGOSSA
+  ca: Saragossa
+  es: Zaragoza
+'51':
+  boeNames:
+  - CEUTA
+  ca: Ceuta
+  es: Ceuta
+'52':
+  boeNames:
+  - MELILLA
+  ca: Melilla
+  es: Melilla
