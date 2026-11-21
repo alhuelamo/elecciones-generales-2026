@@ -1,0 +1,193 @@
+- chamber: senado
+  constituency: '05'
+  boeOrder: 3
+  op: rename_candidate
+  source: BOE-A-2026-23383
+  list: candidates
+  position: 1
+  substitute: 1
+  name: Vidal Galicia Jaramillo
+- chamber: senado
+  constituency: '17'
+  boeOrder: 3
+  op: set_candidates
+  source: BOE-A-2026-23383
+  list: candidates
+  candidates:
+  - name: Etna Estrems Fayos
+    substituteNames:
+    - Albert Sanz Gonzàlez
+    - Carla Andreu Pujadas
+  - name: Miquel Reverter Tres
+    substituteNames:
+    - Lídia Àvila Medina
+    - Jordi Vilà Vilà
+  - name: Roser Carré Gonzàlez
+    substituteNames:
+    - Ferran Camps Campos
+    - Carme Viñas Benítez
+- chamber: congreso
+  constituency: '22'
+  boeOrder: 5
+  op: rename_candidate
+  source: BOE-A-2026-23383
+  list: candidates
+  position: 2
+  name: Milagros Roca López
+- chamber: senado
+  constituency: '22'
+  boeOrder: 6
+  op: rename_candidate
+  source: BOE-A-2026-23383
+  list: candidates
+  position: 2
+  substitute: 2
+  name: Valeriano Tella Arroyos
+- chamber: congreso
+  constituency: '26'
+  boeOrder: 5
+  op: set_candidates
+  source: BOE-A-2026-23383
+  list: candidates
+  candidates:
+  - name: Francisco Castro Portolés
+  - name: María Eugenia Oleaga Muguerza
+  - name: Gonzalo Alonso Alonso
+  - name: Lucía Sáenz Burgos
+- chamber: congreso
+  constituency: '26'
+  boeOrder: 5
+  op: set_candidates
+  source: BOE-A-2026-23383
+  list: substitutes
+  candidates:
+  - name: José Ángel Sáenz Díaz
+- chamber: senado
+  constituency: '26'
+  boeOrder: 1
+  op: set_candidates
+  source: BOE-A-2026-23383
+  list: candidates
+  candidates:
+  - name: Alejandro García Cáncer
+    substituteNames:
+    - Lucía Antoñanzas Gil
+    - Sergio Ballesteros Muñoz
+- chamber: congreso
+  constituency: '31'
+  boeOrder: 1
+  op: set_acronym
+  source: BOE-A-2026-23383
+  acronym: EH BILDU
+  denomination: EUSKAL HERRIA BILDU
+- chamber: congreso
+  constituency: '31'
+  boeOrder: 8
+  op: rename_candidate
+  source: BOE-A-2026-23383
+  list: substitutes
+  position: 2
+  name: Noelia González Salmerón
+- chamber: congreso
+  constituency: '31'
+  boeOrder: 11
+  op: set_acronym
+  source: BOE-A-2026-23383
+  acronym: FRENTE AMPLIO-FRONTE ZABALA
+  denomination: FRENTE AMPLIO-FRONTE ZABALA
+- chamber: senado
+  constituency: '31'
+  boeOrder: 1
+  op: set_candidates
+  source: BOE-A-2026-23383
+  list: candidates
+  candidates:
+  - name: Florencio Aoiz Monreal
+    substituteNames:
+    - Lola Eslava Serrano
+    - Ander Larunbe Anderson
+  - name: Paula García García
+    substituteNames:
+    - Aitor Larraza Carrera
+    - Edurne León Sánchez
+  - name: Angel Martín Unzue Ayanz
+    substituteNames:
+    - Itziar Imaz Artazcoz
+    - Paolo Albanese Weiss
+- chamber: congreso
+  constituency: '43'
+  boeOrder: 7
+  op: set_candidates
+  source: BOE-A-2026-23383
+  list: candidates
+  candidates:
+  - name: Ester Roca Domedel
+  - name: Óscar Sendra Anglès
+  - name: Eva Amposta Serres
+  - name: Antonio Martínez Pascual
+  - name: Noélia Rodriguez Gómez
+  - name: Jordi Collado Álvarez
+- chamber: congreso
+  constituency: '43'
+  boeOrder: 7
+  op: set_candidates
+  source: BOE-A-2026-23383
+  list: substitutes
+  candidates:
+  - name: Teresa Fortuny Solà
+  - name: Josep Sementé Moyà
+  - name: María del Mar Torné Colom
+  - name: Albert Ventura Agramunt
+  - name: Laura Alonso Da Costa
+  - name: Luis Miralles García
+  - name: Marisa Mendez-Vigo Campos
+  - name: Alfons Rius i Ribalta
+  - name: Maria Teresa Vallverdú March
+  - name: Jordi Barberà Argilaga
+- chamber: senado
+  constituency: '43'
+  boeOrder: 2
+  op: set_candidates
+  source: BOE-A-2026-23383
+  list: candidates
+  candidates:
+  - name: Noemí Llauradó Sans
+    substituteNames:
+    - Josep Maria Farré Vidal
+    - Marina Berasategui Canals
+  - name: Xavier Faura Sanmartín
+    substituteNames:
+    - Montse Subirats Gisbert
+    - Jordi Gaseni Blanch
+  - name: Montserrat Ventura Jané
+    substituteNames:
+    - Jean-Marc Segarra Mauri
+    - Virginia Martínez Torres
+- chamber: senado
+  constituency: '43'
+  boeOrder: 4
+  op: set_boe_order
+  source: BOE-A-2026-23383
+  newBoeOrder: 5
+- chamber: senado
+  constituency: '43'
+  boeOrder: 5
+  op: set_boe_order
+  source: BOE-A-2026-23383
+  newBoeOrder: 4
+- chamber: congreso
+  constituency: '44'
+  boeOrder: 1
+  op: rename_candidate
+  source: BOE-A-2026-23383
+  list: candidates
+  position: 1
+  name: Herminio Rufino Sancho Íñiguez
+- chamber: congreso
+  constituency: '46'
+  boeOrder: 3
+  op: rename_candidate
+  source: BOE-A-2026-23383
+  list: candidates
+  position: 3
+  name: Jose Francisco Domenech Gomis

@@ -14,12 +14,16 @@ from elecciones_pipeline.candidacies import (
 from elecciones_pipeline.constituencies import (
     Constituency,
     ConstituencyRegistry,
-    UnknownIslandHeading,
-    UnknownProvinceName,
     UnmappedIslandMunicipality,
     load_constituencies,
 )
 from elecciones_pipeline.contract import CHAMBERS, validate_data_dir
+from elecciones_pipeline.corrections import (
+    apply_corrections,
+    candidacy_constituency_id,
+    load_corrections,
+)
+from elecciones_pipeline.errors import BuildError
 from elecciones_pipeline.labels import LABELS_FILE, MunicipalityLabels, read_labels
 from elecciones_pipeline.municipalities import (
     IneMunicipality,
@@ -34,6 +38,7 @@ from elecciones_pipeline.parties import PartyCatalog, load_logos, load_party_cat
 BOE_ID = "BOE-A-2026-23103"
 INE_FILE = "26codmun.xlsx"
 DATASET = "boe-2026"
+CORRECTIONS_FILE = "corrections.yaml"
 CONGRESO = "congreso"
 SENADO = "senado"
 
@@ -50,10 +55,6 @@ class BuildReport:
     warnings: tuple[str, ...]
     ballot_count: int
     municipality_count: int
-
-
-class BuildError(Exception):
-    pass
 
 
 @dataclass(frozen=True)
@@ -99,21 +100,29 @@ def assign_slugs(acronyms: list[str]) -> list[str]:
 
 def _load_inputs(paths: BuildPaths) -> _Inputs:
     document = BoeXmlSource(paths.raw_dir / f"{BOE_ID}.xml", BOE_ID).load()
+    registry = load_constituencies(paths.data_dir)
     return _Inputs(
-        registry=load_constituencies(paths.data_dir),
+        registry=registry,
         municipalities=read_ine_municipalities(paths.raw_dir / INE_FILE),
         labels=read_labels(paths.data_dir / "vendor" / LABELS_FILE),
         document=document,
-        candidacies=parse_candidacies(document),
+        candidacies=_corrected_candidacies(paths, registry, document),
         catalog=load_party_catalog(paths.data_dir / "parties.yaml"),
         logos=load_logos(paths.data_dir / "logos.yaml"),
     )
 
 
+def _corrected_candidacies(
+    paths: BuildPaths, registry: ConstituencyRegistry, document: SourceDocument
+) -> list[ParsedCandidacy]:
+    corrections = load_corrections(paths.data_dir / CORRECTIONS_FILE)
+    return apply_corrections(parse_candidacies(document), corrections, registry)
+
+
 def _group_candidacies(inputs: _Inputs) -> dict[tuple[str, str], list]:
     grouped: dict[tuple[str, str], list[ParsedCandidacy]] = {}
     for candidacy in inputs.candidacies:
-        key = (candidacy.chamber, _constituency_id(inputs.registry, candidacy))
+        key = (candidacy.chamber, candidacy_constituency_id(inputs.registry, candidacy))
         members = grouped.setdefault(key, [])
         if candidacy not in members:
             members.append(candidacy)
@@ -121,18 +130,6 @@ def _group_candidacies(inputs: _Inputs) -> dict[tuple[str, str], list]:
         key: sorted(members, key=lambda member: member.header.boe_order)
         for key, members in sorted(grouped.items())
     }
-
-
-def _constituency_id(registry: ConstituencyRegistry, candidacy: ParsedCandidacy):
-    try:
-        province_code = registry.province_code_for_name(candidacy.province_heading)
-        if candidacy.chamber == SENADO and candidacy.island_heading:
-            return registry.senado_id_for_island_heading(
-                province_code, candidacy.island_heading
-            )
-    except (UnknownProvinceName, UnknownIslandHeading) as error:
-        raise BuildError(f"unknown heading: {error}") from error
-    return province_code
 
 
 def _municipality_entries(inputs: _Inputs) -> list[dict]:

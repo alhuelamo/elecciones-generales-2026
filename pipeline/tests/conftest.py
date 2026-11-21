@@ -36,6 +36,7 @@ def build_inputs(tmp_path) -> BuildPaths:
     raw_dir.mkdir()
     for yaml_file in (PIPELINE_DIR / "data").glob("*.yaml"):
         shutil.copy(yaml_file, data_dir / yaml_file.name)
+    (data_dir / "corrections.yaml").write_text("[]\n", encoding="utf-8")
     shutil.copytree(PIPELINE_DIR / "data" / "vendor", data_dir / "vendor")
     shutil.copy(
         FIXTURES / "boe" / "BOE-A-2026-23103-excerpt.xml", raw_dir / f"{BOE_ID}.xml"
