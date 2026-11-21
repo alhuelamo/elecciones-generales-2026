@@ -34,11 +34,22 @@ from elecciones_pipeline.municipalities import (
 )
 from elecciones_pipeline.normalize import slugify
 from elecciones_pipeline.parties import PartyCatalog, load_logos, load_party_catalog
+from elecciones_pipeline.results_2023 import (
+    CongresoXlsxSource,
+    Results2023,
+    SenadoXlsxSource,
+    load_lineage,
+    summarize,
+)
 
 BOE_ID = "BOE-A-2026-23103"
 INE_FILE = "26codmun.xlsx"
 DATASET = "boe-2026"
 CORRECTIONS_FILE = "corrections.yaml"
+LINEAGE_FILE = "lineage_2023.yaml"
+RESULTS_2023_DIR = "results_2023"
+CONGRESO_RESULTS_FILE = "PROV_02_202307_1.xlsx"
+SENADO_RESULTS_FILE = "PROV_03_202307_1.xlsx"
 CONGRESO = "congreso"
 SENADO = "senado"
 
@@ -66,6 +77,8 @@ class _Inputs:
     candidacies: list[ParsedCandidacy]
     catalog: PartyCatalog
     logos: dict
+    lineage: dict[str, list[str]]
+    results_2023: Results2023
 
 
 def build_dataset(paths: BuildPaths, generated_at: datetime) -> BuildReport:
@@ -109,7 +122,30 @@ def _load_inputs(paths: BuildPaths) -> _Inputs:
         candidacies=_corrected_candidacies(paths, registry, document),
         catalog=load_party_catalog(paths.data_dir / "parties.yaml"),
         logos=load_logos(paths.data_dir / "logos.yaml"),
+        lineage=_load_lineage(paths.data_dir),
+        results_2023=_load_results_2023(paths.raw_dir / RESULTS_2023_DIR, registry),
     )
+
+
+def _load_lineage(data_dir: Path) -> dict[str, list[str]]:
+    path = data_dir / LINEAGE_FILE
+    return load_lineage(path) if path.exists() else {}
+
+
+def _load_results_2023(directory: Path, registry: ConstituencyRegistry) -> Results2023:
+    candidacies: tuple = ()
+    valid_votes: dict = {}
+    sources = []
+    if (directory / CONGRESO_RESULTS_FILE).exists():
+        sources.append(CongresoXlsxSource(directory / CONGRESO_RESULTS_FILE))
+    if (directory / SENADO_RESULTS_FILE).exists():
+        seats = {item.id: item.seats for item in registry.senado}
+        sources.append(SenadoXlsxSource(directory / SENADO_RESULTS_FILE, seats))
+    for source in sources:
+        loaded = source.load()
+        candidacies += loaded.candidacies
+        valid_votes.update(loaded.valid_votes)
+    return Results2023(candidacies, valid_votes)
 
 
 def _corrected_candidacies(
@@ -216,7 +252,7 @@ def _ballot(
         "maxMarks": constituency.max_marks,
         "sources": [{"label": inputs.document.boe_id, "url": inputs.document.url}],
         "candidacies": [
-            _candidacy_json(inputs.catalog, member, slug)
+            _candidacy_json(inputs, constituency, member, slug)
             for member, slug in zip(members, slugs)
         ],
     }
@@ -227,8 +263,11 @@ def _slug_source(candidacy: ParsedCandidacy) -> str:
     return header.acronym if slugify(header.acronym) else header.denomination
 
 
-def _candidacy_json(catalog: PartyCatalog, candidacy: ParsedCandidacy, slug: str):
+def _candidacy_json(
+    inputs: _Inputs, constituency: Constituency, candidacy: ParsedCandidacy, slug: str
+):
     header = candidacy.header
+    catalog = inputs.catalog
     is_senado = candidacy.chamber == SENADO
     return {
         "slug": slug,
@@ -241,7 +280,13 @@ def _candidacy_json(catalog: PartyCatalog, candidacy: ParsedCandidacy, slug: str
         "substitutes": (
             [] if is_senado else [_candidate_json(i) for i in candidacy.substitutes]
         ),
-        "results2023": None,
+        "results2023": summarize(
+            constituency.chamber,
+            constituency.id,
+            header.acronym or header.denomination,
+            inputs.lineage,
+            inputs.results_2023,
+        ),
     }
 
 

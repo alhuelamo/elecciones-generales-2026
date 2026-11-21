@@ -159,3 +159,46 @@ def add_alias(parties_yaml: Path, party_key: str, alias: str) -> None:
     parties = yaml.safe_load(parties_yaml.read_text(encoding="utf-8"))
     parties[party_key]["aliases"].append(alias)
     parties_yaml.write_text(yaml.safe_dump(parties, allow_unicode=True))
+
+
+def install_results_2023(paths) -> None:
+    directory = paths.raw_dir / "results_2023"
+    directory.mkdir()
+    shutil.copy(
+        FIXTURES / "results_2023" / "congreso_excerpt.xlsx",
+        directory / "PROV_02_202307_1.xlsx",
+    )
+    shutil.copy(
+        FIXTURES / "results_2023" / "senado_excerpt.xlsx",
+        directory / "PROV_03_202307_1.xlsx",
+    )
+
+
+def candidacy_by_acronym(paths, chamber, constituency_id, acronym) -> dict:
+    ballot = read_json(paths.output_dir / chamber / f"{constituency_id}.json")
+    return next(item for item in ballot["candidacies"] if item["acronym"] == acronym)
+
+
+def test_build_fills_results_2023_when_source_present(build_inputs):
+    install_results_2023(build_inputs)
+
+    build_dataset(build_inputs, GENERATED_AT)
+
+    assert validate_data_dir(build_inputs.output_dir) == []
+    vox = candidacy_by_acronym(build_inputs, "congreso", "08", "VOX")
+    assert vox["results2023"] == {
+        "votes": 201775,
+        "percentage": 7.56,
+        "seats": 2,
+        "asAcronyms": ["VOX"],
+    }
+    senado_pp = candidacy_by_acronym(build_inputs, "senado", "07-mallorca", "PP")
+    assert senado_pp["results2023"]["votes"] == 143225
+    assert senado_pp["results2023"]["percentage"] is None
+
+
+def test_build_without_results_2023_leaves_null(build_inputs):
+    build_dataset(build_inputs, GENERATED_AT)
+
+    vox = candidacy_by_acronym(build_inputs, "congreso", "08", "VOX")
+    assert vox["results2023"] is None
