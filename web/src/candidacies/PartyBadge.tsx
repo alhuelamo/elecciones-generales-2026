@@ -28,7 +28,7 @@ export function PartyBadge(props: {
         src={`${import.meta.env.BASE_URL}${props.logo.path}`}
         alt={props.acronym}
         onError={() => setLogoFailed(true)}
-        className={`${LOGO_SIZE_CLASSES[props.size]} shrink-0 object-contain`}
+        className={`${LOGO_SIZE_CLASSES[props.size]} shrink-0 rounded bg-white object-contain p-0.5 ring-1 ring-black/10`}
       />
     );
   }
