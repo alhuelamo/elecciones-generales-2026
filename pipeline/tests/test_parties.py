@@ -82,3 +82,12 @@ def test_empty_yaml_gives_empty_catalog(tmp_path):
     path = tmp_path / "parties.yaml"
     path.write_text("{}", encoding="utf-8")
     assert load_party_catalog(path).to_json({}) == {"parties": {}}
+
+
+def test_psc_is_its_own_party_with_logo():
+    data_dir = PIPELINE_DIR / "data"
+    real_catalog = load_party_catalog(data_dir / "parties.yaml")
+    assert real_catalog.match("PSC") == "psc"
+    assert real_catalog.match("PSC-PSOE") == "psc"
+    assert real_catalog.match("PSOE") == "psoe"
+    assert "psc" in load_logos(data_dir / "logos.yaml")

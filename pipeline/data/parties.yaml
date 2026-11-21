@@ -3,7 +3,6 @@ psoe:
   tier: full
   aliases:
   - PSOE
-  - PSC
   - PSdeG-PSOE
   - PSN-PSOE
   - PSIB-PSOE
@@ -17,6 +16,22 @@ psoe:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Partido_Socialista_Obrero_Español
     ca: https://ca.wikipedia.org/wiki/Partit_Socialista_Obrer_Espanyol
+psc:
+  name: Partit dels Socialistes de Catalunya
+  tier: full
+  aliases:
+  - PSC
+  - PSC-PSOE
+  website: https://www.socialistes.cat
+  programmeUrl: null
+  leader: Salvador Illa
+  founded: 1978
+  seats2023:
+    congreso: 19
+    senado: 12
+  wikipedia:
+    es: https://es.wikipedia.org/wiki/Partido_de_los_Socialistas_de_Cataluña
+    ca: https://ca.wikipedia.org/wiki/Partit_dels_Socialistes_de_Catalunya
 pp:
   name: Partido Popular
   tier: full

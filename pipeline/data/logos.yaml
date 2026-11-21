@@ -3,6 +3,11 @@ psoe:
   sourceUrl: "https://commons.wikimedia.org/wiki/File:Logotipo_del_PSOE.svg"
   license: "Public domain"
   author: "Trademarked by PghipSOE. This file, by Rastrojo •Rastrojo"
+psc:
+  file: psc.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_PSC_oficial_2021.svg"
+  license: "Public domain"
+  author: "Partit dels Socialistes de Catalunya"
 podemos:
   file: podemos.svg
   sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_de_Podemos_(2022).svg"
