@@ -1,0 +1,15 @@
+- id: boe-candidacies
+  url: https://www.boe.es/diario_boe/xml.php?id=BOE-A-2026-23103
+  file: BOE-A-2026-23103.xml
+  license: Reutilización de información pública (Ley 37/2007)
+  manual: false
+- id: ine-municipalities
+  url: https://www.ine.es/daco/daco42/codmun/26codmun.xlsx
+  file: 26codmun.xlsx
+  license: Reutilización de información pública (Ley 37/2007)
+  manual: false
+- id: results-2023
+  url: https://infoelectoral.interior.gob.es/
+  file: results_2023/
+  license: Reutilización de información pública (Ley 37/2007)
+  manual: true
