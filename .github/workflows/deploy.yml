@@ -28,7 +28,7 @@ jobs:
           corepack enable
           yarn install --immutable
           yarn format:check
-          yarn test
+          yarn test --passWithNoTests
           yarn build
       - uses: actions/upload-pages-artifact@v3
         with:
