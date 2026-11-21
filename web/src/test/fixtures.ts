@@ -57,12 +57,7 @@ export const fixtureIndex: MunicipalityIndex = {
     ],
     senado: [
       senateSummary("03", "Alicante", "Alacant", 4),
-      senateSummary(
-        "07-eivissa-formentera",
-        "Eivissa-Formentera",
-        "Eivissa-Formentera",
-        1,
-      ),
+      senateSummary("07-formentera", "Formentera", "Formentera", 1),
       senateSummary("07-mallorca", "Mallorca", "Mallorca", 3),
       senateSummary("08", "Barcelona", "Barcelona", 4),
       senateSummary("15", "A Coruña", "A Corunya", 4),
@@ -100,7 +95,7 @@ export const fixtureIndex: MunicipalityIndex = {
       name: "Formentera",
       aliases: [],
       congreso: "07",
-      senado: "07-eivissa-formentera",
+      senado: "07-formentera",
     },
     {
       code: "15030",

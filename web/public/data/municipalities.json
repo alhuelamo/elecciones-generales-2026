@@ -33,10 +33,10 @@
     ],
     "senado": [
       {
-        "id": "07-eivissa-formentera",
+        "id": "07-formentera",
         "name": {
-          "es": "Eivissa-Formentera",
-          "ca": "Eivissa-Formentera"
+          "es": "Formentera",
+          "ca": "Formentera"
         },
         "seats": 1,
         "maxMarks": 1
@@ -97,7 +97,7 @@
       "name": "Formentera",
       "aliases": [],
       "congreso": "07",
-      "senado": "07-eivissa-formentera"
+      "senado": "07-formentera"
     },
     {
       "code": "51001",

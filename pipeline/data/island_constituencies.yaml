@@ -10,12 +10,18 @@
   seats: 1
   islaIds: ["074"]
   headingNames: [Menorca]
-07-eivissa-formentera:
-  es: Ibiza-Formentera
-  ca: Eivissa-Formentera
+07-eivissa:
+  es: Ibiza
+  ca: Eivissa
   seats: 1
-  islaIds: ["071", "072"]
-  headingNames: [Eivissa, Ibiza, Formentera]
+  islaIds: ["072"]
+  headingNames: [Eivissa, Ibiza]
+07-formentera:
+  es: Formentera
+  ca: Formentera
+  seats: 1
+  islaIds: ["071"]
+  headingNames: [Formentera]
 35-gran-canaria:
   es: Gran Canaria
   ca: Gran Canària

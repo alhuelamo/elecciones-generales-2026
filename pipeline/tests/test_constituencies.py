@@ -52,8 +52,8 @@ def test_madrid_and_balears_congreso_seats(registry):
     assert [registry.get("congreso", p).seats for p in ("28", "07")] == [38, 8]
 
 
-def test_senado_has_208_seats_in_59_constituencies(registry):
-    assert (len(registry.senado), sum(c.seats for c in registry.senado)) == (59, 208)
+def test_senado_has_209_seats_in_60_constituencies(registry):
+    assert (len(registry.senado), sum(c.seats for c in registry.senado)) == (60, 209)
 
 
 def test_senado_is_ordered_by_id(registry):
@@ -88,8 +88,8 @@ def test_autonomous_cities_elect_two_senators(registry, province):
     "name, island",
     [
         ("Palma", "07-mallorca"),
-        ("Formentera", "07-eivissa-formentera"),
-        ("Eivissa", "07-eivissa-formentera"),
+        ("Formentera", "07-formentera"),
+        ("Eivissa", "07-eivissa"),
         ("Ciutadella de Menorca", "07-menorca"),
         ("Teguise", "35-lanzarote"),
         ("Valverde", "38-el-hierro"),
@@ -147,8 +147,8 @@ def test_unknown_province_name_raises(registry):
 @pytest.mark.parametrize(
     "province, heading, island",
     [
-        ("07", "Circunscripción electoral: Formentera", "07-eivissa-formentera"),
-        ("07", "Eivissa", "07-eivissa-formentera"),
+        ("07", "Circunscripción electoral: Formentera", "07-formentera"),
+        ("07", "Eivissa", "07-eivissa"),
         ("07", "MALLORCA", "07-mallorca"),
         ("35", "Gran Canaria", "35-gran-canaria"),
         ("38", "La Palma", "38-la-palma"),
