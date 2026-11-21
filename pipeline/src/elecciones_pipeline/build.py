@@ -24,6 +24,7 @@ from elecciones_pipeline.labels import LABELS_FILE, MunicipalityLabels, read_lab
 from elecciones_pipeline.municipalities import (
     IneMunicipality,
     localized_names,
+    needs_label_fallback,
     read_ine_municipalities,
     search_aliases,
 )
@@ -146,13 +147,12 @@ def _municipality_entries(inputs: _Inputs) -> list[dict]:
 
 def _municipality_entry(municipality: IneMunicipality, inputs: _Inputs) -> dict:
     registry = inputs.registry
-    names = localized_names(
-        municipality.official_name, inputs.labels.get(municipality.code)
-    )
+    labels = inputs.labels.get(municipality.code)
+    names = localized_names(municipality.official_name, labels)
     return {
         "code": municipality.code,
         "name": names,
-        "aliases": search_aliases(municipality.official_name, names),
+        "aliases": search_aliases(municipality.official_name, names, labels),
         CONGRESO: registry.congreso_id_for(municipality.code),
         SENADO: registry.senado_id_for(municipality.code),
     }
@@ -257,20 +257,28 @@ def _candidate_json(candidate: ParsedCandidate) -> dict:
 
 
 def _label_warnings(inputs: _Inputs, entries: list[dict]) -> list[str]:
-    unlabelled = [
-        entry["code"]
-        for entry in entries
-        if entry["code"] not in inputs.labels
-        or not all((inputs.labels[entry["code"]].es, inputs.labels[entry["code"]].ca))
-    ]
     bilingual = [
+        municipality
+        for municipality in inputs.municipalities
+        if "/" in municipality.official_name
+    ]
+    fallbacks = [
+        municipality.code
+        for municipality in bilingual
+        if needs_label_fallback(
+            municipality.official_name, inputs.labels.get(municipality.code)
+        )
+    ]
+    slashed = [
         entry["code"]
         for entry in entries
         if "/" in entry["name"]["es"] or "/" in entry["name"]["ca"]
     ]
     return [
-        f"{len(unlabelled)} municipalities missing a Wikidata es/ca label",
-        f"{len(bilingual)} municipality names still contain '/': {bilingual}",
+        f"{len(bilingual)} bilingual INE names: "
+        f"{len(bilingual) - len(fallbacks)} resolved via Wikidata labels, "
+        f"{len(fallbacks)} fell back to first part: {fallbacks}",
+        f"{len(slashed)} municipality names still contain '/': {slashed}",
     ]
 
 

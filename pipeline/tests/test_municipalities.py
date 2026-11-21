@@ -7,6 +7,7 @@ from elecciones_pipeline.labels import MunicipalityLabels
 from elecciones_pipeline.municipalities import (
     display_name,
     localized_names,
+    needs_label_fallback,
     read_ine_municipalities,
     search_aliases,
 )
@@ -71,12 +72,27 @@ NO_LABELS = MunicipalityLabels("", "")
     "official, labels, es, ca",
     [
         ("Alicante/Alacant", ALICANTE, "Alicante", "Alacant"),
-        ("Donostia/San Sebastián", SAN_SEBASTIAN, "San Sebastián", "Sant Sebastià"),
         ("Coruña, A", NO_LABELS, "A Coruña", "A Coruña"),
         ("Coruña, A", None, "A Coruña", "A Coruña"),
         ("Alicante/Alacant", MunicipalityLabels("Alicante", ""), "Alicante", "Alacant"),
         ("Alicante/Alacant", MunicipalityLabels("", "Alacant"), "Alicante", "Alacant"),
-        ("Alicante/Alacant", NO_LABELS, "Alicante/Alacant", "Alicante/Alacant"),
+        ("Alicante/Alacant", NO_LABELS, "Alicante", "Alicante"),
+        (
+            "Coruña, A",
+            MunicipalityLabels("La Coruña", "la Corunya"),
+            "A Coruña",
+            "A Coruña",
+        ),
+        ("Girona", MunicipalityLabels("Gerona", "Girona"), "Girona", "Girona"),
+        ("Lleida", MunicipalityLabels("Lérida", "Lleida"), "Lleida", "Lleida"),
+        ("Eivissa", MunicipalityLabels("Ibiza", "Eivissa"), "Eivissa", "Eivissa"),
+        (
+            "Pamplona/Iruña",
+            MunicipalityLabels("Pamplona", "Pamplona"),
+            "Pamplona",
+            "Pamplona",
+        ),
+        ("Donostia/San Sebastián", SAN_SEBASTIAN, "San Sebastián", "San Sebastián"),
         ("Elche/Elx", MunicipalityLabels("Elche", "Elx"), "Elche", "Elx"),
         ("Barcelona", MunicipalityLabels("Barcelona", ""), "Barcelona", "Barcelona"),
     ],
@@ -85,12 +101,27 @@ def test_localized_names(official, labels, es, ca):
     assert localized_names(official, labels) == {"es": es, "ca": ca}
 
 
+def test_needs_label_fallback_only_for_bilingual_names_without_labels():
+    assert needs_label_fallback("Alicante/Alacant", NO_LABELS)
+    assert needs_label_fallback("Alicante/Alacant", None)
+    assert not needs_label_fallback("Alicante/Alacant", ALICANTE)
+    assert not needs_label_fallback("Barcelona", None)
+
+
+def test_wikidata_exonyms_stay_searchable_but_never_shown():
+    labels = MunicipalityLabels("La Coruña", "la Corunya")
+    names = localized_names("Coruña, A", labels)
+    assert names == {"es": "A Coruña", "ca": "A Coruña"}
+    assert {"La Coruña", "la Corunya"} <= set(
+        search_aliases("Coruña, A", names, labels)
+    )
+
+
 def test_aliases_cover_both_languages_and_official_form():
     names = localized_names("Donostia/San Sebastián", SAN_SEBASTIAN)
-    assert search_aliases("Donostia/San Sebastián", names) == [
+    assert search_aliases("Donostia/San Sebastián", names, SAN_SEBASTIAN) == [
         "Donostia/San Sebastián",
         "Donostia",
-        "San Sebastián",
         "Sant Sebastià",
     ]
 

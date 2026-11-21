@@ -70,7 +70,7 @@ def test_missing_labels_fall_back_to_display_name(build_inputs):
         "es": "L'Hospitalet de Llobregat",
         "ca": "L'Hospitalet de Llobregat",
     }
-    assert any("missing a Wikidata" in warning for warning in report.warnings)
+    assert any("fell back to first part" in warning for warning in report.warnings)
 
 
 def test_assign_slugs_disambiguates():

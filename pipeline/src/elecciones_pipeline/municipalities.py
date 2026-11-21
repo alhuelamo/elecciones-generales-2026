@@ -1,10 +1,12 @@
 import re
 from dataclasses import dataclass
+from difflib import SequenceMatcher
 from pathlib import Path
 
 from openpyxl import load_workbook
 
 from elecciones_pipeline.labels import MunicipalityLabels
+from elecciones_pipeline.normalize import normalize_text
 
 FIRST_DATA_ROW = 4
 POSTPOSED_ARTICLES = {
@@ -39,13 +41,28 @@ def localized_names(
     official_name: str, labels: MunicipalityLabels | None
 ) -> dict[str, str]:
     labels = labels or MunicipalityLabels(es="", ca="")
+    parts = [_display_part(part) for part in official_name.split("/")]
+    if len(parts) == 1:
+        return {"es": parts[0], "ca": parts[0]}
+    es = _closest_part(parts, labels.es) if labels.es else None
+    ca = _closest_part(parts, labels.ca) if labels.ca else None
     return {
-        "es": labels.es or _fallback_name(official_name, labels.ca),
-        "ca": labels.ca or _fallback_name(official_name, labels.es),
+        "es": es or _other_part(parts, ca),
+        "ca": ca or _other_part(parts, es),
     }
 
 
-def search_aliases(official_name: str, names: dict[str, str]) -> list[str]:
+def needs_label_fallback(official_name: str, labels: MunicipalityLabels | None) -> bool:
+    is_bilingual = "/" in official_name
+    has_labels = bool(labels and (labels.es or labels.ca))
+    return is_bilingual and not has_labels
+
+
+def search_aliases(
+    official_name: str,
+    names: dict[str, str],
+    labels: MunicipalityLabels | None = None,
+) -> list[str]:
     parts = official_name.split("/")
     candidates = [
         official_name,
@@ -54,20 +71,27 @@ def search_aliases(official_name: str, names: dict[str, str]) -> list[str]:
         *(_display_part(part) for part in parts),
         names["es"],
         names["ca"],
+        *((labels.es, labels.ca) if labels else ()),
     ]
     unique = list(dict.fromkeys(candidates))
-    return [alias for alias in unique if alias != names["es"] or alias != names["ca"]]
+    return [
+        alias
+        for alias in unique
+        if alias and (alias != names["es"] or alias != names["ca"])
+    ]
 
 
-def _fallback_name(official_name: str, other_language_label: str) -> str:
-    parts = [_display_part(part) for part in official_name.split("/")]
-    if len(parts) == 2 and other_language_label:
-        remaining = [
-            part for part in parts if part.casefold() != other_language_label.casefold()
-        ]
-        if len(remaining) == 1:
-            return remaining[0]
-    return display_name(official_name)
+def _other_part(parts: list[str], chosen: str | None) -> str:
+    remaining = [part for part in parts if part != chosen]
+    return remaining[0] if chosen and len(parts) == 2 else parts[0]
+
+
+def _closest_part(parts: list[str], label: str) -> str:
+    target = normalize_text(label)
+    return max(
+        parts,
+        key=lambda part: SequenceMatcher(None, normalize_text(part), target).ratio(),
+    )
 
 
 def _read_sheet(sheet) -> list[IneMunicipality]:

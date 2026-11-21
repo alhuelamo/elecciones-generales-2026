@@ -70,7 +70,7 @@ web/        Vite + React + TypeScript + Tailwind v4 + Headless UI, yarn 4
 ```
 - `dataset`: `"fixture"` or `"boe-2026"`. Fixture data triggers a visible "demo data" banner.
 - `generatedAt`: pipeline build timestamp (UTC ISO 8601), shown on About.
-- `municipality.name`: `{ es, ca }`, one monolingual name per language (never contains a slash when a label exists). Source: Wikidata labels by INE code (`pipeline/data/vendor/wikidata_municipality_labels.csv`); when a label is missing, the matching part of a slash INE name if unambiguous, else the INE name with postposed article moved to front (`Coruña, A` -> `A Coruña`).
+- `municipality.name`: `{ es, ca }`, always the official INE name, never containing a slash. Names without `/` are identical in both languages (postposed article moved to front: `Coruña, A` -> `A Coruña`). For officially bilingual names (`Alicante/Alacant`) each language gets the part most similar (normalized text) to the Wikidata label of that language (`pipeline/data/vendor/wikidata_municipality_labels.csv`); without labels both use the first part. Wikidata exonyms (`La Coruña`, `Gerona`, `Lérida`) are never shown, only kept in `aliases` for search.
 - `aliases`: searchable forms in either language, deduped: raw INE form, each side of a slash, display forms and both language labels. The UI shows only `name[language]` and searches names and aliases.
 - `congreso` = province code; `senado` = Senado constituency id.
 
