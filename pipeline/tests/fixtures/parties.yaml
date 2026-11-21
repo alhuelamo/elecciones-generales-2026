@@ -1,0 +1,13 @@
+psoe:
+  name: Partido Socialista Obrero Español
+  tier: full
+  aliases: [PSOE, PSC-PSOE, PSE-EE (PSOE)]
+  website: https://www.psoe.es
+  programmeUrl: null
+  leader: Pedro Sánchez
+  founded: 1879
+  seats2023: {congreso: 121, senado: 82}
+  wikipedia: {es: https://es.wikipedia.org/wiki/Partido_Socialista_Obrero_Espa%C3%B1ol, ca: null}
+pp:
+  name: Partido Popular
+  aliases: [PP]
