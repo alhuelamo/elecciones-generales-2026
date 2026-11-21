@@ -31,7 +31,7 @@ describe("AboutPage", () => {
   it("renders the build date in catalan", async () => {
     await i18next.changeLanguage("ca");
     renderAbout();
-    expect(screen.getByText(/23 de novembre de 2026/)).toBeInTheDocument();
+    expect(screen.getByText(/23 de novembre del? 2026/)).toBeInTheDocument();
   });
 
   it.each([
