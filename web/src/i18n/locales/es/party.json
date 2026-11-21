@@ -4,7 +4,8 @@
   "substitutes": "Suplentes",
   "substitute": "Suplente",
   "substitutesOf": "Suplentes: {{names}}",
-  "senadoMarks": "Puedes marcar hasta {{maxMarks}} candidatos en total",
+  "senadoMarks_one": "Puedes marcar 1 candidato",
+  "senadoMarks_other": "Puedes marcar hasta {{count}} candidatos en total",
   "coalition": "Coalición",
   "facts": {
     "title": "Datos del partido",

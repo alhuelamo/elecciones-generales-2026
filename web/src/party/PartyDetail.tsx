@@ -38,7 +38,7 @@ export function PartyDetail(props: {
         </div>
       </header>
       {props.chamber === "senado" && props.maxMarks !== null && (
-        <p>{t("senadoMarks", { maxMarks: props.maxMarks })}</p>
+        <p>{t("senadoMarks", { count: props.maxMarks })}</p>
       )}
       {props.profile && <PartyFacts profile={props.profile} />}
       <a

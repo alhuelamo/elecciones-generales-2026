@@ -14,6 +14,7 @@ function renderDetail(
     chamber?: Chamber;
     profile?: PartyProfile | null;
     coalition?: boolean;
+    maxMarks?: number;
   } = {},
 ) {
   const chamber = overrides.chamber ?? "congreso";
@@ -26,7 +27,7 @@ function renderDetail(
     <PartyDetail
       candidacy={candidacy}
       chamber={chamber}
-      maxMarks={chamber === "senado" ? 2 : null}
+      maxMarks={chamber === "senado" ? (overrides.maxMarks ?? 2) : null}
       profile={
         overrides.profile === undefined
           ? fixtureCatalog.parties.pea
@@ -89,6 +90,11 @@ describe("PartyDetail", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/Suplente Ejemplo A1A/)).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Suplentes" })).toBeNull();
+  });
+
+  it("uses the singular marks note when only one mark is allowed", () => {
+    renderDetail({ chamber: "senado", maxMarks: 1 });
+    expect(screen.getByText("Puedes marcar 1 candidato")).toBeInTheDocument();
   });
 
   it("omits facts but keeps the edit link without profile", () => {
