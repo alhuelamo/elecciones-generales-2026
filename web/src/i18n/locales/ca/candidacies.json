@@ -1,0 +1,14 @@
+{
+  "ordering": {
+    "label": "Ordena per",
+    "boe": "Ordre del BOE",
+    "alphabetical": "Alfabètic",
+    "votes2023": "Vots 2023"
+  },
+  "results2023": {
+    "congreso": "2023: {{percentage}} · {{seats}} escons",
+    "senado": "2023: {{seats}} escons",
+    "as": "com {{acronyms}}"
+  },
+  "coalition": "Coalició"
+}
