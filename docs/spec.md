@@ -7,7 +7,7 @@ Static GitHub Pages site for the Spanish general election of **29 November 2026*
 - Both chambers, two tabs per town.
 - **Congreso** constituency = province (52, incl. Ceuta and Melilla). Closed list. Seats per province from the annex of Real Decreto 806/2026 (BOE-A-2026-20742) (sum 350; Ceuta 1, Melilla 1).
 - **Senado** constituency = province, except:
-  - Illes Balears (07): `07-mallorca` (3), `07-menorca` (1), `07-eivissa-formentera` (1; es "Ibiza-Formentera", ca "Eivissa-Formentera")
+  - Illes Balears (07): `07-mallorca` (3), `07-menorca` (1), `07-eivissa`, `07-formentera` (1; es "Ibiza-Formentera", ca "Eivissa, Formentera")
   - Las Palmas (35): `35-gran-canaria` (3), `35-fuerteventura` (1), `35-lanzarote` (1)
   - Santa Cruz de Tenerife (38): `38-tenerife` (3), `38-la-palma` (1), `38-la-gomera` (1), `38-el-hierro` (1)
   - Ceuta (51), Melilla (52): 2 seats each. All other provinces: 4 seats. Directly elected total: 208.
@@ -40,7 +40,7 @@ web/        Vite + React + TypeScript + Tailwind v4 + Headless UI, yarn 4
   `JUNTA ELECTORAL DE <PROVINCE>` → `CONGRESO DE LOS DIPUTADOS` | `SENADO` → (Baleares/Canarias Senado: island subheading) → `<n>. <DENOMINATION> (<ACRONYM>)` → numbered titulares → `Suplentes:` → numbered suplentes (Congreso) | Senado candidates each followed by their `Suplente` line(s). Entries marked `No proclamada` are skipped. A format change touches only an adapter or the state machine.
 - A later "corrección de errores" BOE document is handled by re-scraping (if BOE republishes) or by `pipeline/data/corrections.yaml` overrides applied after parsing.
 - INE municipalities: `https://www.ine.es/daco/daco42/codmun/26codmun.xlsx`, one sheet per province (`01`…`52`), headers on row 3 `CPRO|CMUN|DC|NOMBRE`, data from row 4.
-- Islands: vendored `pipeline/data/vendor/municipios_islas.csv` from codeforspain/ds-organizacion-administrativa (`municipio_id,provincia_id,isla_id,cmun,dc,nombre`) + `island_constituencies.yaml` mapping `isla_id` → Senado constituency id (Eivissa and Formentera both → `07-eivissa-formentera`).
+- Islands: vendored `pipeline/data/vendor/municipios_islas.csv` from codeforspain/ds-organizacion-administrativa (`municipio_id,provincia_id,isla_id,cmun,dc,nombre`) + `island_constituencies.yaml` mapping `isla_id` → Senado constituency id (Eivissa and Formentera both → `07-eivissa`, `07-formentera`).
 - 2023 results behind a `Results2023Source` protocol. infoelectoral.interior.gob.es blocks automated fetches (403): the source file is a **manual download** into `pipeline/data/raw/results_2023/`; this feature is last and cuttable.
 - Frontend loads `data/municipalities.json` eagerly; `data/{chamber}/{constituencyId}.json` and `data/parties.json` lazily (memoized fetch, `import.meta.env.BASE_URL` prefix).
 - Hash routing (static hosting, no 404 rewrites):

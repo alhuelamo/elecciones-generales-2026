@@ -15,8 +15,8 @@
 - Election date 29 Nov 2026. Candidacies: BOE-A-2026-23103, XML `https://www.boe.es/diario_boe/xml.php?id=BOE-A-2026-23103`. Convocation/seats: Real Decreto 806/2026, BOE-A-2026-20742.
 - INE source: `https://www.ine.es/daco/daco42/codmun/26codmun.xlsx`, sheet per province `01`…`52`, headers row 3 `CPRO|CMUN|DC|NOMBRE`, data from row 4.
 - Municipality code = 5 digits (CPRO 2 + CMUN 3, zero-padded, no DC).
-- Congreso seats sum 350; Ceuta 1, Melilla 1. Senado 208 seats in 59 constituencies; `maxMarks = max(seats - 1, 1)`.
-- Senado island ids: `07-mallorca`, `07-menorca`, `07-eivissa-formentera`, `35-gran-canaria`, `35-fuerteventura`, `35-lanzarote`, `38-tenerife`, `38-la-palma`, `38-la-gomera`, `38-el-hierro`.
+- Congreso seats sum 350; Ceuta 1, Melilla 1. Senado 209 seats in 60 constituencies (Eivissa and Formentera are separate, 1 seat each); `maxMarks = max(seats - 1, 1)`.
+- Senado island ids: `07-mallorca`, `07-menorca`, `07-eivissa`, `07-formentera`, `35-gran-canaria`, `35-fuerteventura`, `35-lanzarote`, `38-tenerife`, `38-la-palma`, `38-la-gomera`, `38-el-hierro`.
 - Routes: `#/{lang}`, `#/{lang}/about`, `#/{lang}/{code}/{congreso|senado}[/{partySlug}]`; `lang ∈ {es, ca}`.
 - localStorage keys: `eg26.lang`, `eg26.theme` (`system|light|dark`).
 - JSON shapes exactly as `docs/spec.md` §3; `dataset ∈ {"fixture","boe-2026"}`.
@@ -102,7 +102,7 @@ model: haiku (agent `chore`)
 model: sonnet (agent `implementer`)
 
 **Files:**
-- Create: `schemas/municipalities.schema.json`, `schemas/ballot.schema.json`, `schemas/parties.schema.json`, `web/src/contract/types.ts`, `web/src/test/fixtures.ts`, `web/public/data/municipalities.json`, `web/public/data/parties.json`, `web/public/data/congreso/{08,07,51}.json`, `web/public/data/senado/{08,07-mallorca,07-eivissa-formentera,51}.json`, `pipeline/src/elecciones_pipeline/contract.py`
+- Create: `schemas/municipalities.schema.json`, `schemas/ballot.schema.json`, `schemas/parties.schema.json`, `web/src/contract/types.ts`, `web/src/test/fixtures.ts`, `web/public/data/municipalities.json`, `web/public/data/parties.json`, `web/public/data/congreso/{08,07,51}.json`, `web/public/data/senado/{08,07-mallorca,07-eivissa,51}.json`, `pipeline/src/elecciones_pipeline/contract.py`
 - Test: `pipeline/tests/test_contract.py`
 
 **Interfaces:**
@@ -288,8 +288,8 @@ def test_senado_has_208_seats_in_59_constituencies(registry):
 @pytest.mark.parametrize("seats, marks", [(4, 3), (3, 2), (2, 1), (1, 1)])
 def test_senado_max_marks(seats, marks): assert senado_max_marks(seats) == marks
 def test_mallorca_max_marks_is_two(registry): assert registry.get("senado", "07-mallorca").max_marks == 2
-@pytest.mark.parametrize("name, island", [("Palma","07-mallorca"), ("Formentera","07-eivissa-formentera"),
-    ("Eivissa","07-eivissa-formentera"), ("Ciutadella de Menorca","07-menorca"), ("Teguise","35-lanzarote"),
+@pytest.mark.parametrize("name, island", [("Palma","07-mallorca"), ("Formentera","07-eivissa"),
+    ("Eivissa","07-eivissa"), ("Ciutadella de Menorca","07-menorca"), ("Teguise","35-lanzarote"),
     ("Valverde","38-el-hierro"), ("San Sebastián de la Gomera","38-la-gomera")])
 def test_island_municipalities(registry, name, island): assert registry.senado_id_for(code_of(name)) == island
 def test_every_island_municipality_is_mapped(registry):
