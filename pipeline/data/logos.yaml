@@ -1,1 +1,35 @@
-{}
+psoe:
+  file: psoe.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logotipo_del_PSOE.svg"
+  license: "Public domain"
+  author: "Trademarked by PghipSOE. This file, by Rastrojo •Rastrojo"
+podemos:
+  file: podemos.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_de_Podemos_(2022).svg"
+  license: "Public domain"
+  author: "Podemos"
+erc:
+  file: erc.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:ERC_logo_2025.svg"
+  license: "Public domain"
+  author: "Esquerra Republicana de Catalunya"
+eh-bildu:
+  file: eh-bildu.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_de_EH_Bildu_(2023).svg"
+  license: "Public domain"
+  author: "EH Bildu"
+pnv:
+  file: pnv.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_PNV_2025.svg"
+  license: "Public domain"
+  author: "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco"
+cc:
+  file: cc.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_Coalici%C3%B3n_Electoral_Coalici%C3%B3n_Canaria-Mucipalistas_Primero_Canarias_2026.svg"
+  license: "CC0"
+  author: "Coalición Canaria-Municipalistas Primero Canarias"
+junts:
+  file: junts.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Junts_per_Catalunya_(2020).svg"
+  license: "Public domain"
+  author: "Junts per Catalunya"
