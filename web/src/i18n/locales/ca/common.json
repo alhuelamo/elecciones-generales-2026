@@ -1,7 +1,6 @@
 {
   "appTitle": "Eleccions Generals 2026",
   "chamber": { "congreso": "Congrés", "senado": "Senat" },
-  "language": { "es": "Castellano", "ca": "Català" },
   "loading": "Carregant…",
   "loadError": "No s'han pogut carregar les dades. Torna-ho a provar."
 }

@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import type { Language } from "../contract/types";
 import { buildHash } from "../routing/route";
 import { ThemeMenu } from "../theme/ThemeMenu";
-import { LanguageToggle } from "./LanguageToggle";
+import { LanguageMenu } from "./LanguageMenu";
 
 export function Header(props: {
   language: Language;
@@ -31,7 +31,7 @@ export function Header(props: {
             aria-label={t("shell:navigation")}
             className="flex flex-nowrap items-center gap-2"
           >
-            <LanguageToggle
+            <LanguageMenu
               active={props.language}
               onChange={props.onLanguageChange}
             />

@@ -1,10 +1,4 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  within,
-} from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import i18next from "i18next";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -142,13 +136,21 @@ describe("App", () => {
     ).toBeVisible();
   });
 
-  it("language toggle keeps route and persists", async () => {
+  it.each([
+    ["Català", "ca"],
+    ["Galego", "gl"],
+  ])("language menu keeps route and persists (%s)", async (name, code) => {
     await openAt("#/es/08019/senado");
     await screen.findByText(/Se eligen/);
-    fireEvent.click(screen.getByRole("button", { name: "ca" }));
-    await waitFor(() => expect(window.location.hash).toBe("#/ca/08019/senado"));
-    expect(localStorage.getItem("eg26.lang")).toBe("ca");
-    expect(document.documentElement.lang).toBe("ca");
+    await userEvent.click(
+      screen.getByRole("button", { name: "Idioma: Castellano" }),
+    );
+    await userEvent.click(screen.getByRole("menuitem", { name }));
+    await waitFor(() =>
+      expect(window.location.hash).toBe(`#/${code}/08019/senado`),
+    );
+    expect(localStorage.getItem("eg26.lang")).toBe(code);
+    expect(document.documentElement.lang).toBe(code);
   });
 
   it("titles the tab in spanish on home", async () => {

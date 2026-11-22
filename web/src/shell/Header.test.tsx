@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { Header } from "./Header";
@@ -49,25 +49,12 @@ describe("Header", () => {
     expect(screen.queryByRole("link", { name: "Acerca de" })).toBeNull();
   });
 
-  it("renders the language control as an accessible group", () => {
-    renderHeader();
-    const group = screen.getByRole("group", { name: "Idioma" });
-    const spanish = within(group).getByRole("button", { name: "es" });
-    const catalan = within(group).getByRole("button", { name: "ca" });
-    expect(spanish).toHaveAttribute("aria-pressed", "true");
-    expect(catalan).toHaveAttribute("aria-pressed", "false");
-    expect(spanish).toHaveClass(
-      "min-h-11",
-      "min-w-11",
-      "aria-pressed:bg-accent",
-      "aria-pressed:text-paper",
-    );
-    expect(catalan).toHaveClass("min-h-11", "min-w-11", "uppercase");
-  });
-
-  it("notifies language changes", async () => {
+  it("notifies language changes from the language menu", async () => {
     const onLanguageChange = renderHeader();
-    await userEvent.click(screen.getByRole("button", { name: "ca" }));
+    await userEvent.click(
+      screen.getByRole("button", { name: "Idioma: Castellano" }),
+    );
+    await userEvent.click(screen.getByRole("menuitem", { name: /Català/ }));
     expect(onLanguageChange).toHaveBeenCalledWith("ca");
   });
 });
