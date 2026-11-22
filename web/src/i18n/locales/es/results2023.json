@@ -1,0 +1,8 @@
+{
+  "voteShare": {
+    "label": "Porcentaje sobre votos válidos",
+    "threshold": "barrera del 3 %",
+    "others": "Otros",
+    "blank": "En blanco"
+  }
+}
