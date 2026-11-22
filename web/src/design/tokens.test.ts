@@ -37,10 +37,13 @@ const PAIRS = [
 ] as const;
 
 describe("design tokens", () => {
-  it("reserves a plain scrollbar gutter so nothing shifts sideways", () => {
-    expect(extractBlock("html {")).toContain("scrollbar-gutter: stable;");
-    expect(css).not.toContain("overflow-y: scroll");
-    expect(css).not.toContain("scrollbar-color");
+  it("always shows a paper-coloured scrollbar so nothing shifts sideways", () => {
+    const html = extractBlock("html {");
+    expect(html).toContain("overflow-y: scroll;");
+    expect(html).toContain(
+      "scrollbar-color: var(--color-rule-strong) var(--color-paper);",
+    );
+    expect(css).not.toContain("scrollbar-gutter");
   });
 
   it("uses flat paper so the gutter always matches the page", () => {

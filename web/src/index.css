@@ -32,7 +32,8 @@
 html {
   color-scheme: light;
   @apply bg-paper font-sans text-ink antialiased;
-  scrollbar-gutter: stable;
+  overflow-y: scroll;
+  scrollbar-color: var(--color-rule-strong) var(--color-paper);
 }
 
 @layer base {
