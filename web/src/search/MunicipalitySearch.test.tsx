@@ -36,6 +36,14 @@ describe("MunicipalitySearch", () => {
     expect(frame).toHaveClass("rounded-frame", "border", "focus-within:ring-2");
   });
 
+  it("overlays results instead of pushing the page content down", async () => {
+    renderSearch();
+    await userEvent.type(screen.getByRole("combobox"), "palma");
+    const listbox = await screen.findByRole("listbox");
+    expect(listbox).toHaveClass("absolute", "overflow-y-auto");
+    expect(listbox.parentElement).toHaveClass("relative");
+  });
+
   it("gives each option a comfortable tap target", async () => {
     renderSearch();
     await userEvent.type(screen.getByRole("combobox"), "palma");

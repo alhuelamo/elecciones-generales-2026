@@ -39,44 +39,46 @@ export function MunicipalitySearch({
   }
 
   return (
-    <Combobox<Municipality | null>
-      value={null}
-      onChange={(municipality) => municipality && onSelect(municipality)}
-      onClose={() => setQuery("")}
-    >
-      <div className="flex items-center gap-3 rounded-frame border border-rule-strong bg-paper-raised px-4 shadow-sm transition-shadow duration-150 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/40">
-        <SearchIcon />
-        <ComboboxInput
-          aria-label={t("label")}
-          className="h-14 min-w-0 flex-1 bg-transparent text-lg placeholder:text-ink-muted focus:outline-none focus-visible:outline-none"
-          placeholder={t("placeholder")}
-          autoFocus
-          onChange={(event) => setQuery(event.target.value)}
-        />
-      </div>
-      {query.trim() && (
-        <ComboboxOptions
-          static
-          className="mt-2 overflow-hidden rounded-frame border border-rule bg-paper-raised shadow-md"
-        >
-          {results.length === 0 && (
-            <p className="px-3 py-2 text-ink-muted">{t("noResults")}</p>
-          )}
-          {results.map((municipality) => (
-            <ComboboxOption
-              key={municipality.code}
-              value={municipality}
-              className="min-h-11 cursor-pointer px-3 py-2 data-focus:bg-kraft"
-            >
-              <span>{municipality.name[language]}</span>{" "}
-              <span className="text-sm text-ink-muted">
-                {provinceName(municipality)}
-              </span>
-            </ComboboxOption>
-          ))}
-        </ComboboxOptions>
-      )}
-    </Combobox>
+    <div className="relative">
+      <Combobox<Municipality | null>
+        value={null}
+        onChange={(municipality) => municipality && onSelect(municipality)}
+        onClose={() => setQuery("")}
+      >
+        <div className="flex items-center gap-3 rounded-frame border border-rule-strong bg-paper-raised px-4 shadow-sm transition-shadow duration-150 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/40">
+          <SearchIcon />
+          <ComboboxInput
+            aria-label={t("label")}
+            className="h-14 min-w-0 flex-1 bg-transparent text-lg placeholder:text-ink-muted focus:outline-none focus-visible:outline-none"
+            placeholder={t("placeholder")}
+            autoFocus
+            onChange={(event) => setQuery(event.target.value)}
+          />
+        </div>
+        {query.trim() && (
+          <ComboboxOptions
+            static
+            className="absolute inset-x-0 top-full z-30 mt-2 max-h-[60vh] overflow-y-auto rounded-frame border border-rule bg-paper-raised shadow-md"
+          >
+            {results.length === 0 && (
+              <p className="px-3 py-2 text-ink-muted">{t("noResults")}</p>
+            )}
+            {results.map((municipality) => (
+              <ComboboxOption
+                key={municipality.code}
+                value={municipality}
+                className="min-h-11 cursor-pointer px-3 py-2 data-focus:bg-kraft"
+              >
+                <span>{municipality.name[language]}</span>{" "}
+                <span className="text-sm text-ink-muted">
+                  {provinceName(municipality)}
+                </span>
+              </ComboboxOption>
+            ))}
+          </ComboboxOptions>
+        )}
+      </Combobox>
+    </div>
   );
 }
 
