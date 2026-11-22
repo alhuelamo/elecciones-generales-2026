@@ -159,3 +159,13 @@ vox:
   sourceUrl: "https://commons.wikimedia.org/wiki/File:VOX_logo.svg"
   license: "Public domain"
   author: "VOX"
+bng:
+  file: bng.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Bloque_Nacionalista_Galego.svg"
+  license: "Public domain"
+  author: "Bloque Nacionalista Galego"
+salf:
+  file: salf.png
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Se_acabo_la_fiesta_wordmark.png"
+  license: "Public domain"
+  author: "Se Acabó La Fiesta"
