@@ -4,6 +4,7 @@ import { SOURCE_URLS } from "../config";
 import type { ConstituencyBallot } from "../contract/types";
 import { ExternalLink } from "../design/ExternalLink";
 import { useNumberFormat } from "../i18n/useNumberFormat";
+import { resolveResultsColors } from "./constituencyColors";
 import { SeatChart } from "./SeatChart";
 import { VoteShareChart } from "./VoteShareChart";
 
@@ -32,6 +33,7 @@ export function Results2023Block(props: {
   const headingId = useId();
   const { chamber, constituencyResults2023: results } = props.ballot;
   if (!results) return null;
+  const colors = resolveResultsColors(results);
   const constituency = results.combinedDistrictName ?? props.constituencyName;
   return (
     <section
@@ -44,8 +46,10 @@ export function Results2023Block(props: {
       {results.combinedDistrictName && (
         <p className="text-sm text-ink-muted">{t("combinedDistrict")}</p>
       )}
-      {chamber === "congreso" && <VoteShareChart results={results} />}
-      <SeatChart chamber={chamber} results={results} />
+      {chamber === "congreso" && (
+        <VoteShareChart results={results} colors={colors} />
+      )}
+      <SeatChart chamber={chamber} results={results} colors={colors} />
       <Caption
         turnoutPercentage={results.turnoutPercentage}
         totalVotes={results.totalVotes}

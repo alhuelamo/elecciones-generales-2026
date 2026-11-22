@@ -2,7 +2,8 @@ import { useTranslation } from "react-i18next";
 import { useNumberFormat } from "../i18n/useNumberFormat";
 import type { ConstituencyResults2023 } from "../contract/types";
 import { COLUMNS_CLASSES } from "./columns";
-import { FALLBACK_PARTY_COLOR, partyColor } from "./partyColor";
+import type { PartyColorMap } from "./constituencyColors";
+import { FALLBACK_PARTY_COLOR } from "./partyColor";
 import { voteShareRows, type VoteShareRow } from "./voteShareRows";
 
 const THRESHOLD_PERCENTAGE = 3;
@@ -23,7 +24,11 @@ function useShareFormatter(): (percentage: number) => string {
   return (percentage) => `${formatter.format(percentage)} %`;
 }
 
-function ShareBar(props: { row: VoteShareRow; scale: number }) {
+function ShareBar(props: {
+  row: VoteShareRow;
+  scale: number;
+  colors: PartyColorMap;
+}) {
   const width = asPercentageOfScale(props.row.percentage, props.scale);
   if (props.row.kind === "blank") {
     return (
@@ -37,7 +42,7 @@ function ShareBar(props: { row: VoteShareRow; scale: number }) {
   const fill =
     props.row.kind === "others"
       ? FALLBACK_PARTY_COLOR
-      : partyColor(props.row.color);
+      : (props.colors[props.row.acronym] ?? FALLBACK_PARTY_COLOR);
   return (
     <div
       aria-hidden="true"
@@ -86,8 +91,10 @@ function ThresholdMarker({ scale }: { scale: number }) {
 
 export function VoteShareChart({
   results,
+  colors,
 }: {
   results: ConstituencyResults2023;
+  colors: PartyColorMap;
 }) {
   const { t } = useTranslation("results2023");
   const formatShare = useShareFormatter();
@@ -103,7 +110,7 @@ export function VoteShareChart({
           >
             <RowLabel row={row} />
             <div className="relative">
-              <ShareBar row={row} scale={scale} />
+              <ShareBar row={row} scale={scale} colors={colors} />
             </div>
             <span className="tabular-nums">{formatShare(row.percentage)}</span>
           </li>

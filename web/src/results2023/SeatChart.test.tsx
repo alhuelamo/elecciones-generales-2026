@@ -6,6 +6,7 @@ import { fixtureCongresoResults2023 } from "../test/fixtures";
 import { COLUMNS_CLASSES } from "./columns";
 import { harmonizePartyColor } from "./partyColor";
 import { SeatChart } from "./SeatChart";
+import { resolveResultsColors } from "./constituencyColors";
 
 const SENADO_NOTE =
   "En el Senado se vota a personas, no a listas: no hay porcentaje por partido";
@@ -43,7 +44,11 @@ describe("SeatChart", () => {
 
   it("draws one row per party with seats, largest first", () => {
     render(
-      <SeatChart chamber="congreso" results={fixtureCongresoResults2023} />,
+      <SeatChart
+        chamber="congreso"
+        results={fixtureCongresoResults2023}
+        colors={resolveResultsColors(fixtureCongresoResults2023)}
+      />,
     );
     const rows = within(
       screen.getByRole("list", { name: "Escaños en 2023" }),
@@ -57,7 +62,11 @@ describe("SeatChart", () => {
 
   it("draws one coloured dot per seat from the 2023 total", () => {
     const { container } = render(
-      <SeatChart chamber="congreso" results={fixtureCongresoResults2023} />,
+      <SeatChart
+        chamber="congreso"
+        results={fixtureCongresoResults2023}
+        colors={resolveResultsColors(fixtureCongresoResults2023)}
+      />,
     );
     const dots = container.querySelectorAll("[data-testid='seat-dot']");
     expect(dots).toHaveLength(8);
@@ -65,13 +74,60 @@ describe("SeatChart", () => {
     expect(dots[0]).toHaveStyle({
       backgroundColor: harmonizePartyColor("#d6402b"),
     });
-    expect(dots[0].parentElement).toHaveClass("flex-wrap", "gap-1");
-    expect(dots[0].parentElement).toHaveAttribute("aria-hidden", "true");
+    expect(dots[0].parentElement).toHaveClass("inline-flex", "gap-1");
+    expect(dots[0].parentElement?.parentElement).toHaveClass(
+      "flex-wrap",
+      "gap-x-2",
+    );
+    expect(dots[0].parentElement?.parentElement).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
+  });
+
+  it.each([
+    [16, [5, 5, 5, 1]],
+    [5, [5]],
+    [3, [3]],
+  ])("groups %i seats in chunks of five", (seats, expectedChunks) => {
+    const results: ConstituencyResults2023 = {
+      ...tenSeatSenadoResults,
+      parties: [{ ...tenSeatSenadoResults.parties[0], seats }],
+    };
+    const { container } = render(
+      <SeatChart
+        chamber="senado"
+        results={results}
+        colors={resolveResultsColors(results)}
+      />,
+    );
+    const chunks = container.querySelectorAll("[data-testid='seat-chunk']");
+    expect(Array.from(chunks).map((chunk) => chunk.children.length)).toEqual(
+      expectedChunks,
+    );
+    expect(screen.getByRole("listitem")).toHaveTextContent(`${seats} escaños`);
+  });
+
+  it("uses the resolved colour map", () => {
+    const { container } = render(
+      <SeatChart
+        chamber="congreso"
+        results={fixtureCongresoResults2023}
+        colors={{ PEA: "#123456", PEB: "#654321" }}
+      />,
+    );
+    expect(container.querySelector("[data-testid='seat-dot']")).toHaveStyle({
+      backgroundColor: "#123456",
+    });
   });
 
   it("uses the same columns as the vote share rows", () => {
     render(
-      <SeatChart chamber="congreso" results={fixtureCongresoResults2023} />,
+      <SeatChart
+        chamber="congreso"
+        results={fixtureCongresoResults2023}
+        colors={resolveResultsColors(fixtureCongresoResults2023)}
+      />,
     );
     expect(screen.getAllByRole("listitem")[0]).toHaveClass(
       ...COLUMNS_CLASSES.split(" "),
@@ -79,38 +135,70 @@ describe("SeatChart", () => {
   });
 
   it("uses the singular for one seat", () => {
-    render(<SeatChart chamber="senado" results={oneSeatSenadoResults} />);
+    render(
+      <SeatChart
+        chamber="senado"
+        results={oneSeatSenadoResults}
+        colors={resolveResultsColors(oneSeatSenadoResults)}
+      />,
+    );
     expect(screen.getByRole("listitem")).toHaveTextContent("1 escaño");
     expect(screen.getByRole("listitem")).not.toHaveTextContent("escaños");
   });
 
   it("draws rows for the Senado too", () => {
-    render(<SeatChart chamber="senado" results={tenSeatSenadoResults} />);
+    render(
+      <SeatChart
+        chamber="senado"
+        results={tenSeatSenadoResults}
+        colors={resolveResultsColors(tenSeatSenadoResults)}
+      />,
+    );
     expect(screen.getAllByRole("listitem")).toHaveLength(2);
     expect(screen.getAllByRole("listitem")[0]).toHaveTextContent("6 escaños");
   });
 
   it("translates the unit to catalan", async () => {
     await i18next.changeLanguage("ca");
-    render(<SeatChart chamber="senado" results={tenSeatSenadoResults} />);
+    render(
+      <SeatChart
+        chamber="senado"
+        results={tenSeatSenadoResults}
+        colors={resolveResultsColors(tenSeatSenadoResults)}
+      />,
+    );
     expect(screen.getByRole("list", { name: "Escons el 2023" })).toBeVisible();
     expect(screen.getAllByRole("listitem")[0]).toHaveTextContent("6 escons");
   });
 
   it("shows the note only in the Senado", () => {
     const { rerender } = render(
-      <SeatChart chamber="senado" results={tenSeatSenadoResults} />,
+      <SeatChart
+        chamber="senado"
+        results={tenSeatSenadoResults}
+        colors={resolveResultsColors(tenSeatSenadoResults)}
+      />,
     );
     expect(screen.getByText(SENADO_NOTE)).toBeInTheDocument();
     rerender(
-      <SeatChart chamber="congreso" results={fixtureCongresoResults2023} />,
+      <SeatChart
+        chamber="congreso"
+        results={fixtureCongresoResults2023}
+        colors={resolveResultsColors(fixtureCongresoResults2023)}
+      />,
     );
     expect(screen.queryByText(SENADO_NOTE)).not.toBeInTheDocument();
   });
 
   it("translates the note to catalan", async () => {
     await i18next.changeLanguage("ca");
-    render(<SeatChart chamber="senado" results={tenSeatSenadoResults} />);
+    render(
+      <SeatChart
+        chamber="senado"
+        results={tenSeatSenadoResults}
+        colors={resolveResultsColors(tenSeatSenadoResults)}
+      />,
+    );
     expect(
       screen.getByText(
         "Al Senat es vota a persones, no a llistes: no hi ha percentatge per partit",

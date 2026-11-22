@@ -24,6 +24,30 @@ export function harmonizePartyColor(hex: string): string {
   );
 }
 
+export function harmonizePartyColorAtLightness(
+  hex: string,
+  lightness: number,
+): string {
+  const [, chroma, hue] = hexToOklch(hex);
+  if (chroma < ACHROMATIC_CHROMA) return NEUTRAL_PARTY_COLOR;
+  return fitToGamut(lightness, Math.min(chroma, MAXIMUM_CHROMA), hue);
+}
+
+export function colorDistance(firstHex: string, secondHex: string): number {
+  const [firstLightness, firstA, firstB] = hexToOklab(firstHex);
+  const [secondLightness, secondA, secondB] = hexToOklab(secondHex);
+  return Math.hypot(
+    firstLightness - secondLightness,
+    firstA - secondA,
+    firstB - secondB,
+  );
+}
+
+function hexToOklab(hex: string): Triple {
+  const [lightness, chroma, hue] = hexToOklch(hex);
+  return [lightness, chroma * Math.cos(hue), chroma * Math.sin(hue)];
+}
+
 function fitToGamut(lightness: number, chroma: number, hue: number): string {
   for (let reduced = chroma; reduced > 0; reduced -= CHROMA_STEP) {
     const linear = oklchToLinearRgb(lightness, reduced, hue);
