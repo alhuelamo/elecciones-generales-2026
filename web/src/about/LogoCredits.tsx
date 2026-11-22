@@ -18,15 +18,19 @@ export function LogoCredits(props: { partyCatalog: PartyCatalog | null }) {
     return null;
   }
   return (
-    <section>
-      <h2>{t("logos.title")}</h2>
+    <section className="border-t border-rule pt-4">
+      <h2 className="font-display text-xl">{t("logos.title")}</h2>
       <p>{t("logos.intro")}</p>
-      <ul aria-label={t("logos.listLabel")}>
+      <ul aria-label={t("logos.listLabel")} className="divide-y divide-rule">
         {profiles.map((profile) => (
           <li key={profile.key}>
             {profile.name} · {profile.logo.license} ·{" "}
             {t("logos.by", { author: profile.logo.author })} ·{" "}
-            <a href={profile.logo.sourceUrl} rel="noopener noreferrer">
+            <a
+              href={profile.logo.sourceUrl}
+              rel="noopener noreferrer"
+              className="text-accent underline"
+            >
               {t("logos.source")}
             </a>
           </li>

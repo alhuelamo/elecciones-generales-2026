@@ -26,31 +26,47 @@ function formatGeneratedAt(generatedAt: string, language: string): string {
 export function AboutPage({ generatedAt, partyCatalog }: AboutPageProps) {
   const { t, i18n } = useTranslation("about");
   return (
-    <main>
-      <h1>{t("title")}</h1>
+    <article>
+      <h1 className="font-display text-3xl">{t("title")}</h1>
       <p role="note">{t("disclaimer")}</p>
-      <section>
-        <h2>{t("sources.title")}</h2>
+      <section className="border-t border-rule pt-4">
+        <h2 className="font-display text-xl">{t("sources.title")}</h2>
         <ul>
           {LINKED_SOURCES.map(([key, url]) => (
             <li key={key}>
-              <a href={url} rel="noopener noreferrer">
+              <a
+                href={url}
+                rel="noopener noreferrer"
+                className="text-accent underline"
+              >
                 {t(`sources.${key}`)}
               </a>
             </li>
           ))}
           <li>
-            <a href={SOURCE_URLS.codeForSpain} rel="noopener noreferrer">
+            <a
+              href={SOURCE_URLS.codeForSpain}
+              rel="noopener noreferrer"
+              className="text-accent underline"
+            >
               {t("sources.islands")}
             </a>
           </li>
           <li>
-            <a href={SOURCE_URLS.commons} rel="noopener noreferrer">
+            <a
+              href={SOURCE_URLS.commons}
+              rel="noopener noreferrer"
+              className="text-accent underline"
+            >
               Wikimedia Commons
             </a>
           </li>
           <li>
-            <a href={SOURCE_URLS.partiesYaml} rel="noopener noreferrer">
+            <a
+              href={SOURCE_URLS.partiesYaml}
+              rel="noopener noreferrer"
+              className="text-accent underline"
+            >
               {t("sources.parties")}
             </a>{" "}
             {t("sources.partiesHint")}
@@ -60,17 +76,21 @@ export function AboutPage({ generatedAt, partyCatalog }: AboutPageProps) {
       <LogoCredits partyCatalog={partyCatalog} />
       <p>
         {t("updated.label")}:{" "}
-        <time dateTime={generatedAt}>
+        <time dateTime={generatedAt} className="tabular-nums">
           {formatGeneratedAt(generatedAt, i18n.language)}
         </time>
       </p>
-      <section>
-        <h2>{t("report.title")}</h2>
-        <a href={ISSUES_URL} rel="noopener noreferrer">
+      <section className="border-t border-rule pt-4">
+        <h2 className="font-display text-xl">{t("report.title")}</h2>
+        <a
+          href={ISSUES_URL}
+          rel="noopener noreferrer"
+          className="text-accent underline"
+        >
           {t("report.link")}
         </a>
       </section>
       <p>{t("license")}</p>
-    </main>
+    </article>
   );
 }
