@@ -36,7 +36,7 @@ describe("Header", () => {
     const link = screen.getByRole("link", {
       name: "Elecciones Generales 2026",
     });
-    expect(link).toHaveAttribute("href", "#/es");
+    expect(link).toHaveAttribute("href", "#/");
     expect(link.querySelector("[aria-hidden='true']")).toHaveClass(
       "font-display",
     );

@@ -1,12 +1,19 @@
 import { useCallback, useEffect, useState } from "react";
-import { languageFromPathname } from "./languagePath";
+import { entryPathname, languageFromPathname } from "./languagePath";
 import { buildHash, parseRoute, type Route } from "./route";
 
+export function replaceRoute(route: Route) {
+  const { search } = window.location;
+  const url = `${entryPathname(route.language)}${search}${buildHash(route)}`;
+  window.history.replaceState(null, "", url);
+  window.dispatchEvent(new HashChangeEvent("hashchange"));
+}
+
 function readCurrentRoute(): Route | null {
-  const hashRoute = parseRoute(window.location.hash);
-  if (hashRoute) return hashRoute;
-  const pathLanguage = languageFromPathname(window.location.pathname);
-  return pathLanguage ? { page: "home", language: pathLanguage } : null;
+  return parseRoute(
+    window.location.hash,
+    languageFromPathname(window.location.pathname),
+  );
 }
 
 export function useHashRoute(): [Route | null, (route: Route) => void] {
@@ -19,7 +26,12 @@ export function useHashRoute(): [Route | null, (route: Route) => void] {
   }, []);
 
   const navigate = useCallback((next: Route) => {
-    window.location.hash = buildHash(next);
+    const pathLanguage = languageFromPathname(window.location.pathname);
+    if (next.language === pathLanguage) {
+      window.location.hash = buildHash(next);
+      return;
+    }
+    replaceRoute(next);
   }, []);
 
   return [route, navigate];

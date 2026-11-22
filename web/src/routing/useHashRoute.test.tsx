@@ -6,53 +6,59 @@ const BASE = import.meta.env.BASE_URL;
 
 describe("useHashRoute", () => {
   beforeEach(() => {
-    window.location.hash = "#/es";
+    window.history.replaceState(null, "", `${BASE}es/#/`);
   });
 
-  it("returns the current route", () => {
+  afterEach(() => {
+    window.history.replaceState(null, "", "/");
+  });
+
+  it("returns the current route from the path language", () => {
     const { result } = renderHook(() => useHashRoute());
     expect(result.current[0]).toEqual({ page: "home", language: "es" });
   });
 
-  it("navigate sets the location hash", () => {
+  it("returns null when neither path nor hash has a language", () => {
+    window.history.replaceState(null, "", BASE);
     const { result } = renderHook(() => useHashRoute());
+    expect(result.current[0]).toBeNull();
+  });
+
+  it("navigate within the language sets only the hash", () => {
+    const { result } = renderHook(() => useHashRoute());
+    act(() => result.current[1]({ page: "about", language: "es" }));
+    expect(window.location.pathname).toBe(`${BASE}es/`);
+    expect(window.location.hash).toBe("#/about");
+  });
+
+  it("navigate to another language replaces the path and keeps the hash", () => {
+    const { result } = renderHook(() => useHashRoute());
+    const historyLength = window.history.length;
     act(() => result.current[1]({ page: "about", language: "ca" }));
-    expect(window.location.hash).toBe("#/ca/about");
+    expect(window.location.pathname).toBe(`${BASE}ca/`);
+    expect(window.location.hash).toBe("#/about");
+    expect(window.history.length).toBe(historyLength);
+    expect(result.current[0]).toEqual({ page: "about", language: "ca" });
   });
 
   it("updates on hashchange", () => {
     const { result } = renderHook(() => useHashRoute());
     act(() => {
-      window.location.hash = "#/ca/08019/senado";
+      window.location.hash = "#/08019/senado";
       window.dispatchEvent(new HashChangeEvent("hashchange"));
     });
     expect(result.current[0]).toEqual({
       page: "ballot",
-      language: "ca",
+      language: "es",
       municipalityCode: "08019",
       chamber: "senado",
       partySlug: null,
     });
   });
 
-  describe("with a language entry path", () => {
-    beforeEach(() => {
-      window.history.replaceState(null, "", `${BASE}eu/`);
-    });
-
-    afterEach(() => {
-      window.history.replaceState(null, "", "/");
-    });
-
-    it("uses the path language when the hash has none", () => {
-      const { result } = renderHook(() => useHashRoute());
-      expect(result.current[0]).toEqual({ page: "home", language: "eu" });
-    });
-
-    it("lets the hash language win", () => {
-      window.location.hash = "#/ca/about";
-      const { result } = renderHook(() => useHashRoute());
-      expect(result.current[0]).toEqual({ page: "about", language: "ca" });
-    });
+  it("lets a legacy hash language win over the path", () => {
+    window.history.replaceState(null, "", `${BASE}eu/#/ca/about`);
+    const { result } = renderHook(() => useHashRoute());
+    expect(result.current[0]).toEqual({ page: "about", language: "ca" });
   });
 });

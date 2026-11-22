@@ -1,43 +1,49 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import type { Language } from "../contract/types";
 import { STORAGE_KEYS } from "../config";
 import { detectLanguage } from "../i18n/detectLanguage";
-import { entryPathname } from "../routing/languagePath";
-import { buildHash, type Route } from "../routing/route";
-import { useHashRoute } from "../routing/useHashRoute";
+import { entryPathname, languageFromPathname } from "../routing/languagePath";
+import { languageFromHash, type Route } from "../routing/route";
+import { replaceRoute, useHashRoute } from "../routing/useHashRoute";
 
-export function replaceRoute(route: Route) {
-  window.history.replaceState(null, "", buildHash(route));
+export { replaceRoute };
+
+function addLanguageToPath() {
+  const { search, hash } = window.location;
+  const detected = detectLanguage(
+    localStorage.getItem(STORAGE_KEYS.language),
+    navigator.languages,
+  );
+  window.history.replaceState(
+    null,
+    "",
+    `${entryPathname(detected)}${search}${hash}`,
+  );
   window.dispatchEvent(new HashChangeEvent("hashchange"));
 }
 
-function reflectLanguageInPath(language: Language) {
-  const { pathname, search, hash } = window.location;
-  const entryPath = entryPathname(language);
-  if (pathname === entryPath) return;
-  window.history.replaceState(null, "", `${entryPath}${search}${hash}`);
+function isCanonical(route: Route): boolean {
+  const { pathname, hash } = window.location;
+  return (
+    languageFromPathname(pathname) === route.language &&
+    languageFromHash(hash) === null
+  );
 }
 
 export function useLanguageRoute(): [Route | null, (route: Route) => void] {
   const { i18n } = useTranslation();
   const [route, navigate] = useHashRoute();
-  const language = route?.language ?? null;
 
   useEffect(() => {
-    if (language === null) {
-      const detected = detectLanguage(
-        localStorage.getItem(STORAGE_KEYS.language),
-        navigator.languages,
-      );
-      replaceRoute({ page: "home", language: detected });
+    if (route === null) {
+      addLanguageToPath();
       return;
     }
-    reflectLanguageInPath(language);
-    localStorage.setItem(STORAGE_KEYS.language, language);
-    document.documentElement.lang = language;
-    if (i18n.language !== language) i18n.changeLanguage(language);
-  }, [language, i18n]);
+    if (!isCanonical(route)) replaceRoute(route);
+    localStorage.setItem(STORAGE_KEYS.language, route.language);
+    document.documentElement.lang = route.language;
+    if (i18n.language !== route.language) i18n.changeLanguage(route.language);
+  }, [route, i18n]);
 
   return [route, navigate];
 }

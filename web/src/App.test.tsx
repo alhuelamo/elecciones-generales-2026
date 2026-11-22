@@ -19,6 +19,8 @@ vi.mock("./data/loaders", () => ({
   loadPartyCatalog: vi.fn(),
 }));
 
+const BASE = import.meta.env.BASE_URL;
+
 const loaders = await import("./data/loaders");
 
 function stubNavigatorLanguages(languages: string[]) {
@@ -37,8 +39,8 @@ function mockData(index: MunicipalityIndex = fixtureIndex) {
   );
 }
 
-async function openAt(hash: string) {
-  window.location.hash = hash;
+async function openAt(hash: string, language = "es") {
+  window.history.replaceState(null, "", `${BASE}${language}/${hash}`);
   render(<App />);
 }
 
@@ -66,41 +68,43 @@ afterEach(() => {
 describe("App", () => {
   it("redirects empty hash to detected language", async () => {
     stubNavigatorLanguages(["ca-ES"]);
-    await openAt("");
-    await waitFor(() => expect(window.location.hash).toBe("#/ca"));
+    window.history.replaceState(null, "", BASE);
+    render(<App />);
+    await waitFor(() => expect(window.location.pathname).toBe(`${BASE}ca/`));
   });
 
   it("stored language beats navigator", async () => {
     localStorage.setItem("eg26.lang", "es");
     stubNavigatorLanguages(["ca-ES"]);
-    await openAt("");
-    await waitFor(() => expect(window.location.hash).toBe("#/es"));
+    window.history.replaceState(null, "", BASE);
+    render(<App />);
+    await waitFor(() => expect(window.location.pathname).toBe(`${BASE}es/`));
   });
 
   it("focuses the municipality search on the home view", async () => {
-    await openAt("#/es");
+    await openAt("#/");
     expect(await screen.findByRole("combobox")).toHaveFocus();
   });
 
   it("focuses the search again when navigating back to home", async () => {
-    await openAt("#/es/08019");
+    await openAt("#/08019");
     await screen.findByText(/Se eligen 32 diputados/);
-    window.location.hash = "#/es";
+    window.location.hash = "#/";
     expect(await screen.findByRole("combobox")).toHaveFocus();
   });
 
   it("renders Barcelona Congreso ballot", async () => {
-    await openAt("#/es/08019");
+    await openAt("#/08019");
     expect(await screen.findByText(/Se eligen 32 diputados/)).toBeVisible();
   });
 
   it("renders Mallorca Senado with two marks", async () => {
-    await openAt("#/ca/07040/senado");
+    await openAt("#/07040/senado", "ca");
     expect(await screen.findByText(/pots marcar-ne fins a 2/)).toBeVisible();
   });
 
   it("renders party detail from slug", async () => {
-    await openAt("#/es/08019/congreso/pea");
+    await openAt("#/08019/congreso/pea");
     const denomination = fixtureCongresoBarcelona.candidacies.find(
       ({ slug }) => slug === "pea",
     )!.denomination;
@@ -110,22 +114,22 @@ describe("App", () => {
   });
 
   it("unknown municipality falls back home with notice", async () => {
-    await openAt("#/es/99999");
+    await openAt("#/99999");
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "No encontramos ese municipio",
     );
-    expect(window.location.hash).toBe("#/es");
+    expect(window.location.hash).toBe("#/");
     expect(
       screen.getByRole("heading", { name: "¿Qué hay en tu papeleta?" }),
     ).toBeVisible();
   });
 
   it("unknown party slug falls back to ballot with notice", async () => {
-    await openAt("#/es/08019/congreso/no-existe");
+    await openAt("#/08019/congreso/no-existe");
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "No encontramos esa candidatura",
     );
-    expect(window.location.hash).toBe("#/es/08019/congreso");
+    expect(window.location.hash).toBe("#/08019/congreso");
     expect(screen.getByText(/Se eligen 32 diputados/)).toBeVisible();
   });
 
@@ -133,12 +137,12 @@ describe("App", () => {
     ["eu", "Zer dago zure boto-txartelean?"],
     ["gl", "Que hai na túa papeleta?"],
   ])("renders the home heading in %s", async (language, heading) => {
-    await openAt(`#/${language}`);
+    await openAt("#/", language);
     expect(await screen.findByRole("heading", { name: heading })).toBeVisible();
   });
 
   it("renders about page", async () => {
-    await openAt("#/es/about");
+    await openAt("#/about");
     expect(
       await screen.findByRole("heading", { name: "Acerca de esta web" }),
     ).toBeVisible();
@@ -148,28 +152,45 @@ describe("App", () => {
     ["Català", "ca"],
     ["Galego", "gl"],
   ])("language menu keeps route and persists (%s)", async (name, code) => {
-    await openAt("#/es/08019/senado");
+    await openAt("#/08019/senado");
     await screen.findByText(/Se eligen/);
     await userEvent.click(
       screen.getByRole("button", { name: "Idioma: Castellano" }),
     );
     await userEvent.click(screen.getByRole("menuitem", { name }));
     await waitFor(() =>
-      expect(window.location.hash).toBe(`#/${code}/08019/senado`),
+      expect(window.location.pathname).toBe(`${BASE}${code}/`),
     );
+    expect(window.location.hash).toBe("#/08019/senado");
     expect(localStorage.getItem("eg26.lang")).toBe(code);
     expect(document.documentElement.lang).toBe(code);
   });
 
+  it.each([
+    ["", "eu"],
+    ["es/", "ca"],
+  ])("migrates a legacy link opened from %s", async (path, language) => {
+    window.history.replaceState(
+      null,
+      "",
+      `${BASE}${path}#/${language}/08019/senado`,
+    );
+    render(<App />);
+    await waitFor(() =>
+      expect(window.location.pathname).toBe(`${BASE}${language}/`),
+    );
+    expect(window.location.hash).toBe("#/08019/senado");
+  });
+
   it("titles the tab in spanish on home", async () => {
-    await openAt("#/es");
+    await openAt("#/");
     await waitFor(() =>
       expect(document.title).toBe("Elecciones Generales 2026"),
     );
   });
 
   it("titles the tab with municipality and chamber in the current language", async () => {
-    await openAt("#/ca/08101/senado");
+    await openAt("#/08101/senado", "ca");
     await waitFor(() =>
       expect(document.title).toBe(
         "L'Hospitalet de Llobregat · Senat · Eleccions Generals 2026",
@@ -178,7 +199,7 @@ describe("App", () => {
   });
 
   it("titles the tab with the party on detail", async () => {
-    await openAt("#/es/08019/congreso/pea");
+    await openAt("#/08019/congreso/pea");
     await waitFor(() =>
       expect(document.title).toBe(
         "PEA · Barcelona · Congreso · Elecciones Generales 2026",
@@ -187,7 +208,7 @@ describe("App", () => {
   });
 
   it("titles the tab on the about page", async () => {
-    await openAt("#/es/about");
+    await openAt("#/about");
     await waitFor(() =>
       expect(document.title).toBe(
         "Acerca de esta web · Elecciones Generales 2026",
@@ -196,35 +217,33 @@ describe("App", () => {
   });
 
   it("shows demo banner for fixture dataset", async () => {
-    await openAt("#/es");
+    await openAt("#/");
     expect(await screen.findByText(/Datos de demostración/)).toBeVisible();
   });
 
   it("hides demo banner for real dataset", async () => {
     mockData({ ...fixtureIndex, dataset: "boe-2026" });
-    await openAt("#/es");
+    await openAt("#/");
     await screen.findByText("¿Qué hay en tu papeleta?");
     expect(screen.queryByText(/Datos de demostración/)).toBeNull();
   });
 
   it("search selection navigates to congreso ballot", async () => {
-    await openAt("#/es");
+    await openAt("#/");
     await userEvent.type(await screen.findByRole("combobox"), "barcelona");
     await userEvent.click(
       await screen.findByRole("option", { name: /Barcelona/ }),
     );
-    await waitFor(() =>
-      expect(window.location.hash).toBe("#/es/08019/congreso"),
-    );
+    await waitFor(() => expect(window.location.hash).toBe("#/08019/congreso"));
   });
 
   it("links about from the footer", async () => {
-    await openAt("#/ca");
+    await openAt("#/", "ca");
     await screen.findByText("Què hi ha a la teva papereta?");
     expect(
       within(screen.getByRole("contentinfo")).getByRole("link", {
         name: "Sobre aquesta web",
       }),
-    ).toHaveAttribute("href", "#/ca/about");
+    ).toHaveAttribute("href", "#/about");
   });
 });

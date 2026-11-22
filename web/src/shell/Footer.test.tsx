@@ -34,7 +34,7 @@ describe("Footer", () => {
     render(<Footer language="es" />);
     expect(screen.getByRole("link", { name: "Acerca de" })).toHaveAttribute(
       "href",
-      "#/es/about",
+      "#/about",
     );
   });
 });

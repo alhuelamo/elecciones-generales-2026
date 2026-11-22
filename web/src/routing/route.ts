@@ -15,13 +15,26 @@ export type Route =
 const CHAMBERS: readonly string[] = ["congreso", "senado"];
 const MUNICIPALITY_CODE_PATTERN = /^\d{5}$/;
 
-export function parseRoute(hash: string): Route | null {
-  const [language, ...segments] = hash
+function hashSegments(hash: string): string[] {
+  return hash
     .replace(/^#\/?/, "")
     .split("/")
     .filter((segment) => segment !== "");
-  if (!isSupportedLanguage(language)) return null;
-  return parseSegments(language, segments);
+}
+
+export function languageFromHash(hash: string): Language | null {
+  const [first] = hashSegments(hash);
+  return isSupportedLanguage(first) ? first : null;
+}
+
+export function parseRoute(hash: string, pathLanguage: Language | null) {
+  const language = languageFromHash(hash) ?? pathLanguage;
+  if (language === null) return null;
+  const segments = hashSegments(hash);
+  const withoutLegacyLanguage = languageFromHash(hash)
+    ? segments.slice(1)
+    : segments;
+  return parseSegments(language, withoutLegacyLanguage);
 }
 
 function parseSegments(language: Language, segments: string[]): Route {
@@ -41,9 +54,8 @@ function parseSegments(language: Language, segments: string[]): Route {
 }
 
 export function buildHash(route: Route): string {
-  const base = `#/${route.language}`;
-  if (route.page === "home") return base;
-  if (route.page === "about") return `${base}/about`;
-  const ballot = `${base}/${route.municipalityCode}/${route.chamber}`;
+  if (route.page === "home") return "#/";
+  if (route.page === "about") return "#/about";
+  const ballot = `#/${route.municipalityCode}/${route.chamber}`;
   return route.partySlug ? `${ballot}/${route.partySlug}` : ballot;
 }
