@@ -54,6 +54,26 @@ export interface SourceLink {
   url: string;
 }
 
+export interface PartyResult2023 {
+  acronym: string;
+  name: string;
+  votes: number | null;
+  percentage: number | null;
+  seats: number;
+  color: string | null;
+}
+
+export interface ConstituencyResults2023 {
+  electorate: number;
+  totalVotes: number;
+  turnoutPercentage: number;
+  validVotes: number;
+  blankVotes: number;
+  blankPercentage: number | null;
+  combinedDistrictName: string | null;
+  parties: PartyResult2023[];
+}
+
 export interface ConstituencyBallot {
   chamber: Chamber;
   constituencyId: string;
@@ -61,6 +81,7 @@ export interface ConstituencyBallot {
   maxMarks: number | null;
   sources: SourceLink[];
   candidacies: Candidacy[];
+  constituencyResults2023: ConstituencyResults2023 | null;
 }
 
 export interface PartyLogo {

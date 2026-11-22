@@ -2,6 +2,8 @@ import type {
   Candidacy,
   Candidate,
   ConstituencyBallot,
+  ConstituencyResults2023,
+  PartyResult2023,
   ConstituencySummary,
   MunicipalityIndex,
   PartyCatalog,
@@ -209,6 +211,7 @@ export function buildFixtureBallot(
     maxMarks,
     sources: [FIXTURE_SOURCE],
     candidacies,
+    constituencyResults2023: null,
   };
 }
 
@@ -341,4 +344,63 @@ export const fixtureCatalog: PartyCatalog = {
       wikipedia: { es: null, ca: null },
     },
   },
+};
+
+function partyResult(
+  acronym: string,
+  name: string,
+  votes: number | null,
+  percentage: number | null,
+  seats: number,
+  color: string | null,
+): PartyResult2023 {
+  return { acronym, name, votes, percentage, seats, color };
+}
+
+export const fixtureCongresoResults2023: ConstituencyResults2023 = {
+  electorate: 5273000,
+  totalVotes: 3712540,
+  turnoutPercentage: 70.41,
+  validVotes: 1000000,
+  blankVotes: 90000,
+  blankPercentage: 9,
+  combinedDistrictName: null,
+  parties: [
+    partyResult("PEA", "PARTIDO EJEMPLO A", 400000, 40, 4, "#d6402b"),
+    partyResult("PEB", "PARTIDO EJEMPLO B", 300000, 30, 2, "#1d84ce"),
+    partyResult("CEC-D", "COALICION EJEMPLO CD", 200000, 20, 2, null),
+    partyResult("PEE", "PARTIDO EJEMPLO E", 6000, 0.6, 0, "#7a3fb0"),
+    partyResult("PEF", "PARTIDO EJEMPLO F", 4000, 0.4, 0, null),
+  ],
+};
+
+export const fixtureCongresoLargeResults2023: ConstituencyResults2023 = {
+  ...fixtureCongresoResults2023,
+  parties: [
+    partyResult("PEA", "PARTIDO EJEMPLO A", 400000, 40, 6, "#d6402b"),
+    partyResult("PEB", "PARTIDO EJEMPLO B", 300000, 30, 4, "#1d84ce"),
+    partyResult("CEC-D", "COALICION EJEMPLO CD", 200000, 20, 2, null),
+    partyResult("PEE", "PARTIDO EJEMPLO E", 6000, 0.6, 0, "#7a3fb0"),
+    partyResult("PEF", "PARTIDO EJEMPLO F", 4000, 0.4, 0, null),
+  ],
+};
+
+export const fixtureSenadoResults2023: ConstituencyResults2023 = {
+  electorate: 1000000,
+  totalVotes: 700000,
+  turnoutPercentage: 70,
+  validVotes: 690000,
+  blankVotes: 10000,
+  blankPercentage: null,
+  combinedDistrictName: null,
+  parties: [
+    partyResult("PEA", "PARTIDO EJEMPLO A", null, null, 2, "#d6402b"),
+    partyResult("PEB", "PARTIDO EJEMPLO B", null, null, 1, "#1d84ce"),
+  ],
+};
+
+export const fixtureSenadoCombinedResults2023: ConstituencyResults2023 = {
+  ...fixtureSenadoResults2023,
+  combinedDistrictName: "Eivissa-Formentera",
+  parties: [partyResult("PEA", "PARTIDO EJEMPLO A", null, null, 1, "#d6402b")],
 };
