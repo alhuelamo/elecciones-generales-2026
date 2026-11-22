@@ -41,6 +41,8 @@ def test_logo_entry_records_provenance(key):
 def test_svg_logo_is_sanitized(key):
     content = (LOGOS_DIR / SVG_ENTRIES[key]["file"]).read_text(encoding="utf-8")
     found = [
-        name for name, pattern in FORBIDDEN_SVG_PATTERNS.items() if pattern.search(content)
+        name
+        for name, pattern in FORBIDDEN_SVG_PATTERNS.items()
+        if pattern.search(content)
     ]
     assert found == []
