@@ -7,7 +7,7 @@ psoe:
   - PSN-PSOE
   - PSIB-PSOE
   website: https://www.psoe.es
-  programmeUrl: null
+  programmeUrl: https://lafuerzadelagente.es/programa
   leader: Pedro Sánchez
   founded: 1879
   seats2023:
@@ -66,7 +66,7 @@ vox:
   aliases:
   - VOX
   website: https://www.voxespana.es
-  programmeUrl: null
+  programmeUrl: https://www.voxespana.es/programa/programa-electoral-vox
   leader: Santiago Abascal
   founded: 2013
   seats2023:
@@ -102,7 +102,7 @@ podemos:
   - PODEMOS
   - PAZ,CASA Y TRABAJO
   website: https://podemos.info
-  programmeUrl: null
+  programmeUrl: https://podemos.info/wp-content/uploads/2026/11/29N-programa-Podemos.-Paz-casa-y-trabajo.pdf
   leader: Ione Belarra
   founded: 2014
   seats2023: null
@@ -146,7 +146,7 @@ eh-bildu:
   aliases:
   - EH BILDU
   website: https://www.ehbildu.eus
-  programmeUrl: null
+  programmeUrl: https://posibleegin.ehbildu.eus/programa/
   leader: Arnaldo Otegi
   founded: 2012
   seats2023:
