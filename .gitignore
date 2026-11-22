@@ -9,3 +9,4 @@ pipeline/data/raw/*
 **/.yarn/*
 !**/.yarn/releases
 *.tsbuildinfo
+.claude/settings.local.json
