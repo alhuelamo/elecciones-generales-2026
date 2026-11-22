@@ -10,32 +10,34 @@ export function Header(props: {
 }) {
   const { t } = useTranslation(["shell", "common"]);
   return (
-    <header className="sticky top-0 z-10 h-14 border-b border-rule bg-paper/95 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-3xl flex-nowrap items-center justify-between gap-2 px-4">
-        <a
-          href={buildHash({ page: "home", language: props.language })}
-          className="flex min-h-11 items-center gap-2 transition-colors duration-150"
-        >
-          <span
-            aria-hidden="true"
-            className="font-display text-xl font-bold tabular-nums"
+    <header className="sticky top-0 z-10 h-14 bg-paper/95 backdrop-blur">
+      <div className="mx-auto max-w-3xl px-4">
+        <div className="flex h-14 flex-nowrap items-center justify-between gap-2 border-b border-rule">
+          <a
+            href={buildHash({ page: "home", language: props.language })}
+            className="flex min-h-11 items-center gap-2 transition-colors duration-150"
           >
-            29<span className="text-accent">·</span>N
-          </span>
-          <span className="sr-only font-bold sm:not-sr-only">
-            {t("common:appTitle")}
-          </span>
-        </a>
-        <nav
-          aria-label={t("shell:navigation")}
-          className="flex flex-nowrap items-center gap-2"
-        >
-          <LanguageToggle
-            active={props.language}
-            onChange={props.onLanguageChange}
-          />
-          <ThemeMenu />
-        </nav>
+            <span
+              aria-hidden="true"
+              className="font-display text-xl font-bold tabular-nums"
+            >
+              29<span className="text-accent">·</span>N
+            </span>
+            <span className="sr-only font-bold sm:not-sr-only">
+              {t("common:appTitle")}
+            </span>
+          </a>
+          <nav
+            aria-label={t("shell:navigation")}
+            className="flex flex-nowrap items-center gap-2"
+          >
+            <LanguageToggle
+              active={props.language}
+              onChange={props.onLanguageChange}
+            />
+            <ThemeMenu />
+          </nav>
+        </div>
       </div>
     </header>
   );

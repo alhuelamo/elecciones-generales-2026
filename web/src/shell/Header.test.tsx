@@ -18,7 +18,17 @@ describe("Header", () => {
     renderHeader();
     const banner = screen.getByRole("banner");
     expect(banner).toHaveClass("sticky", "top-0", "h-14");
-    expect(banner.firstElementChild).toHaveClass("flex-nowrap");
+    expect(banner.firstElementChild?.firstElementChild).toHaveClass(
+      "flex-nowrap",
+    );
+  });
+
+  it("draws its rule on the content column, not edge to edge", () => {
+    renderHeader();
+    const banner = screen.getByRole("banner");
+    expect(banner).not.toHaveClass("border-b");
+    expect(banner.firstElementChild).toHaveClass("max-w-3xl");
+    expect(banner.firstElementChild?.firstElementChild).toHaveClass("border-b");
   });
 
   it("links the wordmark home with the full title as accessible name", () => {

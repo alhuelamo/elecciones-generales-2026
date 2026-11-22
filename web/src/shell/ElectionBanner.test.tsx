@@ -20,6 +20,13 @@ describe("ElectionBanner", () => {
     expect(container).toBeEmptyDOMElement();
   });
 
+  it("is a framed box on the content column", () => {
+    renderAt("2026-11-29T10:00:00+01:00");
+    const status = screen.getByRole("status");
+    expect(status).toHaveClass("rounded-frame", "border");
+    expect(status.parentElement).toHaveClass("max-w-3xl");
+  });
+
   it("announces election day", () => {
     renderAt("2026-11-29T10:00:00+01:00");
     expect(screen.getByRole("status")).toHaveTextContent(

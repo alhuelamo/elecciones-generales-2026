@@ -20,24 +20,26 @@ export function ElectionBanner(props: { now?: () => Date }) {
 
   if (phase === "before") return null;
   return (
-    <p
-      role="status"
-      className="border-b border-kraft-rule bg-kraft px-4 py-2 text-center text-sm text-ink"
-    >
-      {phase === "electionDay" ? (
-        t("electionBanner.today")
-      ) : (
-        <>
-          {t("electionBanner.over")}{" "}
-          <a
-            href={SOURCE_URLS.interior}
-            rel="noopener noreferrer"
-            className="inline-block min-h-11 py-3 font-medium text-accent underline"
-          >
-            {t("electionBanner.results")}
-          </a>
-        </>
-      )}
-    </p>
+    <div className="mx-auto max-w-3xl px-4 pt-4">
+      <p
+        role="status"
+        className="rounded-frame border border-kraft-rule bg-kraft px-4 py-2 text-center text-sm text-ink"
+      >
+        {phase === "electionDay" ? (
+          t("electionBanner.today")
+        ) : (
+          <>
+            {t("electionBanner.over")}{" "}
+            <a
+              href={SOURCE_URLS.interior}
+              rel="noopener noreferrer"
+              className="inline-block min-h-11 py-3 font-medium text-accent underline"
+            >
+              {t("electionBanner.results")}
+            </a>
+          </>
+        )}
+      </p>
+    </div>
   );
 }

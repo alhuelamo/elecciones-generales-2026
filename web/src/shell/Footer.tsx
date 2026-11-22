@@ -12,30 +12,32 @@ const SOURCE_LINKS = [
 export function Footer(props: { language: Language }) {
   const { t } = useTranslation("shell");
   return (
-    <footer className="border-t border-rule">
-      <div className="mx-auto flex max-w-3xl flex-col gap-2 px-4 py-4 text-sm text-ink-muted">
-        <p>{t("footer.neutrality")}</p>
-        <ul className="flex flex-wrap gap-x-4 gap-y-1">
-          {SOURCE_LINKS.map(([key, url]) => (
-            <li key={key}>
+    <footer>
+      <div className="mx-auto max-w-3xl px-4">
+        <div className="flex flex-col gap-2 border-t border-rule py-4 text-sm text-ink-muted">
+          <p>{t("footer.neutrality")}</p>
+          <ul className="flex flex-wrap gap-x-4 gap-y-1">
+            {SOURCE_LINKS.map(([key, url]) => (
+              <li key={key}>
+                <a
+                  href={url}
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center text-accent underline underline-offset-2"
+                >
+                  {t(`footer.sources.${key}`)}
+                </a>
+              </li>
+            ))}
+            <li>
               <a
-                href={url}
-                rel="noopener noreferrer"
+                href={buildHash({ page: "about", language: props.language })}
                 className="inline-flex min-h-11 items-center text-accent underline underline-offset-2"
               >
-                {t(`footer.sources.${key}`)}
+                {t("about")}
               </a>
             </li>
-          ))}
-          <li>
-            <a
-              href={buildHash({ page: "about", language: props.language })}
-              className="inline-flex min-h-11 items-center text-accent underline underline-offset-2"
-            >
-              {t("about")}
-            </a>
-          </li>
-        </ul>
+          </ul>
+        </div>
       </div>
     </footer>
   );

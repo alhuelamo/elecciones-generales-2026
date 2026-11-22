@@ -60,11 +60,11 @@ export function App() {
 
   return (
     <div className="flex min-h-screen flex-col text-ink">
-      <ElectionBanner />
       <Header
         language={route.language}
         onLanguageChange={(language) => navigate({ ...route, language })}
       />
+      <ElectionBanner />
       {data.index?.dataset === "fixture" && <DemoBanner />}
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6">
         {activeNotice && <NoticeMessage noticeKey={activeNotice} />}

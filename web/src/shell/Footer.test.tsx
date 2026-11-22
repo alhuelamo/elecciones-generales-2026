@@ -4,6 +4,14 @@ import { SOURCE_URLS } from "../config";
 import { Footer } from "./Footer";
 
 describe("Footer", () => {
+  it("draws its rule on the content column, not edge to edge", () => {
+    render(<Footer language="es" />);
+    const footer = screen.getByRole("contentinfo");
+    expect(footer).not.toHaveClass("border-t");
+    expect(footer.firstElementChild).toHaveClass("max-w-3xl");
+    expect(footer.firstElementChild?.firstElementChild).toHaveClass("border-t");
+  });
+
   it("shows the neutrality notice", () => {
     render(<Footer language="es" />);
     expect(
