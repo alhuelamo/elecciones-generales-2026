@@ -9,7 +9,8 @@
   "coalition": "Coalición",
   "facts": {
     "title": "Datos del partido",
-    "leader": "Cabeza de lista",
+    "partyLeader": "Líder",
+    "localHead": "Encabeza la lista en {{constituency}}",
     "founded": "Fundación",
     "seats2023": "Escaños en 2023",
     "seats2023Value": "Congreso {{congreso}} · Senado {{senado}}"

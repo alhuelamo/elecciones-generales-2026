@@ -9,7 +9,8 @@
   "coalition": "Coalició",
   "facts": {
     "title": "Dades del partit",
-    "leader": "Cap de llista",
+    "partyLeader": "Líder",
+    "localHead": "Encapçala la llista a {{constituency}}",
     "founded": "Fundació",
     "seats2023": "Escons el 2023",
     "seats2023Value": "Congrés {{congreso}} · Senat {{senado}}"

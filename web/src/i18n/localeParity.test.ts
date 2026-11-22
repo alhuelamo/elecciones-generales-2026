@@ -55,7 +55,7 @@ const IDENTICAL_ALLOWED: Partial<Record<Language, string[]>> = {
     "party.candidates",
     "party.coalition",
     "party.facts.founded",
-    "party.facts.leader",
+    "party.facts.partyLeader",
     "party.facts.seats2023Value",
     "party.links.website",
     "party.links.wikipedia",

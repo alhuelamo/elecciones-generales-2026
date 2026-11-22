@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import type { Candidacy, Chamber, PartyProfile } from "../contract/types";
 import { BUTTON_CLASSES } from "../design/button";
 import { BallotPaper } from "./BallotPaper";
-import { PartyFacts } from "./PartyFacts";
+import { PartyFacts, type LocalHead } from "./PartyFacts";
 import { PartyLinks } from "./PartyLinks";
 
 export function PartyDetail(props: {
@@ -11,6 +11,7 @@ export function PartyDetail(props: {
   chamber: Chamber;
   maxMarks: number | null;
   profile: PartyProfile | null;
+  constituencyName: string;
   backHref: string;
 }) {
   const { t } = useTranslation("party");
@@ -42,7 +43,7 @@ export function PartyDetail(props: {
           <PartyLinks profile={props.profile} />
         </ul>
       )}
-      {props.profile && <PartyFacts profile={props.profile} />}
+      <PartyFacts profile={props.profile} localHead={findLocalHead(props)} />
       <BallotPaper
         candidacy={candidacy}
         chamber={props.chamber}
@@ -51,4 +52,18 @@ export function PartyDetail(props: {
       />
     </article>
   );
+}
+
+function findLocalHead(props: {
+  candidacy: Candidacy;
+  chamber: Chamber;
+  constituencyName: string;
+}): LocalHead | null {
+  if (props.chamber !== "congreso") return null;
+  const head = props.candidacy.candidates.find(
+    (candidate) => candidate.position === 1,
+  );
+  return head
+    ? { constituencyName: props.constituencyName, name: head.name }
+    : null;
 }

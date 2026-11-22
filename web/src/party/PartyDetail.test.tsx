@@ -33,6 +33,7 @@ function renderDetail(
           ? fixtureCatalog.parties.pea
           : overrides.profile
       }
+      constituencyName="Barcelona"
       backHref="#/es/08019/congreso"
     />,
   );
@@ -73,6 +74,24 @@ describe("PartyDetail", () => {
       "href",
       "#/es/08019/congreso",
     );
+  });
+
+  it("shows candidate number 1 as local head for congreso", () => {
+    renderDetail();
+    const label = screen.getByText("Encabeza la lista en Barcelona");
+    expect(label.nextElementSibling).toHaveTextContent("Candidata Ejemplo A1");
+  });
+
+  it("hides the local head for senado", () => {
+    renderDetail({ chamber: "senado" });
+    expect(screen.queryByText(/Encabeza la lista/)).toBeNull();
+  });
+
+  it("shows the local head without a profile", () => {
+    renderDetail({ profile: null });
+    expect(
+      screen.getByText("Encabeza la lista en Barcelona"),
+    ).toBeInTheDocument();
   });
 
   it("shows the substitutes section for congreso", () => {

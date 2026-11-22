@@ -9,7 +9,8 @@
   "coalition": "Koalizioa",
   "facts": {
     "title": "Alderdiaren datuak",
-    "leader": "Zerrendaburua",
+    "partyLeader": "Burua",
+    "localHead": "Zerrendaburua ({{constituency}})",
     "founded": "Sorrera",
     "seats2023": "Eserlekuak 2023an",
     "seats2023Value": "Kongresua {{congreso}} · Senatua {{senado}}"

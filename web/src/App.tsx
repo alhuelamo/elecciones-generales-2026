@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { AboutPage } from "./about/AboutPage";
 import type { Candidacy, Chamber } from "./contract/types";
 import { ConstituencyView } from "./constituency/ConstituencyView";
+import { localizedName } from "./i18n/localizedName";
 import { PartyDetail } from "./party/PartyDetail";
 import { buildHash, type Route } from "./routing/route";
 import { HomePage } from "./home/HomePage";
@@ -144,6 +145,7 @@ function BallotPage(props: {
           (candidacy.partyKey && partyCatalog?.parties[candidacy.partyKey]) ||
           null
         }
+        constituencyName={localizedName(constituency.name, route.language)}
         backHref={ballotHref(route.chamber)}
       />
     );
