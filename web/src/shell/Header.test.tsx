@@ -56,7 +56,12 @@ describe("Header", () => {
     const catalan = within(group).getByRole("button", { name: "ca" });
     expect(spanish).toHaveAttribute("aria-pressed", "true");
     expect(catalan).toHaveAttribute("aria-pressed", "false");
-    expect(spanish).toHaveClass("min-h-11", "min-w-11");
+    expect(spanish).toHaveClass(
+      "min-h-11",
+      "min-w-11",
+      "aria-pressed:bg-accent",
+      "aria-pressed:text-paper",
+    );
     expect(catalan).toHaveClass("min-h-11", "min-w-11", "uppercase");
   });
 

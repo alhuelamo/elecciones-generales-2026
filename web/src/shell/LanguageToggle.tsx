@@ -21,7 +21,7 @@ export function LanguageToggle(props: {
           lang={language}
           aria-pressed={props.active === language}
           onClick={() => props.onChange(language)}
-          className="min-h-11 min-w-11 text-sm font-medium uppercase transition-colors duration-150 hover:bg-kraft aria-pressed:bg-ink aria-pressed:text-paper"
+          className="min-h-11 min-w-11 text-sm font-medium uppercase transition-colors duration-150 hover:bg-kraft aria-pressed:bg-accent aria-pressed:text-paper"
         >
           {language}
         </button>

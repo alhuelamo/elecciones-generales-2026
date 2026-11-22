@@ -60,7 +60,7 @@ describe("CandidacyList", () => {
     expect(screen.getByRole("radio", { name: "Orden del BOE" })).toBeChecked();
     expect(
       screen.getByRole("radio", { name: "Orden del BOE" }).closest("label"),
-    ).toHaveClass("has-checked:bg-ink", "has-checked:text-paper");
+    ).toHaveClass("has-checked:bg-accent", "has-checked:text-paper");
   });
 
   it("reorders when alphabetical is selected", async () => {

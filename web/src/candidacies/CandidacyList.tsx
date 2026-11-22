@@ -37,7 +37,7 @@ export function CandidacyList(props: {
         {options.map((option) => (
           <label
             key={option}
-            className="flex min-h-11 flex-1 cursor-pointer items-center justify-center px-2 text-center text-sm font-medium whitespace-nowrap transition-colors duration-150 hover:bg-kraft has-checked:bg-ink has-checked:text-paper has-checked:hover:bg-ink has-focus-visible:outline-2 has-focus-visible:-outline-offset-2 has-focus-visible:outline-accent sm:flex-none sm:px-4"
+            className="flex min-h-11 flex-1 cursor-pointer items-center justify-center px-2 text-center text-sm font-medium whitespace-nowrap transition-colors duration-150 hover:bg-kraft has-checked:bg-accent has-checked:text-paper has-checked:hover:bg-accent has-focus-visible:outline-2 has-focus-visible:-outline-offset-2 has-focus-visible:outline-accent sm:flex-none sm:px-4"
           >
             <input
               type="radio"
