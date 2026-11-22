@@ -18,6 +18,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --color-paper: #16151a;
   --color-paper-raised: #1f1e24;
   --color-ink: #f2eee6;
@@ -31,6 +32,7 @@
 }
 
 html {
+  color-scheme: light;
   @apply bg-paper font-sans text-ink antialiased;
   scrollbar-gutter: stable;
 }

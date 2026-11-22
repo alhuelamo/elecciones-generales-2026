@@ -37,6 +37,13 @@ const PAIRS = [
 ] as const;
 
 describe("design tokens", () => {
+  it.each([
+    ["html {", "light"],
+    [".dark {", "dark"],
+  ])("tells the browser %s renders native UI in %s", (selector, scheme) => {
+    expect(extractBlock(selector)).toContain(`color-scheme: ${scheme};`);
+  });
+
   describe.each(Object.entries(MODES))("%s mode", (_mode, colors) => {
     it.each(PAIRS)("%s on %s reaches AA", (foreground, background) => {
       expect(
