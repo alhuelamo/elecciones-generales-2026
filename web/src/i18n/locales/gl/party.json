@@ -1,0 +1,25 @@
+{
+  "back": "Volver",
+  "candidates": "Candidatos",
+  "substitutes": "Suplentes",
+  "substitute": "Suplente",
+  "substitutesOf": "Suplentes: {{names}}",
+  "senadoMarks_one": "Podes marcar 1 candidato",
+  "senadoMarks_other": "Podes marcar ata {{count}} candidatos en total",
+  "coalition": "Coalición",
+  "facts": {
+    "title": "Datos do partido",
+    "leader": "Cabeza de lista",
+    "founded": "Fundación",
+    "seats2023": "Escanos en 2023",
+    "seats2023Value": "Congreso {{congreso}} · Senado {{senado}}"
+  },
+  "links": {
+    "website": "Web oficial",
+    "programme": "Programa electoral",
+    "wikipedia": "Wikipedia"
+  },
+  "ballot": {
+    "caption": "Representación orientativa, non válida para votar"
+  }
+}

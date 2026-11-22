@@ -1,0 +1,31 @@
+{
+  "navigation": "Nabigazio nagusia",
+  "about": "Honi buruz",
+  "language": {
+    "label": "Hizkuntza"
+  },
+  "demoBanner": "Demo datuak: ez dira benetako hautagaitzak.",
+  "footer": {
+    "neutrality": "Webgune ez-ofiziala eta independentea, inolako alderdi edo erakundeekin loturarik gabea. Ordena lehenetsia: BOEn argitaratutakoa.",
+    "sources": {
+      "boe": "BOE",
+      "ine": "INE",
+      "interior": "Interior"
+    }
+  },
+  "notice": {
+    "unknownMunicipality": "Ez dugu udalerri hori aurkitu. Bilatu berriro.",
+    "unknownParty": "Ez dugu hautagaitza hori aurkitu barruti honetan. Guztiak erakusten ditugu."
+  },
+  "electionBanner": {
+    "today": "Gaur hauteskunde-eguna da.",
+    "over": "Hauteskunde-eguna amaitu da.",
+    "results": "Kontsultatu emaitza ofizialak"
+  },
+  "machineTranslation": {
+    "notice": "Testu hau automatikoki itzuli da eta akatsak izan ditzake.",
+    "report": "Jakinarazi akats bat",
+    "issueTitle": "[{{language}}] Itzulpen-akatsa",
+    "issueBody": "Hizkuntza: {{language}}\nOrria: {{page}}"
+  }
+}

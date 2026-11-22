@@ -1,0 +1,9 @@
+{
+  "appTitle": "Eleccións xerais 2026",
+  "chamber": {
+    "congreso": "Congreso",
+    "senado": "Senado"
+  },
+  "loading": "Cargando…",
+  "loadError": "Non se puideron cargar os datos. Téntao de novo."
+}

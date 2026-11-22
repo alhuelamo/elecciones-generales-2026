@@ -1,0 +1,19 @@
+{
+  "voteShare": {
+    "label": "Porcentaxe sobre votos válidos",
+    "threshold": "barreira do 3 %",
+    "others": "Outros",
+    "blank": "En branco"
+  },
+  "seats": {
+    "label": "Escanos en 2023",
+    "senadoNote": "No Senado vótase a persoas, non a listas: non hai porcentaxe por partido",
+    "count_one": "escano",
+    "count_other": "escanos"
+  },
+  "heading": "Resultados de 2023: {{constituency}}",
+  "turnout": "Participación: {{turnout}}",
+  "votes": "{{votes}} votos",
+  "source": "Fonte: Ministerio do Interior",
+  "combinedDistrict": "En 2023 Eivissa e Formentera formaban unha soa circunscrición ao Senado; estes son os seus resultados conxuntos."
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Webgune honi buruz",
+  "disclaimer": "Webgune hau independentea da. Ez dago lotuta alderdi politikorik, erakunde publikorik ezta hauteskunde-administraziorik. Egiaztatu beti informazio ofiziala.",
+  "sources": {
+    "title": "Datu-iturriak",
+    "boeCandidacies": "BOE: izendatutako hautagaitzak (BOE-A-2026-23103)",
+    "boeConvocation": "BOE: 806/2026 Errege Dekretua, deialdia eta eserlekuak (BOE-A-2026-20742)",
+    "ine": "INE: udalerrien zerrenda (26codmun)",
+    "islands": "CodeForSpain: udalerri-uharte korrespondentzia (PDDL 1.0 lizentzia)",
+    "interior": "Barne Ministerioa: 2023ko emaitzak",
+    "parties": "Alderdien fitxak: parties.yaml fitxategi zaindua",
+    "partiesHint": "Zuzenketetarako irekia."
+  },
+  "logos": {
+    "title": "Logoen kredituak",
+    "intro": "Logoak Wikimedia Commons-etik datoz.",
+    "listLabel": "Alderdien logoak",
+    "by": "{{author}} egilearena",
+    "source": "Iturria"
+  },
+  "updated": {
+    "label": "Azken eguneraketa"
+  },
+  "report": {
+    "title": "Akatsen bat ikusi duzu?",
+    "link": "Jakinarazi akats bat"
+  },
+  "license": "Webgune honen kodea MIT lizentziarekin argitaratzen da."
+}

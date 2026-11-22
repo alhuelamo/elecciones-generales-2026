@@ -1,0 +1,14 @@
+{
+  "ordering": {
+    "label": "Ordenatu honen arabera",
+    "boe": "BOEko ordena",
+    "alphabetical": "Alfabetikoa",
+    "votes2023": "2023ko botoak"
+  },
+  "results2023": {
+    "congreso": "2023: {{percentage}} · {{seats}} eserleku",
+    "senado": "2023: {{seats}} eserleku",
+    "as": "{{acronyms}} gisa"
+  },
+  "coalition": "Koalizioa"
+}

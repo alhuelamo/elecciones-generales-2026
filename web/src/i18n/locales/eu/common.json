@@ -1,0 +1,9 @@
+{
+  "appTitle": "2026ko Hauteskunde Orokorrak",
+  "chamber": {
+    "congreso": "Kongresua",
+    "senado": "Senatua"
+  },
+  "loading": "Kargatzen…",
+  "loadError": "Ezin izan dira datuak kargatu. Saiatu berriro."
+}

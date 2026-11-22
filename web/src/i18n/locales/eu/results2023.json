@@ -1,0 +1,19 @@
+{
+  "voteShare": {
+    "label": "Baliozko botoen ehunekoa",
+    "threshold": "% 3ko langa",
+    "others": "Besteak",
+    "blank": "Boto zuria"
+  },
+  "seats": {
+    "label": "Eserlekuak 2023an",
+    "senadoNote": "Senatuan pertsonei ematen zaie botoa, ez zerrendei: ez dago alderdi bakoitzaren ehunekorik",
+    "count_one": "eserleku",
+    "count_other": "eserleku"
+  },
+  "heading": "2023ko emaitzak: {{constituency}}",
+  "turnout": "Parte-hartzea: {{turnout}}",
+  "votes": "{{votes}} boto",
+  "source": "Iturria: Barne Ministerioa",
+  "combinedDistrict": "2023an Eivissa eta Formentera Senaturako barruti bakarra ziren; hauek dira haien emaitza bateratuak."
+}

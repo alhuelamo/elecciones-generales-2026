@@ -1,0 +1,25 @@
+{
+  "back": "Itzuli",
+  "candidates": "Hautagaiak",
+  "substitutes": "Ordezkoak",
+  "substitute": "Ordezkoa",
+  "substitutesOf": "Ordezkoak: {{names}}",
+  "senadoMarks_one": "Hautagai 1 marka dezakezu",
+  "senadoMarks_other": "Guztira {{count}} hautagai arte marka ditzakezu",
+  "coalition": "Koalizioa",
+  "facts": {
+    "title": "Alderdiaren datuak",
+    "leader": "Zerrendaburua",
+    "founded": "Sorrera",
+    "seats2023": "Eserlekuak 2023an",
+    "seats2023Value": "Kongresua {{congreso}} · Senatua {{senado}}"
+  },
+  "links": {
+    "website": "Webgune ofiziala",
+    "programme": "Hauteskunde-programa",
+    "wikipedia": "Wikipedia"
+  },
+  "ballot": {
+    "caption": "Adierazpen orientagarria, ez da baliozkoa botoa emateko"
+  }
+}

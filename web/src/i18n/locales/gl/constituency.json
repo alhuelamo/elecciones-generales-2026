@@ -1,0 +1,19 @@
+{
+  "seats": {
+    "congreso_one": "Elíxese {{count}} deputado",
+    "congreso_other": "Elíxense {{count}} deputados",
+    "senado_one": "Elíxese {{count}} senador · podes marcar ata {{maxMarks}}",
+    "senado_other": "Elíxense {{count}} senadores · podes marcar ata {{maxMarks}}"
+  },
+  "howToVote": {
+    "title": "Como votar",
+    "congreso": "Papeleta e sobre brancos. Elixe unha soa papeleta de candidatura (lista pechada) e métea no sobre branco sen riscar nin engadir nada.",
+    "senado": "Papeleta e sobre sepia. Unha única papeleta con todos os candidatos: marca cunha cruz ata {{maxMarks}}, da mesma ou de distintas candidaturas."
+  },
+  "tabsLabel": "Cámara",
+  "whereToVote": {
+    "text": "Non sabes onde che toca votar?",
+    "link": "Consulta a túa mesa e o teu local electoral no INE"
+  },
+  "changeMunicipality": "Cambiar de concello"
+}

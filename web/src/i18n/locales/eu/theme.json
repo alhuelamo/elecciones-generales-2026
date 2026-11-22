@@ -1,0 +1,10 @@
+{
+  "menu": {
+    "label": "Gaia: {{choice}}"
+  },
+  "choice": {
+    "system": "Sistema",
+    "light": "Argia",
+    "dark": "Iluna"
+  }
+}

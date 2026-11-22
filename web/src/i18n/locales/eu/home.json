@@ -1,0 +1,14 @@
+{
+  "title": "Zer dago zure boto-txartelean?",
+  "subtitle": "Bilatu zure udalerria eta kontsultatu azaroaren 29ko Kongresurako eta Senaturako hautagaitzak.",
+  "countdown": {
+    "before_one": "<days>{{count}}</days> egun falta da · azaroaren 29a, igandea",
+    "before_other": "<days>{{count}}</days> egun falta dira · azaroaren 29a, igandea"
+  },
+  "cards": {
+    "whereToVote": "Non eman boto",
+    "howToVote": "Nola eman boto",
+    "congreso": "Kongresua: boto-txartela eta gutun-azal zuriak. Hautagaitza bat aukeratzen duzu.",
+    "senado": "Senatua: boto-txartela eta gutun-azal sepia. Hautagaiak gurutze batez markatzen dituzu."
+  }
+}

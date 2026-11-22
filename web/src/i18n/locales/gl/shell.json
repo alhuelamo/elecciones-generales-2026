@@ -1,0 +1,31 @@
+{
+  "navigation": "Navegación principal",
+  "about": "Sobre a web",
+  "language": {
+    "label": "Idioma"
+  },
+  "demoBanner": "Datos de demostración: non son as candidaturas reais.",
+  "footer": {
+    "neutrality": "Web non oficial e independente, sen afiliación con ningún partido nin institución. Orde por defecto: publicación no BOE.",
+    "sources": {
+      "boe": "BOE",
+      "ine": "INE",
+      "interior": "Interior"
+    }
+  },
+  "notice": {
+    "unknownMunicipality": "Non atopamos ese concello. Búscao de novo.",
+    "unknownParty": "Non atopamos esa candidatura nesta circunscrición. Amosámosche todas."
+  },
+  "electionBanner": {
+    "today": "Hoxe é o día das eleccións.",
+    "over": "A xornada electoral rematou.",
+    "results": "Consulta os resultados oficiais"
+  },
+  "machineTranslation": {
+    "notice": "Este texto foi traducido automaticamente e pode conter erros.",
+    "report": "Informar dun erro",
+    "issueTitle": "[{{language}}] Erro de tradución",
+    "issueBody": "Idioma: {{language}}\nPáxina: {{page}}"
+  }
+}

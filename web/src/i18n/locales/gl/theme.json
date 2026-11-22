@@ -1,0 +1,10 @@
+{
+  "menu": {
+    "label": "Tema: {{choice}}"
+  },
+  "choice": {
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Escuro"
+  }
+}

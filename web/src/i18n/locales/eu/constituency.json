@@ -1,0 +1,19 @@
+{
+  "seats": {
+    "congreso_one": "Diputatu {{count}} hautatzen da",
+    "congreso_other": "{{count}} diputatu hautatzen dira",
+    "senado_one": "Senatari {{count}} hautatzen da · {{maxMarks}} arte marka ditzakezu",
+    "senado_other": "{{count}} senatari hautatzen dira · {{maxMarks}} arte marka ditzakezu"
+  },
+  "howToVote": {
+    "title": "Nola eman boto",
+    "congreso": "Boto-txartela eta gutun-azal zuriak. Aukeratu hautagaitza bakarreko boto-txartel bat (zerrenda itxia) eta sartu gutun-azal zurian, ezer marratu edo gehitu gabe.",
+    "senado": "Boto-txartela eta gutun-azal sepia. Boto-txartel bakarra hautagai guztiekin: markatu gurutze batez {{maxMarks}} arte, hautagaitza berekoak nahiz desberdinak."
+  },
+  "tabsLabel": "Ganbera",
+  "whereToVote": {
+    "text": "Ez dakizu non eman behar duzun boto?",
+    "link": "Kontsultatu zure mahaia eta hauteslekua INEn"
+  },
+  "changeMunicipality": "Aldatu udalerria"
+}

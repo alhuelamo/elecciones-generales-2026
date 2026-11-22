@@ -129,6 +129,14 @@ describe("App", () => {
     expect(screen.getByText(/Se eligen 32 diputados/)).toBeVisible();
   });
 
+  it.each([
+    ["eu", "Zer dago zure boto-txartelean?"],
+    ["gl", "Que hai na túa papeleta?"],
+  ])("renders the home heading in %s", async (language, heading) => {
+    await openAt(`#/${language}`);
+    expect(await screen.findByRole("heading", { name: heading })).toBeVisible();
+  });
+
   it("renders about page", async () => {
     await openAt("#/es/about");
     expect(
