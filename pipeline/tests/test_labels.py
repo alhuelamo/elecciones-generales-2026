@@ -1,5 +1,6 @@
 from elecciones_pipeline.labels import (
     SPARQL_ENDPOINT,
+    SPARQL_QUERY,
     USER_AGENT,
     MunicipalityLabels,
     build_request,
@@ -49,3 +50,35 @@ def test_refresh_writes_normalized_csv(tmp_path):
     count = refresh_labels(lambda: RAW_CSV, path)
     assert count == 4
     assert "03014,Alicante,Alacant" in path.read_text()
+
+
+def test_normalize_writes_five_columns():
+    raw = "code,es,ca,eu,gl\n20069,San Sebastián,Sant Sebastià,Donostia,Donostia\n"
+    assert normalize_labels_csv(raw).splitlines() == [
+        "code,es,ca,eu,gl",
+        "20069,San Sebastián,Sant Sebastià,Donostia,Donostia",
+    ]
+
+
+def test_read_labels_without_eu_gl_columns_defaults_to_empty(tmp_path):
+    path = tmp_path / "labels.csv"
+    path.write_text("code,es,ca\n03014,Alicante,Alacant\n", encoding="utf-8")
+    labels = read_labels(path)["03014"]
+    assert (labels.eu, labels.gl) == ("", "")
+
+
+def test_read_labels_reads_eu_gl_columns(tmp_path):
+    path = tmp_path / "labels.csv"
+    path.write_text(
+        "code,es,ca,eu,gl\n20069,San Sebastián,Sant Sebastià,donostia,Donostia\n",
+        encoding="utf-8",
+    )
+    assert read_labels(path)["20069"] == MunicipalityLabels(
+        "San Sebastián", "Sant Sebastià", "Donostia", "Donostia"
+    )
+
+
+def test_query_requests_eu_and_gl_labels():
+    assert "?eu ?gl" in SPARQL_QUERY
+    assert 'LANG(?eu) = "eu"' in SPARQL_QUERY
+    assert 'LANG(?gl) = "gl"' in SPARQL_QUERY

@@ -101,6 +101,42 @@ def test_localized_names(official, labels, es, ca):
     assert localized_names(official, labels) == {"es": es, "ca": ca}
 
 
+@pytest.mark.parametrize(
+    "official, labels, expected",
+    [
+        (
+            "Donostia/San Sebastián",
+            MunicipalityLabels(
+                "San Sebastián", "Sant Sebastià", "Donostia", "Donostia"
+            ),
+            {
+                "es": "San Sebastián",
+                "ca": "San Sebastián",
+                "eu": "Donostia",
+                "gl": "Donostia",
+            },
+        ),
+        (
+            "Donostia/San Sebastián",
+            MunicipalityLabels("San Sebastián", "Sant Sebastià"),
+            {"es": "San Sebastián", "ca": "San Sebastián"},
+        ),
+        (
+            "Barcelona",
+            MunicipalityLabels("Barcelona", "Barcelona", "Bartzelona", "Barcelona"),
+            {"es": "Barcelona", "ca": "Barcelona"},
+        ),
+        (
+            "Alicante/Alacant",
+            MunicipalityLabels("Alicante", "Alacant", "Alacant", "Alicante"),
+            {"es": "Alicante", "ca": "Alacant", "eu": "Alacant"},
+        ),
+    ],
+)
+def test_localized_names_are_sparse_for_eu_and_gl(official, labels, expected):
+    assert localized_names(official, labels) == expected
+
+
 def test_needs_label_fallback_only_for_bilingual_names_without_labels():
     assert needs_label_fallback("Alicante/Alacant", NO_LABELS)
     assert needs_label_fallback("Alicante/Alacant", None)
@@ -124,6 +160,12 @@ def test_aliases_cover_both_languages_and_official_form():
         "Donostia",
         "Sant Sebastià",
     ]
+
+
+def test_eu_only_label_is_searchable():
+    labels = MunicipalityLabels("Vitoria", "Vitòria", "Gasteiz", "")
+    names = localized_names("Vitoria-Gasteiz", labels)
+    assert "Gasteiz" in search_aliases("Vitoria-Gasteiz", names, labels)
 
 
 def test_aliases_keep_raw_postposed_article_form():

@@ -162,3 +162,30 @@ def test_island_heading(registry, province, heading, island):
 def test_unknown_island_heading_raises(registry):
     with pytest.raises(UnknownIslandHeading):
         registry.senado_id_for_island_heading("07", "Tenerife")
+
+
+def test_congreso_name_carries_eu_when_province_has_one(registry):
+    names = registry.get("congreso", "31").names
+    assert names["es"] == "Navarra"
+    assert names["eu"] == "Nafarroa"
+    assert "gl" not in names
+
+
+def test_congreso_name_has_no_eu_gl_when_same_as_es(registry):
+    assert set(registry.get("congreso", "28").names) == {"es", "ca"}
+
+
+def test_senado_names_of_province_use_eu_and_gl(registry):
+    assert registry.get("senado", "26").names["gl"] == "A Rioxa"
+    assert registry.get("senado", "26").names["eu"] == "Errioxa"
+
+
+def test_senado_islands_have_no_eu_gl_names(registry):
+    islands = [c for c in registry.senado if "-" in c.id]
+    assert islands
+    assert all(set(c.names) == {"es", "ca"} for c in islands)
+
+
+def test_province_names_in_eu_and_gl_resolve_to_code(registry):
+    assert registry.province_code_for_name("Nafarroa") == "31"
+    assert registry.province_code_for_name("Xirona") == "17"

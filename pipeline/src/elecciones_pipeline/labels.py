@@ -10,13 +10,15 @@ from pathlib import Path
 SPARQL_ENDPOINT = "https://query.wikidata.org/sparql"
 USER_AGENT = "elecciones-generales-2026-pipeline"
 LABELS_FILE = "wikidata_municipality_labels.csv"
-HEADER = ["code", "es", "ca"]
+HEADER = ["code", "es", "ca", "eu", "gl"]
 CODE_PATTERN = re.compile(r"^\d{5}$")
-SPARQL_QUERY = """SELECT ?code ?es ?ca WHERE {
+SPARQL_QUERY = """SELECT ?code ?es ?ca ?eu ?gl WHERE {
   ?municipality wdt:P31/wdt:P279* wd:Q2074737 ;
                 wdt:P772 ?code .
   OPTIONAL { ?municipality rdfs:label ?es . FILTER(LANG(?es) = "es") }
   OPTIONAL { ?municipality rdfs:label ?ca . FILTER(LANG(?ca) = "ca") }
+  OPTIONAL { ?municipality rdfs:label ?eu . FILTER(LANG(?eu) = "eu") }
+  OPTIONAL { ?municipality rdfs:label ?gl . FILTER(LANG(?gl) = "gl") }
 }"""
 
 
@@ -24,6 +26,8 @@ SPARQL_QUERY = """SELECT ?code ?es ?ca WHERE {
 class MunicipalityLabels:
     es: str
     ca: str
+    eu: str = ""
+    gl: str = ""
 
 
 def build_request() -> urllib.request.Request:
@@ -45,7 +49,7 @@ def normalize_labels_csv(raw_csv: str) -> str:
     writer = csv.writer(output, lineterminator="\n")
     writer.writerow(HEADER)
     for code in sorted(labels):
-        writer.writerow([code, labels[code].es, labels[code].ca])
+        writer.writerow([code, *(getattr(labels[code], key) for key in HEADER[1:])])
     return output.getvalue()
 
 
@@ -65,7 +69,10 @@ def _parse_rows(raw_csv: str) -> dict[str, MunicipalityLabels]:
         code = row["code"].strip()
         if CODE_PATTERN.match(code) and code not in labels:
             labels[code] = MunicipalityLabels(
-                es=_capitalize(row["es"]), ca=_capitalize(row["ca"])
+                es=_capitalize(row["es"]),
+                ca=_capitalize(row["ca"]),
+                eu=_capitalize(row.get("eu") or ""),
+                gl=_capitalize(row.get("gl") or ""),
             )
     return labels
 

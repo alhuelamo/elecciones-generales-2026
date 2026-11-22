@@ -9,6 +9,7 @@ from elecciones_pipeline.labels import MunicipalityLabels
 from elecciones_pipeline.normalize import normalize_text
 
 FIRST_DATA_ROW = 4
+SPARSE_LANGUAGES = ("eu", "gl")
 POSTPOSED_ARTICLES = {
     article.casefold()
     for article in "El La Los Las L' Els Les Es Sa Ses So Lo O A Os As".split()
@@ -46,10 +47,16 @@ def localized_names(
         return {"es": parts[0], "ca": parts[0]}
     es = _closest_part(parts, labels.es) if labels.es else None
     ca = _closest_part(parts, labels.ca) if labels.ca else None
-    return {
+    names = {
         "es": es or _other_part(parts, ca),
         "ca": ca or _other_part(parts, es),
     }
+    for language in SPARSE_LANGUAGES:
+        label = getattr(labels, language)
+        chosen = _closest_part(parts, label) if label else names["es"]
+        if chosen != names["es"]:
+            names[language] = chosen
+    return names
 
 
 def needs_label_fallback(official_name: str, labels: MunicipalityLabels | None) -> bool:
@@ -71,13 +78,18 @@ def search_aliases(
         *(_display_part(part) for part in parts),
         names["es"],
         names["ca"],
-        *((labels.es, labels.ca) if labels else ()),
+        *((labels.es, labels.ca, labels.eu, labels.gl) if labels else ()),
     ]
     unique = list(dict.fromkeys(candidates))
+    displayed = {
+        names["es"],
+        names["ca"],
+        *(names.get(language, names["es"]) for language in SPARSE_LANGUAGES),
+    }
     return [
         alias
         for alias in unique
-        if alias and (alias != names["es"] or alias != names["ca"])
+        if alias and (len(displayed) > 1 or alias not in displayed)
     ]
 
 

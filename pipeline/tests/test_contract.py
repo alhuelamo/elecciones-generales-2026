@@ -75,3 +75,26 @@ def test_monolingual_municipality_name_is_reported(tmp_path):
     write_json(tmp_path / "municipalities.json", index)
 
     assert any("name" in error for error in validate_data_dir(tmp_path))
+
+
+def validate_first_municipality_name(tmp_path, name):
+    copy_tree(WEB_DATA, tmp_path)
+    index = read_json(tmp_path / "municipalities.json")
+    index["municipalities"][0]["name"] = name
+    write_json(tmp_path / "municipalities.json", index)
+    return validate_data_dir(tmp_path)
+
+
+def test_municipality_name_with_eu_and_gl_is_valid(tmp_path):
+    name = {"es": "x", "ca": "x", "eu": "y", "gl": "z"}
+    assert validate_first_municipality_name(tmp_path, name) == []
+
+
+def test_municipality_name_with_unsupported_language_is_reported(tmp_path):
+    name = {"es": "x", "ca": "x", "fr": "x"}
+    assert validate_first_municipality_name(tmp_path, name)
+
+
+def test_municipality_name_with_empty_eu_is_reported(tmp_path):
+    name = {"es": "x", "ca": "x", "eu": ""}
+    assert validate_first_municipality_name(tmp_path, name)

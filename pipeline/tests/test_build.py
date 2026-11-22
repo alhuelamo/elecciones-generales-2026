@@ -59,6 +59,26 @@ def test_hospitalet_names_per_language_and_aliases(build_inputs):
     assert "Hospitalet de Llobregat, L'" in entry["aliases"]
 
 
+def test_constituency_names_are_sparse_for_eu_and_gl(build_inputs):
+    build_dataset(build_inputs, GENERATED_AT)
+
+    index = read_json(build_inputs.output_dir / "municipalities.json")
+    names = [item["name"] for item in index["constituencies"]["congreso"]]
+    assert names
+    assert all(set(name) == {"es", "ca"} for name in names)
+
+
+def test_municipality_labels_with_eu_still_build_valid_dataset(build_inputs):
+    labels_path = build_inputs.data_dir / "vendor" / "wikidata_municipality_labels.csv"
+    labels_path.write_text(
+        "code,es,ca,eu,gl\n08101,Hospitalet,L'Hospitalet,Hospitalet,Hospitalet\n"
+    )
+
+    build_dataset(build_inputs, GENERATED_AT)
+
+    assert validate_data_dir(build_inputs.output_dir) == []
+
+
 def test_missing_labels_fall_back_to_display_name(build_inputs):
     labels_path = build_inputs.data_dir / "vendor" / "wikidata_municipality_labels.csv"
     labels_path.write_text("code,es,ca\n")

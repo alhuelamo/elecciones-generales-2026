@@ -10,6 +10,7 @@ from elecciones_pipeline.normalize import normalize_text
 ISLAND_PROVINCE_CODES = frozenset({"07", "35", "38"})
 PROVINCE_SENADO_SEATS = 4
 AUTONOMOUS_CITY_SENADO_SEATS = 2
+SPARSE_LANGUAGES = ("eu", "gl")
 AUTONOMOUS_CITY_CODES = frozenset({"51", "52"})
 
 
@@ -17,8 +18,7 @@ AUTONOMOUS_CITY_CODES = frozenset({"51", "52"})
 class Constituency:
     chamber: Literal["congreso", "senado"]
     id: str
-    name_es: str
-    name_ca: str
+    names: dict[str, str]
     seats: int
     max_marks: int | None
 
@@ -116,7 +116,10 @@ class ConstituencyRegistry:
     def _index_province_names(provinces: dict[str, dict]) -> dict[str, str]:
         index = {}
         for code, province in provinces.items():
-            names = [province["es"], province["ca"], *province["boeNames"]]
+            names = [
+                *_province_names(province).values(),
+                *province["boeNames"],
+            ]
             for name in names:
                 index[normalize_text(name)] = code
         return index
@@ -127,8 +130,7 @@ class ConstituencyRegistry:
             Constituency(
                 "congreso",
                 code,
-                provinces[code]["es"],
-                provinces[code]["ca"],
+                _province_names(provinces[code]),
                 seats[code],
                 None,
             )
@@ -138,12 +140,12 @@ class ConstituencyRegistry:
     @staticmethod
     def _build_senado(provinces: dict[str, dict], islands: dict[str, dict]):
         province_constituencies = [
-            _senado_constituency(code, province["es"], province["ca"], _seats(code))
+            _senado_constituency(code, _province_names(province), _seats(code))
             for code, province in provinces.items()
             if code not in ISLAND_PROVINCE_CODES
         ]
         island_constituencies = [
-            _senado_constituency(id, island["es"], island["ca"], island["seats"])
+            _senado_constituency(id, _province_names(island), island["seats"])
             for id, island in islands.items()
         ]
         return sorted(province_constituencies + island_constituencies, key=_by_id)
@@ -155,8 +157,16 @@ def _seats(province_code: str) -> int:
     return PROVINCE_SENADO_SEATS
 
 
-def _senado_constituency(id: str, name_es: str, name_ca: str, seats: int):
-    return Constituency("senado", id, name_es, name_ca, seats, senado_max_marks(seats))
+def _province_names(entry: dict) -> dict[str, str]:
+    names = {"es": entry["es"], "ca": entry["ca"]}
+    for language in SPARSE_LANGUAGES:
+        if entry.get(language, entry["es"]) != entry["es"]:
+            names[language] = entry[language]
+    return names
+
+
+def _senado_constituency(id: str, names: dict[str, str], seats: int):
+    return Constituency("senado", id, names, seats, senado_max_marks(seats))
 
 
 def _by_id(constituency: Constituency) -> str:

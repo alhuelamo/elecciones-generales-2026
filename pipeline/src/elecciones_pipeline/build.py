@@ -236,7 +236,7 @@ def _format_timestamp(moment: datetime) -> str:
 def _constituency_summary(constituency: Constituency) -> dict:
     return {
         "id": constituency.id,
-        "name": {"es": constituency.name_es, "ca": constituency.name_ca},
+        "name": constituency.names,
         "seats": constituency.seats,
         "maxMarks": constituency.max_marks,
     }
@@ -328,7 +328,7 @@ def _label_warnings(inputs: _Inputs, entries: list[dict]) -> list[str]:
     slashed = [
         entry["code"]
         for entry in entries
-        if "/" in entry["name"]["es"] or "/" in entry["name"]["ca"]
+        if any("/" in name for name in entry["name"].values())
     ]
     return [
         f"{len(bilingual)} bilingual INE names: "

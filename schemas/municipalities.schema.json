@@ -45,7 +45,9 @@
       "required": ["es", "ca"],
       "properties": {
         "es": { "type": "string", "minLength": 1 },
-        "ca": { "type": "string", "minLength": 1 }
+        "ca": { "type": "string", "minLength": 1 },
+        "eu": { "type": "string", "minLength": 1 },
+        "gl": { "type": "string", "minLength": 1 }
       }
     },
     "constituency": {

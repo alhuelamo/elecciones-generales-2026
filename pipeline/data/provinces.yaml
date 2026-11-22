@@ -6,6 +6,7 @@
   - ARABA
   ca: Àlaba
   es: Araba/Álava
+  eu: Araba
 '02':
   boeNames:
   - ALBACETE
@@ -35,6 +36,7 @@
   - BADAJOZ
   ca: Badajoz
   es: Badajoz
+  gl: Badaxoz
 '07':
   boeNames:
   - ILLES BALEARS
@@ -78,6 +80,7 @@
   - CIUTAT REIAL
   ca: Ciutat Reial
   es: Ciudad Real
+  gl: Cidade Real
 '14':
   boeNames:
   - CÓRDOBA
@@ -105,6 +108,7 @@
   - GERONA
   ca: Girona
   es: Girona
+  gl: Xirona
 '18':
   boeNames:
   - GRANADA
@@ -137,6 +141,7 @@
   - JAÉN
   ca: Jaén
   es: Jaén
+  gl: Xaén
 '24':
   boeNames:
   - LEÓN
@@ -156,6 +161,8 @@
   - RIOJA (LA)
   ca: La Rioja
   es: La Rioja
+  eu: Errioxa
+  gl: A Rioxa
 '27':
   boeNames:
   - LUGO
@@ -183,6 +190,7 @@
   - NAVARRA
   ca: Navarra
   es: Navarra
+  eu: Nafarroa
 '32':
   boeNames:
   - OURENSE
@@ -208,6 +216,7 @@
   - PALMAS (LAS)
   ca: Las Palmas
   es: Las Palmas
+  gl: As Palmas
 '36':
   boeNames:
   - PONTEVEDRA
@@ -229,6 +238,7 @@
   - CANTÀBRIA
   ca: Cantàbria
   es: Cantabria
+  eu: Kantabria
 '40':
   boeNames:
   - SEGOVIA
