@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import i18next from "i18next";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   fixtureCatalog,
   fixtureCongresoBarcelona,
@@ -20,9 +21,11 @@ const barcelonaCongreso = fixtureIndex.constituencies.congreso.find(
   ({ id }) => id === "08",
 )!;
 
-function renderSenado() {
-  return render(
+function renderSenado(onMunicipalitySelect = vi.fn()) {
+  render(
     <ConstituencyView
+      index={fixtureIndex}
+      onMunicipalitySelect={onMunicipalitySelect}
       municipality={palma}
       constituency={mallorca}
       ballot={fixtureSenadoMallorca}
@@ -31,6 +34,7 @@ function renderSenado() {
       candidacyHref={({ slug }) => `#/es/07040/senado/${slug}`}
     />,
   );
+  return onMunicipalitySelect;
 }
 
 describe("ConstituencyView", () => {
@@ -42,6 +46,8 @@ describe("ConstituencyView", () => {
     await i18next.changeLanguage("ca");
     render(
       <ConstituencyView
+        index={fixtureIndex}
+        onMunicipalitySelect={vi.fn()}
         municipality={barcelona}
         constituency={barcelonaCongreso}
         ballot={fixtureCongresoBarcelona}
@@ -59,6 +65,8 @@ describe("ConstituencyView", () => {
   it("omits the constituency subtitle when it repeats the municipality name", () => {
     render(
       <ConstituencyView
+        index={fixtureIndex}
+        onMunicipalitySelect={vi.fn()}
         municipality={barcelona}
         constituency={barcelonaCongreso}
         ballot={fixtureCongresoBarcelona}
@@ -94,5 +102,49 @@ describe("ConstituencyView", () => {
       "href",
       "#/es/07040/congreso",
     );
+  });
+
+  it("hides the municipality search until asked to change town", () => {
+    renderSenado();
+    expect(screen.queryByRole("combobox")).toBeNull();
+    expect(
+      screen.getByRole("button", { name: "Cambiar municipio" }),
+    ).toHaveAttribute("aria-expanded", "false");
+  });
+
+  it("opens a focused search to change town", async () => {
+    renderSenado();
+    await userEvent.click(
+      screen.getByRole("button", { name: "Cambiar municipio" }),
+    );
+    expect(
+      screen.getByRole("combobox", { name: "Buscar municipio" }),
+    ).toHaveFocus();
+    expect(
+      screen.getByRole("button", { name: "Cambiar municipio" }),
+    ).toHaveAttribute("aria-expanded", "true");
+  });
+
+  it("reports the chosen municipality", async () => {
+    const onMunicipalitySelect = renderSenado();
+    await userEvent.click(
+      screen.getByRole("button", { name: "Cambiar municipio" }),
+    );
+    await userEvent.type(screen.getByRole("combobox"), "madrid");
+    await userEvent.click(
+      await screen.findByRole("option", { name: /^Madrid/ }),
+    );
+    expect(onMunicipalitySelect).toHaveBeenCalledWith(
+      expect.objectContaining({ code: "28079" }),
+    );
+  });
+
+  it("closes the search with Escape and returns focus to the button", async () => {
+    renderSenado();
+    const toggle = screen.getByRole("button", { name: "Cambiar municipio" });
+    await userEvent.click(toggle);
+    await userEvent.keyboard("{Escape}");
+    expect(screen.queryByRole("combobox")).toBeNull();
+    expect(toggle).toHaveFocus();
   });
 });

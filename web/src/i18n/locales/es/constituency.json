@@ -14,5 +14,6 @@
   "whereToVote": {
     "text": "¿No sabes dónde te toca votar?",
     "link": "Consulta tu mesa y local electoral en el INE"
-  }
+  },
+  "changeMunicipality": "Cambiar municipio"
 }

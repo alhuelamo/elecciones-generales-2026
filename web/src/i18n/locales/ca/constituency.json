@@ -14,5 +14,6 @@
   "whereToVote": {
     "text": "No saps on et toca votar?",
     "link": "Consulta la teva mesa i local electoral a l'INE"
-  }
+  },
+  "changeMunicipality": "Canvia de municipi"
 }

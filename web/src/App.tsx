@@ -116,10 +116,14 @@ function Page(props: {
       />
     );
   }
-  return <BallotPage route={route} data={data} />;
+  return <BallotPage route={route} data={data} navigate={props.navigate} />;
 }
 
-function BallotPage(props: { route: BallotRoute; data: BallotData }) {
+function BallotPage(props: {
+  route: BallotRoute;
+  data: BallotData;
+  navigate: (route: Route) => void;
+}) {
   const { route } = props;
   const { municipality, constituency, ballot, candidacy, partyCatalog } =
     props.data;
@@ -144,6 +148,14 @@ function BallotPage(props: { route: BallotRoute; data: BallotData }) {
   }
   return (
     <ConstituencyView
+      index={props.data.index!}
+      onMunicipalitySelect={(next) =>
+        props.navigate({
+          ...route,
+          municipalityCode: next.code,
+          partySlug: null,
+        })
+      }
       municipality={municipality}
       constituency={constituency}
       ballot={ballot}

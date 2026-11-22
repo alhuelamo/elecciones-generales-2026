@@ -7,14 +7,18 @@ import type {
   ConstituencySummary,
   Language,
   Municipality,
+  MunicipalityIndex,
   PartyCatalog,
 } from "../contract/types";
 import { ChamberTabs } from "./ChamberTabs";
 import { HowToVote } from "./HowToVote";
+import { MunicipalitySwitcher } from "./MunicipalitySwitcher";
 import { WhereToVote } from "./WhereToVote";
 import { SeatsSummary } from "./SeatsSummary";
 
 export function ConstituencyView(props: {
+  index: MunicipalityIndex;
+  onMunicipalitySelect: (municipality: Municipality) => void;
   municipality: Municipality;
   constituency: ConstituencySummary;
   ballot: ConstituencyBallot;
@@ -29,10 +33,17 @@ export function ConstituencyView(props: {
   const constituencyName = props.constituency.name[language];
   return (
     <div className="flex flex-col gap-4">
-      <header>
-        <h1 className="font-display text-2xl font-bold">{municipalityName}</h1>
-        {constituencyName !== municipalityName && <p>{constituencyName}</p>}
-      </header>
+      <MunicipalitySwitcher
+        index={props.index}
+        onSelect={props.onMunicipalitySelect}
+      >
+        <header>
+          <h1 className="font-display text-2xl font-bold">
+            {municipalityName}
+          </h1>
+          {constituencyName !== municipalityName && <p>{constituencyName}</p>}
+        </header>
+      </MunicipalitySwitcher>
       <ChamberTabs active={ballot.chamber} chamberHref={props.chamberHref} />
       <SeatsSummary
         chamber={ballot.chamber}
