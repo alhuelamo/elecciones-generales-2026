@@ -1,3 +1,4 @@
+import type { Language } from "../i18n/languages";
 export type { Language } from "../i18n/languages";
 export type Chamber = "congreso" | "senado";
 export type LocalizedText = Record<"es" | "ca", string> &
@@ -101,7 +102,7 @@ export interface PartyProfile {
   leader: string | null;
   founded: number | null;
   seats2023: { congreso: number; senado: number } | null;
-  wikipedia: { es: string | null; ca: string | null };
+  wikipedia: Record<Language, string | null>;
 }
 
 export interface PartyCatalog {

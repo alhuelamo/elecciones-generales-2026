@@ -7,7 +7,7 @@ psoe:
   leader: Pedro Sánchez
   founded: 1879
   seats2023: {congreso: 121, senado: 82}
-  wikipedia: {es: https://es.wikipedia.org/wiki/Partido_Socialista_Obrero_Espa%C3%B1ol, ca: null}
+  wikipedia: {es: https://es.wikipedia.org/wiki/Partido_Socialista_Obrero_Espa%C3%B1ol, ca: null, eu: https://eu.wikipedia.org/wiki/Espainiako_Alderdi_Sozialista_Langilea}
 pp:
   name: Partido Popular
   aliases: [PP]

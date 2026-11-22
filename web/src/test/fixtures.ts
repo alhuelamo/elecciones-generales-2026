@@ -330,6 +330,8 @@ export const fixtureCatalog: PartyCatalog = {
       wikipedia: {
         es: "https://es.wikipedia.org/wiki/Partido_Ejemplo_A",
         ca: "https://ca.wikipedia.org/wiki/Partit_Exemple_A",
+        eu: null,
+        gl: null,
       },
     },
     peb: {
@@ -341,7 +343,7 @@ export const fixtureCatalog: PartyCatalog = {
       leader: null,
       founded: null,
       seats2023: null,
-      wikipedia: { es: null, ca: null },
+      wikipedia: { es: null, ca: null, eu: null, gl: null },
     },
   },
 };

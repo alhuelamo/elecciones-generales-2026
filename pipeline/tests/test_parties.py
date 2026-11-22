@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 import pytest
-from jsonschema import validate
+from jsonschema import ValidationError, validate
 
 from elecciones_pipeline.parties import (
     DuplicateAlias,
@@ -64,7 +64,23 @@ def test_to_json_validates_against_schema(catalog, logos):
     validate(document, SCHEMA)
     assert document["parties"]["psoe"]["seats2023"] == {"congreso": 121, "senado": 82}
     assert document["parties"]["pp"]["seats2023"] is None
-    assert document["parties"]["pp"]["wikipedia"] == {"es": None, "ca": None}
+    assert document["parties"]["pp"]["wikipedia"] == {
+        "es": None,
+        "ca": None,
+        "eu": None,
+        "gl": None,
+    }
+    assert document["parties"]["psoe"]["wikipedia"]["eu"] == (
+        "https://eu.wikipedia.org/wiki/Espainiako_Alderdi_Sozialista_Langilea"
+    )
+    assert document["parties"]["psoe"]["wikipedia"]["gl"] is None
+
+
+def test_schema_rejects_wikipedia_without_eu(catalog, logos):
+    document = catalog.to_json(logos)
+    del document["parties"]["psoe"]["wikipedia"]["eu"]
+    with pytest.raises(ValidationError):
+        validate(document, SCHEMA)
 
 
 def test_logo_path_and_missing_logo_is_null(catalog, logos):

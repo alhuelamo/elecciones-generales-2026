@@ -66,10 +66,12 @@
         "wikipedia": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["es", "ca"],
+          "required": ["es", "ca", "eu", "gl"],
           "properties": {
             "es": { "$ref": "#/$defs/nullableUrl" },
-            "ca": { "$ref": "#/$defs/nullableUrl" }
+            "ca": { "$ref": "#/$defs/nullableUrl" },
+            "eu": { "$ref": "#/$defs/nullableUrl" },
+            "gl": { "$ref": "#/$defs/nullableUrl" }
           }
         }
       }

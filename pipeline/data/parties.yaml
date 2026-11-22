@@ -16,6 +16,8 @@ psoe:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Partido_Socialista_Obrero_Español
     ca: https://ca.wikipedia.org/wiki/Partit_Socialista_Obrer_Espanyol
+    eu: https://eu.wikipedia.org/wiki/Espainiako_Langile_Alderdi_Sozialista
+    gl: https://gl.wikipedia.org/wiki/Partido_Socialista_Obrero_Español
 psc:
   name: Partit dels Socialistes de Catalunya
   tier: full
@@ -32,6 +34,8 @@ psc:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Partido_de_los_Socialistas_de_Cataluña
     ca: https://ca.wikipedia.org/wiki/Partit_dels_Socialistes_de_Catalunya
+    eu: https://eu.wikipedia.org/wiki/Kataluniako_Sozialisten_Alderdia
+    gl: https://gl.wikipedia.org/wiki/Partit_dels_Socialistes_de_Catalunya
 pp:
   name: Partido Popular
   tier: full
@@ -47,6 +51,8 @@ pp:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Partido_Popular
     ca: https://ca.wikipedia.org/wiki/Partit_Popular_(Espanya)
+    eu: https://eu.wikipedia.org/wiki/PP
+    gl: https://gl.wikipedia.org/wiki/Partido_Popular
 upn-pp:
   name: Unión del Pueblo Navarro en coalición con el Partido Popular
   tier: full
@@ -60,6 +66,8 @@ upn-pp:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Unión_del_Pueblo_Navarro
     ca: null
+    eu: https://eu.wikipedia.org/wiki/Nafar_Herriaren_Batasuna
+    gl: https://gl.wikipedia.org/wiki/Unión_del_Pueblo_Navarro
 vox:
   name: Vox
   tier: full
@@ -75,6 +83,8 @@ vox:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Vox_(partido_político)
     ca: https://ca.wikipedia.org/wiki/Vox
+    eu: https://eu.wikipedia.org/wiki/Vox_(alderdi_politikoa)
+    gl: https://gl.wikipedia.org/wiki/Vox
 frente-amplio:
   name: Frente Amplio
   tier: full
@@ -95,6 +105,8 @@ frente-amplio:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Frente_Amplio_(España)
     ca: https://ca.wikipedia.org/wiki/Front_Ampli_(Espanya)
+    eu: null
+    gl: https://gl.wikipedia.org/wiki/Frente_Amplio_(España)
 podemos:
   name: Podemos
   tier: full
@@ -109,6 +121,8 @@ podemos:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Podemos
     ca: https://ca.wikipedia.org/wiki/Podem
+    eu: https://eu.wikipedia.org/wiki/Ahal_Dugu
+    gl: https://gl.wikipedia.org/wiki/Podemos
 erc:
   name: Esquerra Republicana de Catalunya
   tier: full
@@ -124,6 +138,8 @@ erc:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Esquerra_Republicana_de_Catalunya
     ca: https://ca.wikipedia.org/wiki/Esquerra_Republicana_de_Catalunya
+    eu: https://eu.wikipedia.org/wiki/Kataluniako_Ezker_Errepublikanoa
+    gl: https://gl.wikipedia.org/wiki/Esquerra_Republicana_de_Catalunya
 junts:
   name: Junts per Catalunya
   tier: full
@@ -140,6 +156,8 @@ junts:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Junts_per_Catalunya_(partido_político)
     ca: https://ca.wikipedia.org/wiki/Junts_per_Catalunya_(partit_polític)
+    eu: https://eu.wikipedia.org/wiki/Junts_per_Catalunya_(alderdi_politikoa)
+    gl: https://gl.wikipedia.org/wiki/Junts_per_Catalunya_(partido_político)
 eh-bildu:
   name: Euskal Herria Bildu
   tier: full
@@ -155,6 +173,8 @@ eh-bildu:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Euskal_Herria_Bildu
     ca: https://ca.wikipedia.org/wiki/Euskal_Herria_Bildu
+    eu: https://eu.wikipedia.org/wiki/Euskal_Herria_Bildu
+    gl: https://gl.wikipedia.org/wiki/Euskal_Herria_Bildu
 pnv:
   name: Partido Nacionalista Vasco
   tier: full
@@ -171,6 +191,8 @@ pnv:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Partido_Nacionalista_Vasco
     ca: https://ca.wikipedia.org/wiki/Partit_Nacionalista_Basc
+    eu: https://eu.wikipedia.org/wiki/Euzko_Alderdi_Jeltzalea
+    gl: https://gl.wikipedia.org/wiki/Partido_Nacionalista_Vasco
 bng:
   name: Bloque Nacionalista Galego
   tier: full
@@ -187,6 +209,8 @@ bng:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Bloque_Nacionalista_Galego
     ca: https://ca.wikipedia.org/wiki/Bloc_Nacionalista_Gallec
+    eu: https://eu.wikipedia.org/wiki/Bloke_Nazionalista_Galiziarra
+    gl: https://gl.wikipedia.org/wiki/Bloque_Nacionalista_Galego
 cc:
   name: Coalición Canaria-Municipalistas Primero Canarias
   tier: full
@@ -204,6 +228,8 @@ cc:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Coalición_Canaria
     ca: https://ca.wikipedia.org/wiki/Coalició_Canària
+    eu: https://eu.wikipedia.org/wiki/Kanariar_Koalizioa
+    gl: https://gl.wikipedia.org/wiki/Coalición_Canaria
 compromis:
   name: 'Compromís: Front Valencià'
   tier: full
@@ -217,6 +243,8 @@ compromis:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Compromís:_Front_Valencià
     ca: null
+    eu: null
+    gl: null
 salf:
   name: Se Acabó la Fiesta
   tier: full
@@ -230,6 +258,8 @@ salf:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Se_Acabó_la_Fiesta
     ca: https://ca.wikipedia.org/wiki/S'ha_Acabat_la_Festa
+    eu: null
+    gl: https://gl.wikipedia.org/wiki/Se_Acabó_la_Fiesta
 d21:
   name: Democracia para el Siglo 21
   tier: full
@@ -243,6 +273,8 @@ d21:
   wikipedia:
     es: null
     ca: null
+    eu: null
+    gl: null
 senado-de-progreso:
   name: Senado de Progreso
   tier: full
@@ -269,6 +301,8 @@ senado-de-progreso:
   wikipedia:
     es: https://es.wikipedia.org/wiki/Senado_de_Progreso
     ca: null
+    eu: null
+    gl: null
 alternativa-malaguena:
   name: Alternativa Malagueña
   tier: basic

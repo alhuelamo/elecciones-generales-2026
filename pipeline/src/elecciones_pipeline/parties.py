@@ -32,6 +32,8 @@ class PartyEntry:
     seats_2023: tuple[int, int] | None
     wikipedia_es: str | None
     wikipedia_ca: str | None
+    wikipedia_eu: str | None
+    wikipedia_gl: str | None
 
 
 class PartyCatalog:
@@ -102,6 +104,8 @@ def _parse_entry(key: str, fields: dict) -> PartyEntry:
         seats_2023=(seats["congreso"], seats["senado"]) if seats else None,
         wikipedia_es=wikipedia.get("es"),
         wikipedia_ca=wikipedia.get("ca"),
+        wikipedia_eu=wikipedia.get("eu"),
+        wikipedia_gl=wikipedia.get("gl"),
     )
 
 
@@ -115,7 +119,12 @@ def _party_json(entry: PartyEntry, logo: LogoRecord | None) -> dict:
         "leader": entry.leader,
         "founded": entry.founded,
         "seats2023": _seats_json(entry.seats_2023),
-        "wikipedia": {"es": entry.wikipedia_es, "ca": entry.wikipedia_ca},
+        "wikipedia": {
+            "es": entry.wikipedia_es,
+            "ca": entry.wikipedia_ca,
+            "eu": entry.wikipedia_eu,
+            "gl": entry.wikipedia_gl,
+        },
     }
 
 
