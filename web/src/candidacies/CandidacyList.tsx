@@ -32,12 +32,12 @@ export function CandidacyList(props: {
       <div
         role="radiogroup"
         aria-label={t("ordering.label")}
-        className="flex flex-wrap gap-3"
+        className="flex w-full divide-x divide-rule overflow-hidden rounded-frame border border-rule sm:inline-flex sm:w-auto"
       >
         {options.map((option) => (
           <label
             key={option}
-            className={`flex min-h-11 items-center gap-1 ${ordering === option ? "font-semibold text-accent" : ""}`}
+            className="flex min-h-11 flex-1 cursor-pointer items-center justify-center px-2 text-center text-sm font-medium whitespace-nowrap transition-colors duration-150 hover:bg-kraft has-checked:bg-ink has-checked:text-paper has-checked:hover:bg-ink has-focus-visible:outline-2 has-focus-visible:-outline-offset-2 has-focus-visible:outline-accent sm:flex-none sm:px-4"
           >
             <input
               type="radio"
@@ -45,6 +45,7 @@ export function CandidacyList(props: {
               value={option}
               checked={ordering === option}
               onChange={() => setOrdering(option)}
+              className="sr-only"
             />
             {t(`ordering.${option}`)}
           </label>

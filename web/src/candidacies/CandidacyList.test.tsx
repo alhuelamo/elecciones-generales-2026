@@ -49,6 +49,20 @@ describe("CandidacyList", () => {
     expect(screen.getByRole("list")).toHaveClass("divide-y");
   });
 
+  it("renders the orderings as a segmented control of radios", () => {
+    renderList();
+    const group = screen.getByRole("radiogroup", { name: "Ordenar por" });
+    expect(group).toHaveClass("rounded-frame", "border", "divide-x");
+    const radios = within(group).getAllByRole("radio");
+    expect(radios.every((radio) => radio.classList.contains("sr-only"))).toBe(
+      true,
+    );
+    expect(screen.getByRole("radio", { name: "Orden del BOE" })).toBeChecked();
+    expect(
+      screen.getByRole("radio", { name: "Orden del BOE" }).closest("label"),
+    ).toHaveClass("has-checked:bg-ink", "has-checked:text-paper");
+  });
+
   it("reorders when alphabetical is selected", async () => {
     const reversed = [...candidacies].reverse().map((candidacy, index) => ({
       ...candidacy,
