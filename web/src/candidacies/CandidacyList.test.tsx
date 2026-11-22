@@ -38,6 +38,17 @@ describe("CandidacyList", () => {
     expect(links[2]).toHaveTextContent("COALICION EJEMPLO C-D");
   });
 
+  it("shows the padded ballot order in a tabular-nums element", () => {
+    renderList();
+    const order = within(screen.getAllByRole("link")[0]).getByText("01");
+    expect(order).toHaveClass("tabular-nums");
+  });
+
+  it("renders the list with ruled dividers", () => {
+    renderList();
+    expect(screen.getByRole("list")).toHaveClass("divide-y");
+  });
+
   it("reorders when alphabetical is selected", async () => {
     const reversed = [...candidacies].reverse().map((candidacy, index) => ({
       ...candidacy,

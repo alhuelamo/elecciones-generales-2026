@@ -1,6 +1,5 @@
 import { useState } from "react";
 import type { PartyLogo } from "../contract/types";
-import { badgeColor } from "./badgeColor";
 
 const SIZE_CLASSES = {
   small: "h-8 min-w-8 max-w-20 px-1.5 text-[10px] leading-8",
@@ -34,13 +33,11 @@ export function PartyBadge(props: {
   }
   const label = props.acronym || initialsOf(props.denomination ?? "");
   const fullName = props.acronym || props.denomination || label;
-  const { background, foreground } = badgeColor(label);
   const scaling = label.length > LONG_ACRONYM_LENGTH ? "tracking-tighter" : "";
   return (
     <span
       title={fullName}
-      style={{ backgroundColor: background, color: foreground }}
-      className={`${SIZE_CLASSES[props.size]} ${scaling} inline-block shrink-0 truncate rounded-lg text-center font-bold`}
+      className={`${SIZE_CLASSES[props.size]} ${scaling} inline-block shrink-0 truncate rounded-lg bg-paper text-center font-bold text-ink ring-1 ring-ink`}
     >
       {label}
     </span>

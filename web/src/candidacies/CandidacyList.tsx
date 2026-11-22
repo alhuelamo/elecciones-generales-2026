@@ -6,6 +6,7 @@ import type {
   Language,
   PartyCatalog,
 } from "../contract/types";
+import { formatBallotOrder } from "./formatBallotOrder";
 import { PartyBadge } from "./PartyBadge";
 import { orderCandidacies, type CandidacyOrdering } from "./orderCandidacies";
 
@@ -34,7 +35,10 @@ export function CandidacyList(props: {
         className="flex flex-wrap gap-3"
       >
         {options.map((option) => (
-          <label key={option} className="flex items-center gap-1">
+          <label
+            key={option}
+            className={`flex min-h-11 items-center gap-1 ${ordering === option ? "font-semibold text-accent" : ""}`}
+          >
             <input
               type="radio"
               name="candidacy-ordering"
@@ -46,7 +50,7 @@ export function CandidacyList(props: {
           </label>
         ))}
       </div>
-      <ul className="mt-3 divide-y divide-gray-200 dark:divide-gray-700">
+      <ul className="mt-3 divide-y divide-rule border-y border-rule">
         {ordered.map((candidacy) => (
           <li key={candidacy.slug}>
             <CandidacyRow
@@ -77,33 +81,24 @@ function CandidacyRow(props: {
   return (
     <a
       href={props.href}
-      className="group flex min-h-11 items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-blue-600 dark:hover:bg-gray-800 dark:focus-visible:bg-gray-800 dark:focus-visible:outline-blue-400"
+      className="group grid min-h-11 grid-cols-[2.5rem_auto_1fr] items-center gap-3 py-3 hover:bg-paper-raised focus-visible:bg-paper-raised focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
     >
+      <span className="tabular-nums text-ink-muted">
+        {formatBallotOrder(candidacy.boeOrder)}
+      </span>
       <PartyBadge
         acronym={candidacy.acronym}
         denomination={candidacy.denomination}
         logo={logo}
         size="small"
       />
-      <span className="flex min-w-0 flex-1 flex-col">
-        <span>{candidacy.denomination}</span>
+      <span className="flex min-w-0 flex-col">
+        <span className="font-semibold">{candidacy.denomination}</span>
         {candidacy.isCoalition && (
-          <span className="text-xs">{t("coalition")}</span>
+          <span className="text-xs text-ink-muted">{t("coalition")}</span>
         )}
         <Results2023Line candidacy={candidacy} />
       </span>
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 20 20"
-        className="h-5 w-5 shrink-0 opacity-50 group-hover:opacity-100 group-focus-visible:opacity-100"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M7 4l6 6-6 6" />
-      </svg>
     </a>
   );
 }
@@ -127,7 +122,7 @@ function Results2023Line(props: { candidacy: Candidacy }) {
     results.asAcronyms.length > 0 &&
     results.asAcronyms.join() !== props.candidacy.acronym;
   return (
-    <span className="text-xs">
+    <span className="text-sm tabular-nums text-ink-muted">
       {summary}
       {showsAlias &&
         ` (${t("results2023.as", { acronyms: results.asAcronyms.join(", ") })})`}

@@ -19,6 +19,13 @@ describe("PartyBadge", () => {
     expect(screen.queryByRole("img")).toBeNull();
   });
 
+  it("renders a monochrome ink-on-paper badge without inline colors", () => {
+    render(<PartyBadge acronym="PEB" logo={null} size="small" />);
+    const badge = screen.getByText("PEB");
+    expect(badge).toHaveClass("bg-paper", "text-ink", "ring-1", "ring-ink");
+    expect(badge).not.toHaveAttribute("style");
+  });
+
   it("falls back to the generated badge when the logo fails to load", () => {
     const logo = { ...fixtureCatalog.parties.pea.logo!, path: "logos/x.svg" };
     render(<PartyBadge acronym="PEA" logo={logo} size="small" />);
