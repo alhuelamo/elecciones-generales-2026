@@ -81,7 +81,7 @@ function CandidacyRow(props: {
   return (
     <a
       href={props.href}
-      className="group grid min-h-11 grid-cols-[2.5rem_auto_1fr] items-center gap-3 py-3 hover:bg-paper-raised focus-visible:bg-paper-raised focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
+      className="group grid min-h-11 grid-cols-[2.5rem_auto_1fr_auto] items-center gap-3 px-1 py-3 hover:bg-paper-raised focus-visible:bg-paper-raised focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
     >
       <span className="tabular-nums text-ink-muted">
         {formatBallotOrder(candidacy.boeOrder)}
@@ -98,6 +98,12 @@ function CandidacyRow(props: {
           <span className="text-xs text-ink-muted">{t("coalition")}</span>
         )}
         <Results2023Line candidacy={candidacy} />
+      </span>
+      <span
+        aria-hidden="true"
+        className="text-xl leading-none text-ink-muted transition-transform group-hover:translate-x-0.5 group-hover:text-accent group-focus-visible:text-accent"
+      >
+        ›
       </span>
     </a>
   );
