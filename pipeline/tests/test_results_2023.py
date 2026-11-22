@@ -1,3 +1,5 @@
+from dataclasses import replace
+
 from conftest import FIXTURES
 
 from elecciones_pipeline.results_2023 import CongresoXlsxSource, SenadoXlsxSource
@@ -116,3 +118,42 @@ def test_senado_combined_eivissa_formentera_district_is_not_attributed_to_either
     ]
     assert ("senado", "07-eivissa") not in results.valid_votes
     assert ("senado", "07-formentera") not in results.valid_votes
+
+
+def senado_constituency(constituency_id):
+    return senado_results().constituencies[("senado", constituency_id)]
+
+
+def test_senado_constituency_result_lists_only_seat_winners_without_votes():
+    result = senado_constituency("08")
+
+    assert result.parties[0].acronym == "PSC"
+    assert result.parties[0].seats == 3
+    assert result.parties[0].votes is None
+    assert result.parties[0].name == "PARTIT DELS SOCIALISTES DE CATALUNYA (PSC-PSOE)"
+    assert all(party.seats >= 1 and party.votes is None for party in result.parties)
+    assert sum(party.seats for party in result.parties) == SEATS["08"]
+
+
+def test_senado_constituency_result_has_totals():
+    result = senado_constituency("07-mallorca")
+
+    assert result.chamber == "senado"
+    assert result.electorate == 648249
+    assert result.total_votes == 403979
+    assert result.valid_votes == 394716
+    assert result.blank_votes == 6339
+    assert result.combined_district_name is None
+    assert sum(party.seats for party in result.parties) == SEATS["07-mallorca"]
+
+
+def test_senado_combined_district_results_are_shown_on_both_islands():
+    constituencies = senado_results().constituencies
+    eivissa = constituencies[("senado", "07-eivissa")]
+    formentera = constituencies[("senado", "07-formentera")]
+
+    assert replace(eivissa, constituency_id="07-formentera") == formentera
+    assert eivissa.combined_district_name == "Eivissa-Formentera"
+    assert eivissa.electorate == 105924
+    assert sum(party.seats for party in eivissa.parties) == 1
+    assert len(eivissa.parties) == 1
