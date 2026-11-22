@@ -1,7 +1,10 @@
 {
-  "toggle": {
-    "system": "Tema del sistema",
-    "light": "Tema clar",
-    "dark": "Tema fosc"
+  "menu": {
+    "label": "Tema: {{choice}}"
+  },
+  "choice": {
+    "system": "Sistema",
+    "light": "Clar",
+    "dark": "Fosc"
   }
 }

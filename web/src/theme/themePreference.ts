@@ -3,10 +3,10 @@ import { STORAGE_KEYS } from "../config";
 export type ThemePreference = "system" | "light" | "dark";
 export type ResolvedTheme = "light" | "dark";
 
-const CYCLE: ThemePreference[] = ["system", "light", "dark"];
+export const THEME_PREFERENCES: ThemePreference[] = ["system", "light", "dark"];
 
 function isThemePreference(value: unknown): value is ThemePreference {
-  return CYCLE.includes(value as ThemePreference);
+  return THEME_PREFERENCES.includes(value as ThemePreference);
 }
 
 export function loadThemePreference(): ThemePreference {
@@ -16,10 +16,6 @@ export function loadThemePreference(): ThemePreference {
 
 export function saveThemePreference(preference: ThemePreference): void {
   localStorage.setItem(STORAGE_KEYS.theme, preference);
-}
-
-export function nextThemePreference(current: ThemePreference): ThemePreference {
-  return CYCLE[(CYCLE.indexOf(current) + 1) % CYCLE.length];
 }
 
 export function resolveTheme(

@@ -9,7 +9,11 @@ export function LanguageToggle(props: {
 }) {
   const { t } = useTranslation("shell");
   return (
-    <div role="group" aria-label={t("language.label")} className="flex gap-1">
+    <div
+      role="group"
+      aria-label={t("language.label")}
+      className="flex overflow-hidden rounded border border-rule"
+    >
       {LANGUAGES.map((language) => (
         <button
           key={language}
@@ -17,7 +21,7 @@ export function LanguageToggle(props: {
           lang={language}
           aria-pressed={props.active === language}
           onClick={() => props.onChange(language)}
-          className="rounded px-2 py-1 text-sm uppercase hover:bg-gray-200 aria-pressed:bg-gray-800 aria-pressed:text-white dark:hover:bg-gray-700 dark:aria-pressed:bg-gray-100 dark:aria-pressed:text-gray-900"
+          className="min-h-11 min-w-11 text-sm font-medium uppercase transition-colors duration-150 hover:bg-kraft aria-pressed:bg-ink aria-pressed:text-paper"
         >
           {language}
         </button>

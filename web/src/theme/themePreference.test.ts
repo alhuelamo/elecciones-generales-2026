@@ -2,7 +2,6 @@ import { beforeEach, describe, expect, it } from "vitest";
 import {
   applyTheme,
   loadThemePreference,
-  nextThemePreference,
   resolveTheme,
   saveThemePreference,
 } from "./themePreference";
@@ -37,16 +36,6 @@ describe("stored preference", () => {
     saveThemePreference("dark");
     expect(localStorage.getItem("eg26.theme")).toBe("dark");
     expect(loadThemePreference()).toBe("dark");
-  });
-});
-
-describe("nextThemePreference", () => {
-  it.each([
-    ["system", "light"],
-    ["light", "dark"],
-    ["dark", "system"],
-  ] as const)("%s -> %s", (current, expected) => {
-    expect(nextThemePreference(current)).toBe(expected);
   });
 });
 
