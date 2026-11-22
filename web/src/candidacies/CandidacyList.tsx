@@ -6,6 +6,7 @@ import type {
   Language,
   PartyCatalog,
 } from "../contract/types";
+import { useNumberFormat } from "../i18n/useNumberFormat";
 import { formatBallotOrder } from "./formatBallotOrder";
 import { PartyBadge } from "./PartyBadge";
 import { orderCandidacies, type CandidacyOrdering } from "./orderCandidacies";
@@ -115,16 +116,17 @@ function CandidacyRow(props: {
 }
 
 function Results2023Line(props: { candidacy: Candidacy }) {
-  const { t, i18n } = useTranslation("candidacies");
+  const { t } = useTranslation("candidacies");
+  const percentageFormat = useNumberFormat({
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
   const results = props.candidacy.results2023;
   if (!results) return null;
   const percentage =
     results.percentage === null
       ? null
-      : `${new Intl.NumberFormat(i18n.language, {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        }).format(results.percentage)} %`;
+      : `${percentageFormat.format(results.percentage)} %`;
   const summary = t(
     percentage === null ? "results2023.senado" : "results2023.congreso",
     { percentage, seats: results.seats },

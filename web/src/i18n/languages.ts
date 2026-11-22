@@ -14,3 +14,9 @@ export const LANGUAGE_NATIVE_NAMES: Record<Language, string> = {
 export function isSupportedLanguage(value: string): value is Language {
   return (SUPPORTED_LANGUAGES as readonly string[]).includes(value);
 }
+
+export function numberFormatLocale(language: Language): string {
+  return Intl.NumberFormat.supportedLocalesOf([language]).includes(language)
+    ? language
+    : DEFAULT_LANGUAGE;
+}

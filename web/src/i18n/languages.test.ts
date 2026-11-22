@@ -1,9 +1,10 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   DEFAULT_LANGUAGE,
   LANGUAGE_NATIVE_NAMES,
   SUPPORTED_LANGUAGES,
   isSupportedLanguage,
+  numberFormatLocale,
 } from "./languages";
 
 describe("isSupportedLanguage", () => {
@@ -38,4 +39,18 @@ describe("languages", () => {
     expect(Object.keys(LANGUAGE_NATIVE_NAMES)).toEqual([
       ...SUPPORTED_LANGUAGES,
     ]));
+});
+
+describe("numberFormatLocale", () => {
+  afterEach(() => vi.restoreAllMocks());
+
+  it("returns the language when the runtime has locale data for it", () => {
+    vi.spyOn(Intl.NumberFormat, "supportedLocalesOf").mockReturnValue(["eu"]);
+    expect(numberFormatLocale("eu")).toBe("eu");
+  });
+
+  it("falls back to the default language when the runtime lacks locale data", () => {
+    vi.spyOn(Intl.NumberFormat, "supportedLocalesOf").mockReturnValue([]);
+    expect(numberFormatLocale("eu")).toBe(DEFAULT_LANGUAGE);
+  });
 });

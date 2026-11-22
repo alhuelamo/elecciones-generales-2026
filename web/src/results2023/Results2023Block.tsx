@@ -3,16 +3,17 @@ import { useTranslation } from "react-i18next";
 import { SOURCE_URLS } from "../config";
 import type { ConstituencyBallot } from "../contract/types";
 import { ExternalLink } from "../design/ExternalLink";
+import { useNumberFormat } from "../i18n/useNumberFormat";
 import { SeatChart } from "./SeatChart";
 import { VoteShareChart } from "./VoteShareChart";
 
 function Caption(props: { turnoutPercentage: number; totalVotes: number }) {
-  const { t, i18n } = useTranslation("results2023");
-  const turnout = new Intl.NumberFormat(i18n.language, {
+  const { t } = useTranslation("results2023");
+  const turnout = useNumberFormat({
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
   }).format(props.turnoutPercentage);
-  const votes = new Intl.NumberFormat(i18n.language).format(props.totalVotes);
+  const votes = useNumberFormat().format(props.totalVotes);
   return (
     <p className="text-sm text-ink-muted">
       {t("turnout", { turnout: `${turnout} %` })} · {t("votes", { votes })} ·{" "}

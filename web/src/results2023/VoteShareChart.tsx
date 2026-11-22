@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNumberFormat } from "../i18n/useNumberFormat";
 import type { ConstituencyResults2023 } from "../contract/types";
 import { COLUMNS_CLASSES } from "./columns";
 import { FALLBACK_PARTY_COLOR, partyColor } from "./partyColor";
@@ -15,8 +16,7 @@ function asPercentageOfScale(value: number, scale: number): string {
 }
 
 function useShareFormatter(): (percentage: number) => string {
-  const { i18n } = useTranslation();
-  const formatter = new Intl.NumberFormat(i18n.language, {
+  const formatter = useNumberFormat({
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
   });
