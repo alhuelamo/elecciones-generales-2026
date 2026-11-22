@@ -3,6 +3,7 @@ import i18next from "i18next";
 import { afterEach, describe, expect, it } from "vitest";
 import type { ConstituencyResults2023 } from "../contract/types";
 import { fixtureCongresoResults2023 } from "../test/fixtures";
+import { harmonizePartyColor } from "./partyColor";
 import { VoteShareChart } from "./VoteShareChart";
 
 function withPartyColor(color: string | null): ConstituencyResults2023 {
@@ -48,7 +49,9 @@ describe("VoteShareChart", () => {
 
   it("fills the bar with the party colour", () => {
     render(<VoteShareChart results={fixtureCongresoResults2023} />);
-    expect(firstBar()).toHaveStyle({ backgroundColor: "#d6402b" });
+    expect(firstBar()).toHaveStyle({
+      backgroundColor: harmonizePartyColor("#d6402b"),
+    });
     expect(firstBar()).toHaveStyle({ width: "100%" });
   });
 
@@ -57,13 +60,9 @@ describe("VoteShareChart", () => {
     expect(firstBar()).toHaveStyle({ backgroundColor: "#8c877c" });
   });
 
-  it("outlines colours below 3:1 contrast", () => {
+  it("draws thin rounded bars without outlines", () => {
     render(<VoteShareChart results={withPartyColor("#f0f0f0")} />);
-    expect(firstBar()).toHaveClass("outline");
-  });
-
-  it("does not outline high contrast colours", () => {
-    render(<VoteShareChart results={withPartyColor("#d6402b")} />);
+    expect(firstBar()).toHaveClass("h-2.5", "rounded-full");
     expect(firstBar()).not.toHaveClass("outline");
   });
 

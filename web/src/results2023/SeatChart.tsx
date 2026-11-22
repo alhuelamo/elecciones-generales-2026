@@ -1,13 +1,12 @@
 import { useTranslation } from "react-i18next";
 import type { Chamber, ConstituencyResults2023 } from "../contract/types";
 import { hemicycleSeatPositions, hemicycleSeatRadius } from "./hemicycle";
-import { needsOutline, partyColor } from "./partyColor";
+import { partyColor } from "./partyColor";
 import { seatColors, seatParties, totalSeats } from "./seatAllocation";
 import { SeatLegend } from "./SeatLegend";
 import { seatLegendText } from "./seatLegendText";
 
 export const HEMICYCLE_MIN_SEATS = 10;
-const SEAT_STROKE_WIDTH = 0.012;
 
 interface SeatChartProps {
   chamber: Chamber;
@@ -22,23 +21,17 @@ function Hemicycle(props: { colors: string[]; legendText: string }) {
       viewBox="-1.1 -1.1 2.2 1.2"
       role="img"
       aria-label={props.legendText}
-      className="w-full max-w-sm"
+      className="w-full mx-auto max-w-72"
     >
-      {positions.map(({ x, y }, index) => {
-        const fill = props.colors[index];
-        const outlined = needsOutline(fill);
-        return (
-          <circle
-            key={index}
-            cx={x}
-            cy={-y}
-            r={radius}
-            fill={fill}
-            stroke={outlined ? "var(--color-ink)" : undefined}
-            strokeWidth={outlined ? SEAT_STROKE_WIDTH : undefined}
-          />
-        );
-      })}
+      {positions.map(({ x, y }, index) => (
+        <circle
+          key={index}
+          cx={x}
+          cy={-y}
+          r={radius}
+          fill={props.colors[index]}
+        />
+      ))}
     </svg>
   );
 }
@@ -50,7 +43,7 @@ function Dots(props: { colors: string[]; legendText: string }) {
         {props.colors.map((fill, index) => (
           <li
             key={index}
-            className={`size-4 rounded-full${needsOutline(fill) ? " outline outline-1 outline-ink" : ""}`}
+            className="size-2.5 rounded-full"
             style={{ backgroundColor: fill }}
           />
         ))}

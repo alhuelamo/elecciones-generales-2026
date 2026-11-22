@@ -1,5 +1,6 @@
 import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import type { ReactNode } from "react";
 import { afterEach, describe, expect, it } from "vitest";
 import type { Candidacy } from "../contract/types";
 import {
@@ -10,13 +11,14 @@ import { CandidacyList } from "./CandidacyList";
 
 const candidacies = buildFixtureCongresoCandidacies(2);
 
-function renderList(items: Candidacy[] = candidacies) {
+function renderList(items: Candidacy[] = candidacies, summary?: ReactNode) {
   return render(
     <CandidacyList
       candidacies={items}
       chamber="congreso"
       partyCatalog={fixtureCatalog}
       hrefFor={(candidacy) => `#/es/08/congreso/${candidacy.slug}`}
+      votes2023Summary={summary}
     />,
   );
 }
@@ -83,6 +85,15 @@ describe("CandidacyList", () => {
   it("shows votes2023 option when results exist", () => {
     renderList();
     expect(screen.getByLabelText("Votos 2023")).toBeInTheDocument();
+  });
+
+  it("shows the votes2023 summary only in that ordering", async () => {
+    renderList(candidacies, <p>Resumen 2023</p>);
+    expect(screen.queryByText("Resumen 2023")).toBeNull();
+    await userEvent.click(screen.getByLabelText("Votos 2023"));
+    expect(screen.getByText("Resumen 2023").parentElement).toHaveClass("mt-3");
+    await userEvent.click(screen.getByLabelText("Orden del BOE"));
+    expect(screen.queryByText("Resumen 2023")).toBeNull();
   });
 
   it("shows formatted 2023 results and coalition label", () => {

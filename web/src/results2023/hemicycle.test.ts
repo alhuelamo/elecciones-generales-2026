@@ -105,7 +105,14 @@ describe("hemicycleSeatRadius", () => {
     );
   });
 
+  it.each([10, 37, 350])("leaves air between %i seats", (seatCount) => {
+    const positions = hemicycleSeatPositions(seatCount);
+    expect(2 * hemicycleSeatRadius(positions)).toBeLessThanOrEqual(
+      0.65 * minimumPairwiseDistance(positions),
+    );
+  });
+
   it("falls back to the row spacing for a single seat", () => {
-    expect(hemicycleSeatRadius(hemicycleSeatPositions(1))).toBeCloseTo(0.27);
+    expect(hemicycleSeatRadius(hemicycleSeatPositions(1))).toBeCloseTo(0.18);
   });
 });

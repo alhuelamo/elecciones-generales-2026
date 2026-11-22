@@ -53,12 +53,17 @@ export function ConstituencyView(props: {
       />
       <HowToVote chamber={ballot.chamber} maxMarks={ballot.maxMarks} />
       <WhereToVote />
-      <Results2023Block ballot={ballot} constituencyName={constituencyName} />
       <CandidacyList
         candidacies={ballot.candidacies}
         chamber={ballot.chamber}
         partyCatalog={props.partyCatalog}
         hrefFor={props.candidacyHref}
+        votes2023Summary={
+          <Results2023Block
+            ballot={ballot}
+            constituencyName={constituencyName}
+          />
+        }
       />
     </div>
   );

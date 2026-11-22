@@ -1,6 +1,6 @@
 export const INNER_RADIUS_RATIO = 0.4;
 const SINGLE_SEAT_SPACING = 0.6;
-const SEAT_RADIUS_FACTOR = 0.45;
+const SEAT_RADIUS_FACTOR = 0.3;
 const MIN_SEATS_FOR_MULTIPLE_ROWS = 5;
 
 export interface SeatPosition {

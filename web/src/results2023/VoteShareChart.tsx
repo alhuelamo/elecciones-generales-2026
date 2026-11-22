@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import type { ConstituencyResults2023 } from "../contract/types";
-import { FALLBACK_PARTY_COLOR, needsOutline, partyColor } from "./partyColor";
+import { FALLBACK_PARTY_COLOR, partyColor } from "./partyColor";
 import { voteShareRows, type VoteShareRow } from "./voteShareRows";
 
 const THRESHOLD_PERCENTAGE = 3;
@@ -29,7 +29,7 @@ function ShareBar(props: { row: VoteShareRow; scale: number }) {
     return (
       <div
         aria-hidden="true"
-        className="h-4 border border-rule-strong bg-rule"
+        className="h-2.5 rounded-full border border-rule-strong bg-rule"
         style={{ width }}
       />
     );
@@ -38,11 +38,10 @@ function ShareBar(props: { row: VoteShareRow; scale: number }) {
     props.row.kind === "others"
       ? FALLBACK_PARTY_COLOR
       : partyColor(props.row.color);
-  const outline = needsOutline(fill) ? " outline outline-1 outline-ink" : "";
   return (
     <div
       aria-hidden="true"
-      className={`h-4${outline}`}
+      className="h-2.5 rounded-full"
       style={{ width, backgroundColor: fill }}
     />
   );

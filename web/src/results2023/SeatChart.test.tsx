@@ -6,6 +6,7 @@ import {
   fixtureCongresoLargeResults2023,
   fixtureCongresoResults2023,
 } from "../test/fixtures";
+import { harmonizePartyColor } from "./partyColor";
 import { SeatChart } from "./SeatChart";
 
 const SENADO_NOTE =
@@ -57,7 +58,7 @@ describe("SeatChart", () => {
     );
     const svg = screen.getByRole("img");
     expect(svg).toHaveAttribute("viewBox", "-1.1 -1.1 2.2 1.2");
-    expect(svg).toHaveClass("w-full", "max-w-sm");
+    expect(svg).toHaveClass("w-full", "max-w-72", "mx-auto");
   });
 
   it("describes the hemicycle with the legend text", () => {
@@ -69,7 +70,7 @@ describe("SeatChart", () => {
     );
     expect(screen.getByRole("img")).toHaveAttribute(
       "aria-label",
-      "PEA 6 · PEB 4 · CEC-D 2",
+      "PEA 6, PEB 4, CEC-D 2",
     );
   });
 
@@ -82,25 +83,26 @@ describe("SeatChart", () => {
     );
     expect(container.querySelector("circle")).toHaveAttribute(
       "fill",
-      "#d6402b",
+      harmonizePartyColor("#d6402b"),
     );
   });
 
-  it("outlines seats whose colour lacks contrast", () => {
-    const [first, ...rest] = fixtureCongresoLargeResults2023.parties;
+  it("draws seats without outlines", () => {
     const { container } = render(
       <SeatChart
         chamber="congreso"
-        results={{
-          ...fixtureCongresoLargeResults2023,
-          parties: [{ ...first, color: "#f0f0f0" }, ...rest],
-        }}
+        results={fixtureCongresoLargeResults2023}
       />,
     );
-    expect(container.querySelector("circle")).toHaveAttribute(
-      "stroke",
-      "var(--color-ink)",
+    expect(container.querySelector("circle")).not.toHaveAttribute("stroke");
+  });
+
+  it("draws small dots below 10 seats", () => {
+    const { container } = render(
+      <SeatChart chamber="congreso" results={fixtureCongresoResults2023} />,
     );
+    expect(container.querySelector("ul")).toHaveClass("gap-1");
+    expect(container.querySelector("ul li")).toHaveClass("size-2.5");
   });
 
   it("uses dots below 10 seats using the 2023 total", () => {
@@ -125,7 +127,7 @@ describe("SeatChart", () => {
       <SeatChart chamber="congreso" results={fixtureCongresoResults2023} />,
     );
     expect(screen.getByTestId("seat-legend")).toHaveTextContent(
-      "PEA 4 · PEB 2 · CEC-D 2",
+      "PEA 4PEB 2CEC-D 2",
     );
   });
 

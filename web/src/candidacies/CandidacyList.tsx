@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import type {
   Candidacy,
@@ -15,6 +15,7 @@ export function CandidacyList(props: {
   chamber: Chamber;
   partyCatalog: PartyCatalog | null;
   hrefFor: (candidacy: Candidacy) => string;
+  votes2023Summary?: ReactNode;
 }) {
   const { t, i18n } = useTranslation("candidacies");
   const language = i18n.language as Language;
@@ -51,6 +52,9 @@ export function CandidacyList(props: {
           </label>
         ))}
       </div>
+      {ordering === "votes2023" && props.votes2023Summary && (
+        <div className="mt-3">{props.votes2023Summary}</div>
+      )}
       <ul className="mt-3 divide-y divide-rule border-y border-rule">
         {ordered.map((candidacy) => (
           <li key={candidacy.slug}>

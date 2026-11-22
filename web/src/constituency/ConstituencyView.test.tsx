@@ -149,29 +149,53 @@ describe("ConstituencyView", () => {
     expect(toggle).toHaveFocus();
   });
 
-  it("renders the 2023 results block before the candidacy list", () => {
-    render(
-      <ConstituencyView
-        index={fixtureIndex}
-        onMunicipalitySelect={vi.fn()}
-        municipality={barcelona}
-        constituency={barcelonaCongreso}
-        ballot={{
-          ...fixtureCongresoBarcelona,
-          constituencyResults2023: fixtureCongresoResults2023,
-        }}
-        partyCatalog={fixtureCatalog}
-        chamberHref={(chamber) => `#/es/08019/${chamber}`}
-        candidacyHref={({ slug }) => `#/es/08019/congreso/${slug}`}
-      />,
-    );
-    const resultsHeading = screen.getByRole("heading", {
-      name: "Resultados de 2023 en Barcelona",
+  describe("2023 results block", () => {
+    const heading = "Resultados de 2023 en Barcelona";
+
+    function renderWithResults() {
+      render(
+        <ConstituencyView
+          index={fixtureIndex}
+          onMunicipalitySelect={vi.fn()}
+          municipality={barcelona}
+          constituency={barcelonaCongreso}
+          ballot={{
+            ...fixtureCongresoBarcelona,
+            constituencyResults2023: fixtureCongresoResults2023,
+          }}
+          partyCatalog={fixtureCatalog}
+          chamberHref={(chamber) => `#/es/08019/${chamber}`}
+          candidacyHref={({ slug }) => `#/es/08019/congreso/${slug}`}
+        />,
+      );
+    }
+
+    it("is hidden by default", () => {
+      renderWithResults();
+      expect(screen.queryByRole("heading", { name: heading })).toBeNull();
     });
-    const candidacyList = screen.getAllByRole("list").at(-1)!;
-    expect(
-      resultsHeading.compareDocumentPosition(candidacyList) &
-        Node.DOCUMENT_POSITION_FOLLOWING,
-    ).toBeTruthy();
+
+    it("shows between the ordering control and the list in Votos 2023", async () => {
+      renderWithResults();
+      await userEvent.click(screen.getByLabelText("Votos 2023"));
+      const resultsHeading = screen.getByRole("heading", { name: heading });
+      const control = screen.getByRole("radiogroup");
+      const candidacyList = screen.getAllByRole("list").at(-1)!;
+      expect(
+        control.compareDocumentPosition(resultsHeading) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+      expect(
+        resultsHeading.compareDocumentPosition(candidacyList) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+    });
+
+    it("hides again after switching back", async () => {
+      renderWithResults();
+      await userEvent.click(screen.getByLabelText("Votos 2023"));
+      await userEvent.click(screen.getByLabelText("Orden del BOE"));
+      expect(screen.queryByRole("heading", { name: heading })).toBeNull();
+    });
   });
 });
