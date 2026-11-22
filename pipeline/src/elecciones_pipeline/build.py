@@ -34,12 +34,16 @@ from elecciones_pipeline.municipalities import (
 )
 from elecciones_pipeline.normalize import slugify
 from elecciones_pipeline.parties import PartyCatalog, load_logos, load_party_catalog
+from elecciones_pipeline.party_colors import load_party_colors
 from elecciones_pipeline.results_2023 import (
     CongresoXlsxSource,
     Results2023,
     SenadoXlsxSource,
     load_lineage,
     summarize,
+)
+from elecciones_pipeline.results_2023.constituency_json import (
+    constituency_results_json,
 )
 
 BOE_ID = "BOE-A-2026-23103"
@@ -79,6 +83,7 @@ class _Inputs:
     logos: dict
     lineage: dict[str, list[str]]
     results_2023: Results2023
+    party_colors: dict[str, str]
 
 
 def build_dataset(paths: BuildPaths, generated_at: datetime) -> BuildReport:
@@ -124,6 +129,7 @@ def _load_inputs(paths: BuildPaths) -> _Inputs:
         logos=load_logos(paths.data_dir / "logos.yaml"),
         lineage=_load_lineage(paths.data_dir),
         results_2023=_load_results_2023(paths.raw_dir / RESULTS_2023_DIR, registry),
+        party_colors=load_party_colors(paths.data_dir / "party_colors.yaml"),
     )
 
 
@@ -135,6 +141,7 @@ def _load_lineage(data_dir: Path) -> dict[str, list[str]]:
 def _load_results_2023(directory: Path, registry: ConstituencyRegistry) -> Results2023:
     candidacies: tuple = ()
     valid_votes: dict = {}
+    constituencies: dict = {}
     sources = []
     if (directory / CONGRESO_RESULTS_FILE).exists():
         sources.append(CongresoXlsxSource(directory / CONGRESO_RESULTS_FILE))
@@ -145,7 +152,8 @@ def _load_results_2023(directory: Path, registry: ConstituencyRegistry) -> Resul
         loaded = source.load()
         candidacies += loaded.candidacies
         valid_votes.update(loaded.valid_votes)
-    return Results2023(candidacies, valid_votes)
+        constituencies.update(loaded.constituencies)
+    return Results2023(candidacies, valid_votes, constituencies)
 
 
 def _corrected_candidacies(
@@ -255,6 +263,12 @@ def _ballot(
             _candidacy_json(inputs, constituency, member, slug)
             for member, slug in zip(members, slugs)
         ],
+        "constituencyResults2023": constituency_results_json(
+            inputs.results_2023.constituencies.get(
+                (constituency.chamber, constituency.id)
+            ),
+            inputs.party_colors,
+        ),
     }
 
 

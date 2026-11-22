@@ -9,7 +9,8 @@
     "seats",
     "maxMarks",
     "sources",
-    "candidacies"
+    "candidacies",
+    "constituencyResults2023"
   ],
   "properties": {
     "chamber": { "enum": ["congreso", "senado"] },
@@ -31,9 +32,49 @@
     "candidacies": {
       "type": "array",
       "items": { "$ref": "#/$defs/candidacy" }
+    },
+    "constituencyResults2023": {
+      "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/constituencyResults2023" }]
     }
   },
   "$defs": {
+    "partyResult2023": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["acronym", "name", "votes", "percentage", "seats", "color"],
+      "properties": {
+        "acronym": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "votes": { "type": ["integer", "null"], "minimum": 0 },
+        "percentage": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+        "seats": { "type": "integer", "minimum": 0 },
+        "color": { "type": ["string", "null"], "pattern": "^#[0-9a-f]{6}$" }
+      }
+    },
+    "constituencyResults2023": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "electorate",
+        "totalVotes",
+        "turnoutPercentage",
+        "validVotes",
+        "blankVotes",
+        "blankPercentage",
+        "combinedDistrictName",
+        "parties"
+      ],
+      "properties": {
+        "electorate": { "type": "integer", "minimum": 0 },
+        "totalVotes": { "type": "integer", "minimum": 0 },
+        "turnoutPercentage": { "type": "number", "minimum": 0, "maximum": 100 },
+        "validVotes": { "type": "integer", "minimum": 0 },
+        "blankVotes": { "type": "integer", "minimum": 0 },
+        "blankPercentage": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+        "combinedDistrictName": { "type": ["string", "null"], "minLength": 1 },
+        "parties": { "type": "array", "items": { "$ref": "#/$defs/partyResult2023" } }
+      }
+    },
     "candidate": {
       "type": "object",
       "additionalProperties": false,

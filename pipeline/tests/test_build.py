@@ -197,8 +197,30 @@ def test_build_fills_results_2023_when_source_present(build_inputs):
     assert senado_pp["results2023"]["percentage"] is None
 
 
+def test_build_fills_constituency_results_2023_when_source_present(build_inputs):
+    install_results_2023(build_inputs)
+
+    build_dataset(build_inputs, GENERATED_AT)
+
+    results = read_json(build_inputs.output_dir / "congreso" / "08.json")[
+        "constituencyResults2023"
+    ]
+    assert results["validVotes"] == 2667478
+    party = next(item for item in results["parties"] if item["votes"] == 952347)
+    assert party["percentage"] == 35.7
+    assert party["seats"] == 13
+    colors = yaml.safe_load(
+        (build_inputs.data_dir / "party_colors.yaml").read_text(encoding="utf-8")
+    )
+    expected = colors.get(party["acronym"], {}).get("color")
+    assert party["color"] == expected
+
+
 def test_build_without_results_2023_leaves_null(build_inputs):
     build_dataset(build_inputs, GENERATED_AT)
+
+    ballot = read_json(build_inputs.output_dir / "congreso" / "08.json")
+    assert ballot["constituencyResults2023"] is None
 
     vox = candidacy_by_acronym(build_inputs, "congreso", "08", "VOX")
     assert vox["results2023"] is None
