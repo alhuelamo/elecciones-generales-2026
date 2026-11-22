@@ -37,20 +37,15 @@ const PAIRS = [
 ] as const;
 
 describe("design tokens", () => {
-  it("keeps a themed scrollbar track instead of an empty gutter", () => {
-    const html = extractBlock("html {");
-    expect(html).toContain("overflow-y: scroll;");
-    expect(html).toContain(
-      "scrollbar-color: var(--color-rule-strong) var(--color-paper);",
-    );
-    expect(css).not.toContain("scrollbar-gutter");
+  it("reserves a plain scrollbar gutter so nothing shifts sideways", () => {
+    expect(extractBlock("html {")).toContain("scrollbar-gutter: stable;");
+    expect(css).not.toContain("overflow-y: scroll");
+    expect(css).not.toContain("scrollbar-color");
   });
 
-  it("paints the paper texture on the root so it also covers the scrollbar gutter", () => {
-    expect(extractBlock("html {")).toContain(
-      "background-image: var(--paper-texture);",
-    );
-    expect(css).not.toContain("body::before");
+  it("uses flat paper so the gutter always matches the page", () => {
+    expect(css).not.toContain("--paper-texture");
+    expect(css).not.toContain("background-image");
   });
 
   it.each([
