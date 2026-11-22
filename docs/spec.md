@@ -1,6 +1,6 @@
 # Elecciones Generales 2026 — Design Spec
 
-Static GitHub Pages site for the Spanish general election of **29 November 2026**. A voter types their town, sees the Congreso and Senado candidacies on their ballot, and opens a candidacy to see its full candidate list and curated facts. UI in Catalan and Spanish, light/dark mode, no server code.
+Static GitHub Pages site for the Spanish general election of **29 November 2026**. A voter types their town, sees the Congreso and Senado candidacies on their ballot, and opens a candidacy to see its full candidate list and curated facts. UI in Spanish, Catalan, Basque and Galician (Basque and Galician machine-translated, with a report link), light/dark mode, no server code.
 
 ## 1. Scope
 
@@ -70,7 +70,7 @@ web/        Vite + React + TypeScript + Tailwind v4 + Headless UI, yarn 4
 ```
 - `dataset`: `"fixture"` or `"boe-2026"`. Fixture data triggers a visible "demo data" banner.
 - `generatedAt`: pipeline build timestamp (UTC ISO 8601), shown on About.
-- `municipality.name`: `{ es, ca }`, always the official INE name, never containing a slash. Names without `/` are identical in both languages (postposed article moved to front: `Coruña, A` -> `A Coruña`). For officially bilingual names (`Alicante/Alacant`) each language gets the part most similar (normalized text) to the Wikidata label of that language (`pipeline/data/vendor/wikidata_municipality_labels.csv`); without labels both use the first part. Wikidata exonyms (`La Coruña`, `Gerona`, `Lérida`) are never shown, only kept in `aliases` for search.
+- `municipality.name`: `{ es, ca }` plus `eu`/`gl` only where they differ from `es`, always the official INE name, never containing a slash. Names without `/` are identical in both languages (postposed article moved to front: `Coruña, A` -> `A Coruña`). For officially bilingual names (`Alicante/Alacant`) each language gets the part most similar (normalized text) to the Wikidata label of that language (`pipeline/data/vendor/wikidata_municipality_labels.csv`); without labels both use the first part. Wikidata exonyms (`La Coruña`, `Gerona`, `Lérida`) are never shown, only kept in `aliases` for search.
 - `aliases`: searchable forms in either language, deduped: raw INE form, each side of a slash, display forms and both language labels. The UI shows only `name[language]` and searches names and aliases.
 - `congreso` = province code; `senado` = Senado constituency id.
 
@@ -125,11 +125,12 @@ All fields except `key` and `name` are nullable / may be empty.
 
 ## 5. UI
 
-- Header: title, About link, language toggle (es/ca), theme toggle (system → light → dark).
+- Header: title, About link, language menu (Castellano, Català, Euskara, Galego; button shows the active code), theme toggle (system → light → dark).
+- Machine-translation notice: a slim muted line under the header, shown only for `eu` and `gl` in that language, linking to a prefilled GitHub issue (`ExternalLink`).
 - Search: Headless UI Combobox, Fuse.js over pre-normalized `name` + `aliases` (lowercase, diacritics stripped, `·` removed so `l·l` → `ll`, `' ’ . - / , ( )` → space, whitespace collapsed). Exact normalized-name match ranks first, then prefix matches, then Fuse score. Max 10 results. Each option shows the province to disambiguate homonyms.
-- Language: route segment wins; otherwise localStorage `eg26.lang`; otherwise `navigator.languages` (any `ca*` → `ca`, else `es`). Toggle rewrites the route and persists.
+- Language: route segment wins; otherwise localStorage `eg26.lang`; otherwise `navigator.languages` (first primary subtag among `es`, `ca`, `eu`, `gl`; else `es`). The menu rewrites the route and persists. Supported codes live only in `web/src/i18n/languages.ts`.
 - Theme: localStorage `eg26.theme` ∈ `system|light|dark`; `dark` class on `<html>`; inline script in `index.html` applies it before first paint. Tailwind v4 `@custom-variant dark (&:where(.dark, .dark *));`.
-- i18n: react-i18next, one JSON namespace per feature under `web/src/i18n/locales/{es,ca}/{namespace}.json`, loaded by `import.meta.glob`; es/ca key parity is tested.
+- i18n: react-i18next, one JSON namespace per feature under `web/src/i18n/locales/{es,ca,eu,gl}/{namespace}.json`, loaded by `import.meta.glob`; key parity across all four is tested. Wikipedia links fall back `es → ca`, `ca → es`, `eu → es`, `gl → es`.
 - Stale links (unknown municipality code or party slug after a re-scrape) fall back to the nearest valid view with a notice, never a blank page.
 
 ## 6. Quality

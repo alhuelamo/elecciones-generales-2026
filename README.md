@@ -1,6 +1,6 @@
 # Elecciones Generales 2026
 
-Static site where a voter finds their municipality and sees the Congreso and Senado candidacies for the 29 November 2026 general election, in Catalan and Spanish.
+Static site where a voter finds their municipality and sees the Congreso and Senado candidacies for the 29 November 2026 general election, in Spanish, Catalan, Basque and Galician. The Basque and Galician UI strings are machine-translated; each page shows a notice with a link to report translation errors.
 
 **Live site: <https://alhuelamo.com/elecciones-generales-2026/>**
 
