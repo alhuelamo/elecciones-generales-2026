@@ -12,13 +12,17 @@ const SOURCE_LINKS = [
 export function Footer(props: { language: Language }) {
   const { t } = useTranslation("shell");
   return (
-    <footer className="border-t border-gray-200 dark:border-gray-700">
-      <div className="mx-auto flex max-w-3xl flex-col gap-2 px-4 py-4 text-sm text-gray-700 dark:text-gray-300">
+    <footer className="border-t border-rule">
+      <div className="mx-auto flex max-w-3xl flex-col gap-2 px-4 py-4 text-sm text-ink-muted">
         <p>{t("footer.neutrality")}</p>
         <ul className="flex flex-wrap gap-x-4 gap-y-1">
           {SOURCE_LINKS.map(([key, url]) => (
             <li key={key}>
-              <a href={url} rel="noopener noreferrer" className="underline">
+              <a
+                href={url}
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center text-accent underline underline-offset-2"
+              >
                 {t(`footer.sources.${key}`)}
               </a>
             </li>
@@ -26,7 +30,7 @@ export function Footer(props: { language: Language }) {
           <li>
             <a
               href={buildHash({ page: "about", language: props.language })}
-              className="underline"
+              className="inline-flex min-h-11 items-center text-accent underline underline-offset-2"
             >
               {t("about")}
             </a>

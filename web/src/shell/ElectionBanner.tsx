@@ -22,7 +22,7 @@ export function ElectionBanner(props: { now?: () => Date }) {
   return (
     <p
       role="status"
-      className="bg-blue-100 px-4 py-2 text-center text-sm text-blue-950 dark:bg-blue-900 dark:text-blue-50"
+      className="border-b border-kraft-rule bg-kraft px-4 py-2 text-center text-sm text-ink"
     >
       {phase === "electionDay" ? (
         t("electionBanner.today")
@@ -32,7 +32,7 @@ export function ElectionBanner(props: { now?: () => Date }) {
           <a
             href={SOURCE_URLS.interior}
             rel="noopener noreferrer"
-            className="inline-block min-h-11 py-3 font-medium underline"
+            className="inline-block min-h-11 py-3 font-medium text-accent underline"
           >
             {t("electionBanner.results")}
           </a>

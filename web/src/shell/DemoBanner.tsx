@@ -5,7 +5,7 @@ export function DemoBanner() {
   return (
     <p
       role="status"
-      className="bg-amber-100 px-4 py-2 text-center text-sm text-amber-900 dark:bg-amber-900 dark:text-amber-100"
+      className="border-b border-kraft-rule bg-kraft px-4 py-2 text-center text-sm text-ink"
     >
       {t("demoBanner")}
     </p>
