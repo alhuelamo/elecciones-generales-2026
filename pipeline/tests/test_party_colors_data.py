@@ -9,7 +9,7 @@ from elecciones_pipeline.party_colors import load_party_colors
 PARTY_COLORS_PATH = Path(__file__).parent.parent / "data" / "party_colors.yaml"
 HEX_PATTERN = re.compile(r"^#[0-9a-f]{6}$")
 ALLOWED_FIELDS = {"color", "sourceUrl", "inheritedFrom"}
-WIKIPEDIA_PREFIX = "https://es.wikipedia.org/wiki/"
+WIKIPEDIA_PREFIX = "https://es.wikipedia.org/"
 
 
 @pytest.fixture(scope="module")

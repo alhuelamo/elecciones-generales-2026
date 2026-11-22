@@ -11,11 +11,11 @@
   color: "#ef4b91"
   sourceUrl: https://es.wikipedia.org/wiki/Sumar_(coalición)
 "ERC":
-  color: "#f95735"
-  sourceUrl: https://es.wikipedia.org/wiki/Esquerra_Republicana_de_Catalunya
+  color: "#ffb232"
+  sourceUrl: https://es.wikipedia.org/w/index.php?title=Esquerra_Republicana_de_Catalunya&oldid=152612647
 "ERC-ESQUERRES PER LA INDEPENDÈNCIA":
-  color: "#f95735"
-  sourceUrl: https://es.wikipedia.org/wiki/Esquerra_Republicana_de_Catalunya
+  color: "#ffb232"
+  sourceUrl: https://es.wikipedia.org/w/index.php?title=Esquerra_Republicana_de_Catalunya&oldid=152612647
   inheritedFrom: "ERC"
 "JxCAT - JUNTS":
   color: "#00c4b2"
