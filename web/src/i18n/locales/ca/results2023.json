@@ -6,8 +6,10 @@
     "blank": "En blanc"
   },
   "seats": {
-    "label": "Repartiment d'escons",
-    "senadoNote": "Al Senat es vota a persones, no a llistes: no hi ha percentatge per partit"
+    "label": "Escons el 2023",
+    "senadoNote": "Al Senat es vota a persones, no a llistes: no hi ha percentatge per partit",
+    "count_one": "escó",
+    "count_other": "escons"
   },
   "heading": "Resultats de 2023 a {{constituency}}",
   "turnout": "Participació: {{turnout}}",

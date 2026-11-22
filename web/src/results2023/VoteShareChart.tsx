@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import type { ConstituencyResults2023 } from "../contract/types";
+import { COLUMNS_CLASSES } from "./columns";
 import { FALLBACK_PARTY_COLOR, partyColor } from "./partyColor";
 import { voteShareRows, type VoteShareRow } from "./voteShareRows";
 
 const THRESHOLD_PERCENTAGE = 3;
-const COLUMNS_CLASSES = "grid grid-cols-[minmax(0,6rem)_1fr_auto] gap-x-3";
 
 function rowScale(rows: VoteShareRow[]): number {
   return Math.max(...rows.map(({ percentage }) => percentage));

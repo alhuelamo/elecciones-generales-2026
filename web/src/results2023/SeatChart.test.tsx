@@ -1,11 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import i18next from "i18next";
 import { afterEach, describe, expect, it } from "vitest";
 import type { ConstituencyResults2023 } from "../contract/types";
-import {
-  fixtureCongresoLargeResults2023,
-  fixtureCongresoResults2023,
-} from "../test/fixtures";
+import { fixtureCongresoResults2023 } from "../test/fixtures";
+import { COLUMNS_CLASSES } from "./columns";
 import { harmonizePartyColor } from "./partyColor";
 import { SeatChart } from "./SeatChart";
 
@@ -35,100 +33,68 @@ const tenSeatSenadoResults: ConstituencyResults2023 = {
   ],
 };
 
+const oneSeatSenadoResults: ConstituencyResults2023 = {
+  ...tenSeatSenadoResults,
+  parties: [{ ...tenSeatSenadoResults.parties[0], seats: 1 }],
+};
+
 describe("SeatChart", () => {
   afterEach(() => i18next.changeLanguage("es"));
 
-  it("draws a hemicycle with one circle per seat from 10 seats", () => {
-    const { container } = render(
-      <SeatChart
-        chamber="congreso"
-        results={fixtureCongresoLargeResults2023}
-      />,
-    );
-    expect(screen.getByRole("img")).toBeInTheDocument();
-    expect(container.querySelectorAll("circle")).toHaveLength(12);
-  });
-
-  it("makes the hemicycle responsive", () => {
-    render(
-      <SeatChart
-        chamber="congreso"
-        results={fixtureCongresoLargeResults2023}
-      />,
-    );
-    const svg = screen.getByRole("img");
-    expect(svg).toHaveAttribute("viewBox", "-1.1 -1.1 2.2 1.2");
-    expect(svg).toHaveClass("w-full", "max-w-72", "mx-auto");
-  });
-
-  it("describes the hemicycle with the legend text", () => {
-    render(
-      <SeatChart
-        chamber="congreso"
-        results={fixtureCongresoLargeResults2023}
-      />,
-    );
-    expect(screen.getByRole("img")).toHaveAttribute(
-      "aria-label",
-      "PEA 6, PEB 4, CEC-D 2",
-    );
-  });
-
-  it("gives the leftmost seat to the largest party", () => {
-    const { container } = render(
-      <SeatChart
-        chamber="congreso"
-        results={fixtureCongresoLargeResults2023}
-      />,
-    );
-    expect(container.querySelector("circle")).toHaveAttribute(
-      "fill",
-      harmonizePartyColor("#d6402b"),
-    );
-  });
-
-  it("draws seats without outlines", () => {
-    const { container } = render(
-      <SeatChart
-        chamber="congreso"
-        results={fixtureCongresoLargeResults2023}
-      />,
-    );
-    expect(container.querySelector("circle")).not.toHaveAttribute("stroke");
-  });
-
-  it("draws small dots below 10 seats", () => {
-    const { container } = render(
-      <SeatChart chamber="congreso" results={fixtureCongresoResults2023} />,
-    );
-    expect(container.querySelector("ul")).toHaveClass("gap-1");
-    expect(container.querySelector("ul li")).toHaveClass("size-2.5");
-  });
-
-  it("uses dots below 10 seats using the 2023 total", () => {
-    const { container } = render(
-      <SeatChart chamber="congreso" results={fixtureCongresoResults2023} />,
-    );
-    expect(screen.queryByRole("img")).not.toBeInTheDocument();
-    expect(container.querySelector("svg")).toBeNull();
-    expect(container.querySelectorAll("li")).toHaveLength(8);
-  });
-
-  it("uses dots for the Senado even with 10 seats", () => {
-    const { container } = render(
-      <SeatChart chamber="senado" results={tenSeatSenadoResults} />,
-    );
-    expect(container.querySelector("svg")).toBeNull();
-    expect(container.querySelectorAll("li")).toHaveLength(10);
-  });
-
-  it("shows the legend", () => {
+  it("draws one row per party with seats, largest first", () => {
     render(
       <SeatChart chamber="congreso" results={fixtureCongresoResults2023} />,
     );
-    expect(screen.getByTestId("seat-legend")).toHaveTextContent(
-      "PEA 4PEB 2CEC-D 2",
+    const rows = within(
+      screen.getByRole("list", { name: "Escaños en 2023" }),
+    ).getAllByRole("listitem");
+    expect(rows).toHaveLength(3);
+    expect(rows[0]).toHaveTextContent("PEA");
+    expect(rows[0]).toHaveTextContent("4 escaños");
+    expect(rows[1]).toHaveTextContent("PEB");
+    expect(rows[1]).toHaveTextContent("2 escaños");
+  });
+
+  it("draws one coloured dot per seat from the 2023 total", () => {
+    const { container } = render(
+      <SeatChart chamber="congreso" results={fixtureCongresoResults2023} />,
     );
+    const dots = container.querySelectorAll("[data-testid='seat-dot']");
+    expect(dots).toHaveLength(8);
+    expect(dots[0]).toHaveClass("size-2.5", "rounded-full");
+    expect(dots[0]).toHaveStyle({
+      backgroundColor: harmonizePartyColor("#d6402b"),
+    });
+    expect(dots[0].parentElement).toHaveClass("flex-wrap", "gap-1");
+    expect(dots[0].parentElement).toHaveAttribute("aria-hidden", "true");
+  });
+
+  it("uses the same columns as the vote share rows", () => {
+    render(
+      <SeatChart chamber="congreso" results={fixtureCongresoResults2023} />,
+    );
+    expect(screen.getAllByRole("listitem")[0]).toHaveClass(
+      ...COLUMNS_CLASSES.split(" "),
+    );
+  });
+
+  it("uses the singular for one seat", () => {
+    render(<SeatChart chamber="senado" results={oneSeatSenadoResults} />);
+    expect(screen.getByRole("listitem")).toHaveTextContent("1 escaño");
+    expect(screen.getByRole("listitem")).not.toHaveTextContent("escaños");
+  });
+
+  it("draws rows for the Senado too", () => {
+    render(<SeatChart chamber="senado" results={tenSeatSenadoResults} />);
+    expect(screen.getAllByRole("listitem")).toHaveLength(2);
+    expect(screen.getAllByRole("listitem")[0]).toHaveTextContent("6 escaños");
+  });
+
+  it("translates the unit to catalan", async () => {
+    await i18next.changeLanguage("ca");
+    render(<SeatChart chamber="senado" results={tenSeatSenadoResults} />);
+    expect(screen.getByRole("list", { name: "Escons el 2023" })).toBeVisible();
+    expect(screen.getAllByRole("listitem")[0]).toHaveTextContent("6 escons");
   });
 
   it("shows the note only in the Senado", () => {
