@@ -27,7 +27,7 @@ export function ConstituencyView(props: {
   return (
     <div className="flex flex-col gap-4">
       <header>
-        <h1 className="text-2xl font-bold">
+        <h1 className="font-display text-2xl font-bold">
           {props.municipality.name[i18n.language as Language]}
         </h1>
         <p>{props.constituency.name[i18n.language as Language]}</p>

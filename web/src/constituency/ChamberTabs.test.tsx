@@ -35,4 +35,12 @@ describe("ChamberTabs", () => {
       "aria-current",
     );
   });
+
+  it("styles the active tab with the accent underline", () => {
+    renderTabs("senado");
+    const active = screen.getByRole("link", { name: "Senado" });
+    const inactive = screen.getByRole("link", { name: "Congreso" });
+    expect(active).toHaveClass("border-accent", "text-ink", "min-h-11");
+    expect(inactive).toHaveClass("border-transparent", "min-h-11");
+  });
 });

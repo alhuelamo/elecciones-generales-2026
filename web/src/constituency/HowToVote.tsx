@@ -1,10 +1,7 @@
 import { useTranslation } from "react-i18next";
 import type { Chamber } from "../contract/types";
-
-const SWATCH_CLASSES: Record<Chamber, string> = {
-  congreso: "border-gray-300 bg-white text-gray-900",
-  senado: "border-amber-700 bg-amber-100 text-amber-950",
-};
+import { CHAMBER_SURFACE_CLASSES } from "../design/chamberSurface";
+import { Envelope } from "../design/Envelope";
 
 export function HowToVote(props: {
   chamber: Chamber;
@@ -14,7 +11,7 @@ export function HowToVote(props: {
   return (
     <section
       aria-labelledby="how-to-vote-title"
-      className="rounded border border-gray-300 p-3 dark:border-gray-600"
+      className={`${CHAMBER_SURFACE_CLASSES[props.chamber]} p-4`}
     >
       <h2
         id="how-to-vote-title"
@@ -24,8 +21,10 @@ export function HowToVote(props: {
           aria-hidden="true"
           data-testid="envelope-swatch"
           data-chamber={props.chamber}
-          className={`inline-block h-4 w-6 shrink-0 rounded-sm border ${SWATCH_CLASSES[props.chamber]}`}
-        />
+          className="inline-block size-6 shrink-0"
+        >
+          <Envelope chamber={props.chamber} className="size-full" />
+        </span>
         {t("howToVote.title")}
       </h2>
       <p>{t(`howToVote.${props.chamber}`, { maxMarks: props.maxMarks })}</p>

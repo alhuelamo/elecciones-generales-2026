@@ -34,4 +34,13 @@ describe("HowToVote", () => {
       "senado",
     );
   });
+
+  it("renders the envelope icon inside the swatch", () => {
+    render(<HowToVote chamber="senado" maxMarks={3} />);
+    expect(
+      screen
+        .getByTestId("envelope-swatch")
+        .querySelector('svg[aria-hidden="true"]'),
+    ).not.toBeNull();
+  });
 });

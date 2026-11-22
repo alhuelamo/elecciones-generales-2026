@@ -10,17 +10,20 @@ export function ChamberTabs(props: {
   const { t } = useTranslation("common");
   const { t: tConstituency } = useTranslation("constituency");
   return (
-    <nav aria-label={tConstituency("tabsLabel")} className="flex gap-2">
+    <nav
+      aria-label={tConstituency("tabsLabel")}
+      className="flex gap-2 border-b border-rule"
+    >
       {CHAMBERS.map((chamber) => (
         <a
           key={chamber}
           href={props.chamberHref(chamber)}
           aria-current={chamber === props.active ? "page" : undefined}
-          className={
+          className={`-mb-px inline-flex min-h-11 items-center border-b-2 px-4 transition-colors duration-150 ${
             chamber === props.active
-              ? "rounded-t border-b-2 px-4 py-2 font-semibold"
-              : "rounded-t px-4 py-2 opacity-70"
-          }
+              ? "border-accent font-semibold text-ink"
+              : "border-transparent text-ink-muted hover:text-ink"
+          }`}
         >
           {t(`chamber.${chamber}`)}
         </a>
