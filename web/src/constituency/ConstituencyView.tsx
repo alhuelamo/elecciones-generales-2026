@@ -24,13 +24,14 @@ export function ConstituencyView(props: {
 }) {
   const { i18n } = useTranslation("constituency");
   const { ballot } = props;
+  const language = i18n.language as Language;
+  const municipalityName = props.municipality.name[language];
+  const constituencyName = props.constituency.name[language];
   return (
     <div className="flex flex-col gap-4">
       <header>
-        <h1 className="font-display text-2xl font-bold">
-          {props.municipality.name[i18n.language as Language]}
-        </h1>
-        <p>{props.constituency.name[i18n.language as Language]}</p>
+        <h1 className="font-display text-2xl font-bold">{municipalityName}</h1>
+        {constituencyName !== municipalityName && <p>{constituencyName}</p>}
       </header>
       <ChamberTabs active={ballot.chamber} chamberHref={props.chamberHref} />
       <SeatsSummary

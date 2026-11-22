@@ -56,6 +56,20 @@ describe("ConstituencyView", () => {
     expect(screen.getByText("S'escullen 32 diputats")).toBeInTheDocument();
   });
 
+  it("omits the constituency subtitle when it repeats the municipality name", () => {
+    render(
+      <ConstituencyView
+        municipality={barcelona}
+        constituency={barcelonaCongreso}
+        ballot={fixtureCongresoBarcelona}
+        partyCatalog={fixtureCatalog}
+        chamberHref={(chamber) => `#/es/08019/${chamber}`}
+        candidacyHref={({ slug }) => `#/es/08019/congreso/${slug}`}
+      />,
+    );
+    expect(screen.getAllByText("Barcelona")).toHaveLength(1);
+  });
+
   it("shows the constituency name and seat summary for senado", () => {
     renderSenado();
     expect(
