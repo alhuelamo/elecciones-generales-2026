@@ -35,11 +35,11 @@ export function ThemeMenu() {
     <Menu as="div" className="relative">
       <MenuButton
         aria-label={t("menu.label", { choice: t(`choice.${preference}`) })}
-        className="min-h-11 min-w-11 rounded text-lg transition-colors duration-150 hover:bg-kraft"
+        className="min-h-11 min-w-11 rounded-frame text-lg transition-colors duration-150 hover:bg-kraft"
       >
         <span aria-hidden="true">◐</span>
       </MenuButton>
-      <MenuItems className="absolute right-0 z-20 mt-1 min-w-40 rounded border border-rule bg-paper py-1 shadow-md">
+      <MenuItems className="absolute right-0 z-20 mt-1 min-w-40 rounded-frame border border-rule bg-paper py-1 shadow-md">
         {THEME_PREFERENCES.map((option) => (
           <MenuItem key={option}>
             <button

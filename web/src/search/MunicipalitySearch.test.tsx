@@ -23,13 +23,17 @@ describe("MunicipalitySearch", () => {
     );
   });
 
-  it("renders a visible label for the focused combobox", () => {
+  it("names the focused combobox without a visible label", () => {
     renderSearch();
-    expect(screen.getByText("Buscar municipio")).not.toHaveClass("sr-only");
-    const input = screen.getByLabelText("Buscar municipio");
-    expect(input).toBe(screen.getByRole("combobox"));
+    expect(screen.queryByText("Buscar municipio")).toBeNull();
+    const input = screen.getByRole("combobox", { name: "Buscar municipio" });
     expect(input).toHaveFocus();
-    expect(input).toHaveClass("h-14", "border-b-2");
+  });
+
+  it("frames the input like a chat box", () => {
+    renderSearch();
+    const frame = screen.getByRole("combobox").parentElement!;
+    expect(frame).toHaveClass("rounded-frame", "border", "focus-within:ring-2");
   });
 
   it("gives each option a comfortable tap target", async () => {

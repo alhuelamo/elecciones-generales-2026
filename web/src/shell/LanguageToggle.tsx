@@ -12,7 +12,7 @@ export function LanguageToggle(props: {
     <div
       role="group"
       aria-label={t("language.label")}
-      className="flex overflow-hidden rounded border border-rule"
+      className="flex overflow-hidden rounded-frame border border-rule"
     >
       {LANGUAGES.map((language) => (
         <button

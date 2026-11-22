@@ -31,7 +31,7 @@ export function HomePage(props: {
         }
       />
       <div className="grid gap-4 sm:grid-cols-2">
-        <section className="rounded-sm border border-rule bg-paper-raised p-4">
+        <section className="rounded-frame border border-rule bg-paper-raised p-4">
           <h2 className="font-display text-xl">{t("cards.whereToVote")}</h2>
           <WhereToVote />
         </section>

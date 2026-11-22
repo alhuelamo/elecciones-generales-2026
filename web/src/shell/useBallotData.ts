@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type {
   Candidacy,
+  Chamber,
   ConstituencyBallot,
   ConstituencySummary,
   Municipality,
@@ -54,28 +55,45 @@ function findMunicipality(
   );
 }
 
+const CHAMBERS: Chamber[] = ["congreso", "senado"];
+
+function ballotKey(chamber: Chamber, constituencyId: string) {
+  return `${chamber}/${constituencyId}`;
+}
+
+function useMunicipalityBallots(municipality: Municipality | null) {
+  const [loaded, setLoaded] = useState<Record<string, LoadedBallot>>({});
+
+  useEffect(() => {
+    if (!municipality) return;
+    let cancelled = false;
+    const store = (entry: LoadedBallot) =>
+      !cancelled &&
+      setLoaded((previous) => ({ ...previous, [entry.key]: entry }));
+    for (const chamber of CHAMBERS) {
+      const key = ballotKey(chamber, municipality[chamber]);
+      loadBallot(chamber, municipality[chamber]).then(
+        (ballot) => store({ key, ballot, failed: false }),
+        () => store({ key, ballot: null, failed: true }),
+      );
+    }
+    return () => {
+      cancelled = true;
+    };
+  }, [municipality]);
+
+  return loaded;
+}
+
 function useLoadedBallot(
   route: Route | null,
   municipality: Municipality | null,
 ) {
-  const [loaded, setLoaded] = useState<LoadedBallot | null>(null);
+  const loaded = useMunicipalityBallots(municipality);
   const chamber = route?.page === "ballot" ? route.chamber : null;
-  const constituencyId = municipality && chamber ? municipality[chamber] : null;
-  const key = chamber && constituencyId ? `${chamber}/${constituencyId}` : null;
-
-  useEffect(() => {
-    if (!chamber || !constituencyId || !key) return;
-    let cancelled = false;
-    loadBallot(chamber, constituencyId).then(
-      (ballot) => !cancelled && setLoaded({ key, ballot, failed: false }),
-      () => !cancelled && setLoaded({ key, ballot: null, failed: true }),
-    );
-    return () => {
-      cancelled = true;
-    };
-  }, [chamber, constituencyId, key]);
-
-  const current = loaded?.key === key ? loaded : null;
+  const key =
+    chamber && municipality ? ballotKey(chamber, municipality[chamber]) : null;
+  const current = key ? loaded[key] : undefined;
   return {
     key,
     ballot: current?.ballot ?? null,

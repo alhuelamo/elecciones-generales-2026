@@ -80,7 +80,7 @@ function NoticeMessage(props: { noticeKey: NoticeKey }) {
   return (
     <p
       role="alert"
-      className="mb-4 rounded border border-rule-strong bg-kraft px-3 py-2 text-ink"
+      className="mb-4 rounded-frame border border-rule-strong bg-kraft px-3 py-2 text-ink"
     >
       {t(`notice.${props.noticeKey}`)}
     </p>
