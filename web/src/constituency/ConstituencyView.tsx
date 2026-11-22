@@ -10,6 +10,7 @@ import type {
   MunicipalityIndex,
   PartyCatalog,
 } from "../contract/types";
+import { localizedName } from "../i18n/localizedName";
 import { ChamberTabs } from "./ChamberTabs";
 import { HowToVote } from "./HowToVote";
 import { MunicipalitySwitcher } from "./MunicipalitySwitcher";
@@ -30,8 +31,8 @@ export function ConstituencyView(props: {
   const { i18n } = useTranslation("constituency");
   const { ballot } = props;
   const language = i18n.language as Language;
-  const municipalityName = props.municipality.name[language];
-  const constituencyName = props.constituency.name[language];
+  const municipalityName = localizedName(props.municipality.name, language);
+  const constituencyName = localizedName(props.constituency.name, language);
   return (
     <div className="flex flex-col gap-4">
       <MunicipalitySwitcher

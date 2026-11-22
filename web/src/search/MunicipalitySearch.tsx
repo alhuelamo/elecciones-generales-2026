@@ -11,6 +11,7 @@ import type {
   Municipality,
   MunicipalityIndex,
 } from "../contract/types";
+import { localizedName } from "../i18n/localizedName";
 import { createMunicipalitySearch } from "./createMunicipalitySearch";
 
 interface MunicipalitySearchProps {
@@ -35,7 +36,7 @@ export function MunicipalitySearch({
     const province = index.constituencies.congreso.find(
       ({ id }) => id === municipality.congreso,
     );
-    return province?.name[language] ?? "";
+    return province ? localizedName(province.name, language) : "";
   }
 
   return (
@@ -69,7 +70,7 @@ export function MunicipalitySearch({
                 value={municipality}
                 className="min-h-11 cursor-pointer px-3 py-2 data-focus:bg-kraft"
               >
-                <span>{municipality.name[language]}</span>{" "}
+                <span>{localizedName(municipality.name, language)}</span>{" "}
                 <span className="text-sm text-ink-muted">
                   {provinceName(municipality)}
                 </span>

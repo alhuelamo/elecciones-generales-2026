@@ -2,12 +2,25 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import i18next from "i18next";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
+import type { MunicipalityIndex } from "../contract/types";
 import { fixtureIndex } from "../test/fixtures";
 import { MunicipalitySearch } from "./MunicipalitySearch";
 
-function renderSearch() {
+const sparseIndex: MunicipalityIndex = {
+  ...fixtureIndex,
+  municipalities: fixtureIndex.municipalities.map((municipality) =>
+    municipality.code === "20069"
+      ? {
+          ...municipality,
+          name: { es: "San Sebastián", ca: "Donostia", eu: "Donostia" },
+        }
+      : municipality,
+  ),
+};
+
+function renderSearch(index: MunicipalityIndex = fixtureIndex) {
   const onSelect = vi.fn();
-  render(<MunicipalitySearch index={fixtureIndex} onSelect={onSelect} />);
+  render(<MunicipalitySearch index={index} onSelect={onSelect} />);
   return onSelect;
 }
 
@@ -103,5 +116,21 @@ describe("MunicipalitySearch", () => {
     renderSearch();
     await userEvent.type(screen.getByRole("combobox"), "zzzz");
     expect(await screen.findByText("Sin resultados")).toBeInTheDocument();
+  });
+
+  it("shows the basque name in basque", async () => {
+    await i18next.changeLanguage("eu");
+    renderSearch(sparseIndex);
+    await userEvent.type(screen.getByRole("combobox"), "san sebastian");
+    expect(await screen.findByRole("option")).toHaveTextContent("Donostia");
+  });
+
+  it("falls back to the spanish name in galician", async () => {
+    await i18next.changeLanguage("gl");
+    renderSearch(sparseIndex);
+    await userEvent.type(screen.getByRole("combobox"), "donostia");
+    const option = await screen.findByRole("option");
+    expect(option).toHaveTextContent("San Sebastián");
+    expect(option).not.toHaveTextContent("undefined");
   });
 });

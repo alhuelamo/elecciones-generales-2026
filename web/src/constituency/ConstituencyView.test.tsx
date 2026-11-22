@@ -198,4 +198,48 @@ describe("ConstituencyView", () => {
       expect(screen.queryByRole("heading", { name: heading })).toBeNull();
     });
   });
+
+  describe("sparse localized names", () => {
+    const sanSebastian = {
+      ...fixtureIndex.municipalities.find(({ code }) => code === "20069")!,
+      name: { es: "San Sebastián", ca: "Donostia", eu: "Donostia" },
+    };
+    const gipuzkoa = {
+      ...mallorca,
+      name: { es: "Guipúzcoa", ca: "Guipúscoa", eu: "Gipuzkoa" },
+    };
+
+    function renderSparse(language: string) {
+      render(
+        <ConstituencyView
+          index={fixtureIndex}
+          onMunicipalitySelect={vi.fn()}
+          municipality={sanSebastian}
+          constituency={gipuzkoa}
+          ballot={fixtureSenadoMallorca}
+          partyCatalog={fixtureCatalog}
+          chamberHref={(chamber) => `#/${language}/20069/${chamber}`}
+          candidacyHref={({ slug }) => `#/${language}/20069/senado/${slug}`}
+        />,
+      );
+    }
+
+    it("shows the basque names in basque", async () => {
+      await i18next.changeLanguage("eu");
+      renderSparse("eu");
+      expect(
+        screen.getByRole("heading", { level: 1, name: "Donostia" }),
+      ).toBeInTheDocument();
+      expect(screen.getByText("Gipuzkoa")).toBeInTheDocument();
+    });
+
+    it("falls back to the spanish names in galician", async () => {
+      await i18next.changeLanguage("gl");
+      renderSparse("gl");
+      expect(
+        screen.getByRole("heading", { level: 1, name: "San Sebastián" }),
+      ).toBeInTheDocument();
+      expect(screen.getByText("Guipúzcoa")).toBeInTheDocument();
+    });
+  });
 });

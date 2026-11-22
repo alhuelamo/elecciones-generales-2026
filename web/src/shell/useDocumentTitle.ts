@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { localizedName } from "../i18n/localizedName";
 import type { Route } from "../routing/route";
 import type { BallotData } from "./useBallotData";
 
@@ -9,7 +10,7 @@ function useTitleParts(route: Route | null, data: BallotData): string[] {
   if (route?.page !== "ballot" || !data.municipality) return [];
   return [
     data.candidacy?.acronym,
-    data.municipality.name[route.language],
+    localizedName(data.municipality.name, route.language),
     t(`common:chamber.${route.chamber}`),
   ].filter((part): part is string => Boolean(part));
 }
