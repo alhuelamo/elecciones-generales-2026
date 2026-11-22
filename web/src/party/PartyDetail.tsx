@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { PartyBadge } from "../candidacies/PartyBadge";
 import { PARTIES_EDIT_URL } from "../config";
 import type { Candidacy, Chamber, PartyProfile } from "../contract/types";
 import { LINK_CHIP_CLASSES } from "./linkChip";
-import { CandidateList } from "./CandidateList";
+import { BallotPaper } from "./BallotPaper";
 import { PartyFacts } from "./PartyFacts";
 
 export function PartyDetail(props: {
@@ -24,22 +23,13 @@ export function PartyDetail(props: {
       <a href={props.backHref} className="inline-block py-2 underline">
         {t("back")}
       </a>
-      <header className="flex flex-wrap items-center gap-4">
-        <PartyBadge
-          acronym={candidacy.acronym}
-          denomination={candidacy.denomination}
-          logo={props.profile?.logo ?? null}
-          size="large"
-        />
-        <div>
-          <h1 className="text-2xl font-bold">{candidacy.denomination}</h1>
-          <p className="opacity-70">{candidacy.acronym}</p>
-          {candidacy.isCoalition && <p className="text-sm">{t("coalition")}</p>}
-        </div>
+      <header>
+        <h1 className="font-display text-2xl font-bold">
+          {candidacy.denomination}
+        </h1>
+        <p className="text-ink-muted">{candidacy.acronym}</p>
+        {candidacy.isCoalition && <p className="text-sm">{t("coalition")}</p>}
       </header>
-      {props.chamber === "senado" && props.maxMarks !== null && (
-        <p>{t("senadoMarks", { count: props.maxMarks })}</p>
-      )}
       {props.profile && <PartyFacts profile={props.profile} />}
       <a
         href={PARTIES_EDIT_URL}
@@ -49,7 +39,12 @@ export function PartyDetail(props: {
       >
         {t("editOnGithub")}
       </a>
-      <CandidateList candidacy={candidacy} chamber={props.chamber} />
+      <BallotPaper
+        candidacy={candidacy}
+        chamber={props.chamber}
+        maxMarks={props.maxMarks ?? 0}
+        logo={props.profile?.logo ?? null}
+      />
     </article>
   );
 }

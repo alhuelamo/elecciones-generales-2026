@@ -42,7 +42,7 @@ export function PartyFacts(props: { profile: PartyProfile }) {
 function Fact(props: { label: string; children: ReactNode }) {
   return (
     <>
-      <dt className="opacity-70">{props.label}</dt>
+      <dt className="text-ink-muted">{props.label}</dt>
       <dd>{props.children}</dd>
     </>
   );

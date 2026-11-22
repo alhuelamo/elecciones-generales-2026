@@ -19,5 +19,8 @@
     "programme": "Programa",
     "wikipedia": "Viquipèdia"
   },
-  "editOnGithub": "Edita a GitHub"
+  "editOnGithub": "Edita a GitHub",
+  "ballot": {
+    "caption": "Representació orientativa, no vàlida per votar"
+  }
 }

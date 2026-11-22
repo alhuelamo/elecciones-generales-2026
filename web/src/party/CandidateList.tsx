@@ -16,6 +16,7 @@ export function CandidateList(props: {
             key={candidate.position}
             candidate={candidate}
             showSubstituteNames={props.chamber === "senado"}
+            showCheckbox={props.chamber === "senado"}
           />
         ))}
       </ol>
@@ -28,6 +29,7 @@ export function CandidateList(props: {
                 key={substitute.position}
                 candidate={substitute}
                 showSubstituteNames={false}
+                showCheckbox={false}
               />
             ))}
           </ol>
@@ -40,6 +42,7 @@ export function CandidateList(props: {
 function CandidateItem(props: {
   candidate: Candidate;
   showSubstituteNames: boolean;
+  showCheckbox: boolean;
 }) {
   const { t } = useTranslation("party");
   const { candidate } = props;
@@ -50,10 +53,17 @@ function CandidateItem(props: {
       <span className="w-6 shrink-0 text-right tabular-nums">
         {candidate.position}
       </span>
+      {props.showCheckbox && (
+        <span
+          aria-hidden="true"
+          data-testid="ballot-checkbox"
+          className="mt-0.5 size-5 shrink-0 border-2 border-ink"
+        />
+      )}
       <span>
         <span className="font-medium">{candidate.name}</span>
         {hasSubstituteNames && (
-          <span className="block text-sm opacity-70">
+          <span className="block text-sm text-ink-muted">
             {t("substitutesOf", {
               names: candidate.substituteNames.join(", "),
             })}
