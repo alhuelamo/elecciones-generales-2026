@@ -10,6 +10,7 @@ import { DemoBanner } from "./shell/DemoBanner";
 import { ElectionBanner } from "./shell/ElectionBanner";
 import { Footer } from "./shell/Footer";
 import { Header } from "./shell/Header";
+import { MachineTranslationNotice } from "./shell/MachineTranslationNotice";
 import { useDocumentTitle } from "./shell/useDocumentTitle";
 import { useBallotData, type BallotData } from "./shell/useBallotData";
 import { replaceRoute, useLanguageRoute } from "./shell/useLanguageRoute";
@@ -64,6 +65,7 @@ export function App() {
         language={route.language}
         onLanguageChange={(language) => navigate({ ...route, language })}
       />
+      <MachineTranslationNotice language={route.language} />
       <ElectionBanner />
       {data.index?.dataset === "fixture" && <DemoBanner />}
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6">

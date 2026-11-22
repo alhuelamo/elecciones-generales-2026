@@ -21,5 +21,11 @@
     "today": "Avui és el dia de les eleccions.",
     "over": "La jornada electoral ha acabat.",
     "results": "Consulta els resultats oficials"
+  },
+  "machineTranslation": {
+    "notice": "Traducció automàtica.",
+    "report": "Informa d'un error",
+    "issueTitle": "[{{language}}] Error de traducció",
+    "issueBody": "Idioma: {{language}}\nPàgina: {{page}}"
   }
 }

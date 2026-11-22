@@ -21,5 +21,11 @@
     "today": "Hoy es el día de las elecciones.",
     "over": "La jornada electoral ha terminado.",
     "results": "Consulta los resultados oficiales"
+  },
+  "machineTranslation": {
+    "notice": "Traducción automática.",
+    "report": "Informar de un error",
+    "issueTitle": "[{{language}}] Error de traducción",
+    "issueBody": "Idioma: {{language}}\nPágina: {{page}}"
   }
 }
