@@ -4,5 +4,9 @@
     "threshold": "barrera del 3 %",
     "others": "Altres",
     "blank": "En blanc"
+  },
+  "seats": {
+    "label": "Repartiment d'escons",
+    "senadoNote": "Al Senat es vota a persones, no a llistes: no hi ha percentatge per partit"
   }
 }
