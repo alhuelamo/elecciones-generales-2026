@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   fixtureCatalog,
   fixtureCongresoBarcelona,
+  fixtureCongresoResults2023,
   fixtureIndex,
   fixtureSenadoMallorca,
 } from "../test/fixtures";
@@ -146,5 +147,31 @@ describe("ConstituencyView", () => {
     await userEvent.keyboard("{Escape}");
     expect(screen.queryByRole("combobox")).toBeNull();
     expect(toggle).toHaveFocus();
+  });
+
+  it("renders the 2023 results block before the candidacy list", () => {
+    render(
+      <ConstituencyView
+        index={fixtureIndex}
+        onMunicipalitySelect={vi.fn()}
+        municipality={barcelona}
+        constituency={barcelonaCongreso}
+        ballot={{
+          ...fixtureCongresoBarcelona,
+          constituencyResults2023: fixtureCongresoResults2023,
+        }}
+        partyCatalog={fixtureCatalog}
+        chamberHref={(chamber) => `#/es/08019/${chamber}`}
+        candidacyHref={({ slug }) => `#/es/08019/congreso/${slug}`}
+      />,
+    );
+    const resultsHeading = screen.getByRole("heading", {
+      name: "Resultados de 2023 en Barcelona",
+    });
+    const candidacyList = screen.getAllByRole("list").at(-1)!;
+    expect(
+      resultsHeading.compareDocumentPosition(candidacyList) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
   });
 });

@@ -14,6 +14,7 @@ import { ChamberTabs } from "./ChamberTabs";
 import { HowToVote } from "./HowToVote";
 import { MunicipalitySwitcher } from "./MunicipalitySwitcher";
 import { WhereToVote } from "./WhereToVote";
+import { Results2023Block } from "../results2023/Results2023Block";
 import { SeatsSummary } from "./SeatsSummary";
 
 export function ConstituencyView(props: {
@@ -52,6 +53,7 @@ export function ConstituencyView(props: {
       />
       <HowToVote chamber={ballot.chamber} maxMarks={ballot.maxMarks} />
       <WhereToVote />
+      <Results2023Block ballot={ballot} constituencyName={constituencyName} />
       <CandidacyList
         candidacies={ballot.candidacies}
         chamber={ballot.chamber}

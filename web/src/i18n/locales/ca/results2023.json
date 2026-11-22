@@ -8,5 +8,10 @@
   "seats": {
     "label": "Repartiment d'escons",
     "senadoNote": "Al Senat es vota a persones, no a llistes: no hi ha percentatge per partit"
-  }
+  },
+  "heading": "Resultats de 2023 a {{constituency}}",
+  "turnout": "Participació: {{turnout}}",
+  "votes": "{{votes}} vots",
+  "source": "Font: Ministeri de l'Interior",
+  "combinedDistrict": "El 2023 Eivissa i Formentera formaven una sola circumscripció al Senat; aquests en són els resultats conjunts."
 }

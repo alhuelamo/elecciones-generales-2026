@@ -8,5 +8,10 @@
   "seats": {
     "label": "Reparto de escaños",
     "senadoNote": "En el Senado se vota a personas, no a listas: no hay porcentaje por partido"
-  }
+  },
+  "heading": "Resultados de 2023 en {{constituency}}",
+  "turnout": "Participación: {{turnout}}",
+  "votes": "{{votes}} votos",
+  "source": "Fuente: Ministerio del Interior",
+  "combinedDistrict": "En 2023 Eivissa y Formentera formaban una sola circunscripción al Senado; estos son sus resultados conjuntos."
 }
