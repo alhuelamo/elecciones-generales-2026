@@ -1,0 +1,95 @@
+"PP":
+  color: "#1e4b8f"
+  sourceUrl: https://es.wikipedia.org/wiki/Partido_Popular
+"PSOE":
+  color: "#ff0000"
+  sourceUrl: https://es.wikipedia.org/wiki/Partido_Socialista_Obrero_Español
+"VOX":
+  color: "#63be21"
+  sourceUrl: https://es.wikipedia.org/wiki/Vox_(partido_político)
+"SUMAR":
+  color: "#ef4b91"
+  sourceUrl: https://es.wikipedia.org/wiki/Sumar_(coalición)
+"ERC":
+  color: "#f95735"
+  sourceUrl: https://es.wikipedia.org/wiki/Esquerra_Republicana_de_Catalunya
+"ERC-ESQUERRES PER LA INDEPENDÈNCIA":
+  color: "#f95735"
+  sourceUrl: https://es.wikipedia.org/wiki/Esquerra_Republicana_de_Catalunya
+  inheritedFrom: "ERC"
+"JxCAT - JUNTS":
+  color: "#00c4b2"
+  sourceUrl: https://es.wikipedia.org/wiki/Junts_per_Catalunya_(partido_político)
+"EH Bildu":
+  color: "#00d0b6"
+  sourceUrl: https://es.wikipedia.org/wiki/Euskal_Herria_Bildu
+"EH BILDU-INDEPENDENTZIA EZKERRETIK":
+  color: "#00d0b6"
+  sourceUrl: https://es.wikipedia.org/wiki/Euskal_Herria_Bildu
+  inheritedFrom: "EH Bildu"
+"EAJ-PNV":
+  color: "#066c44"
+  sourceUrl: https://es.wikipedia.org/wiki/Partido_Nacionalista_Vasco
+"B.N.G.":
+  color: "#a2c7e4"
+  sourceUrl: https://es.wikipedia.org/wiki/Bloque_Nacionalista_Galego
+"CCa":
+  color: "#ffd700"
+  sourceUrl: https://es.wikipedia.org/wiki/Coalición_Canaria
+"U.P.N.":
+  color: "#2a52be"
+  sourceUrl: https://es.wikipedia.org/wiki/Unión_del_Pueblo_Navarro
+"PACMA":
+  color: "#00ff7f"
+  sourceUrl: https://es.wikipedia.org/wiki/Partido_Animalista_Con_el_Medio_Ambiente
+"CUP-PR":
+  color: "#f2cc00"
+  sourceUrl: https://es.wikipedia.org/wiki/Candidatura_de_Unidad_Popular
+"NC-bc":
+  color: "#85bd42"
+  sourceUrl: https://es.wikipedia.org/wiki/Nueva_Canarias-Bloque_Canarista
+"PDeCAT-E-CiU":
+  color: "#005ca9"
+  sourceUrl: https://es.wikipedia.org/wiki/Partido_Demócrata_Europeo_Catalán
+"U.P.L.":
+  color: "#c71585"
+  sourceUrl: https://es.wikipedia.org/wiki/Unión_del_Pueblo_Leonés
+"GBAI":
+  color: "#f75e42"
+  sourceUrl: https://es.wikipedia.org/wiki/Geroa_Bai
+"SY":
+  color: "#1d1d1b"
+  sourceUrl: https://es.wikipedia.org/wiki/Soria_¡Ya!
+"JM+":
+  color: "#276b3b"
+  sourceUrl: https://es.wikipedia.org/wiki/Jaén_Merece_Más
+"XAV":
+  color: "#f7d70e"
+  sourceUrl: https://es.wikipedia.org/wiki/Por_Ávila
+"VP":
+  color: "#6666ac"
+  sourceUrl: https://es.wikipedia.org/wiki/¡Vamos_Palencia!
+"CpM":
+  color: "#488a43"
+  sourceUrl: https://es.wikipedia.org/wiki/Coalición_por_Melilla
+"PSIB-PSOE":
+  color: "#ff0000"
+  sourceUrl: https://es.wikipedia.org/wiki/Partido_Socialista_de_las_Islas_Baleares-PSOE
+"ASG":
+  color: "#d21111"
+  sourceUrl: https://es.wikipedia.org/wiki/Agrupación_Socialista_Gomera
+"A.H.I.":
+  color: "#019e4c"
+  sourceUrl: https://es.wikipedia.org/wiki/Agrupación_Herreña_Independiente
+"PSC":
+  color: "#e10916"
+  sourceUrl: https://es.wikipedia.org/wiki/Partido_de_los_Socialistas_de_Cataluña
+"PSdeG-PSOE":
+  color: "#ff0000"
+  sourceUrl: https://es.wikipedia.org/wiki/Partido_de_los_Socialistas_de_Galicia-PSOE
+"PSN-PSOE":
+  color: "#ff0000"
+  sourceUrl: https://es.wikipedia.org/wiki/Partido_Socialista_de_Navarra
+"PSE-EE (PSOE)":
+  color: "#ff0000"
+  sourceUrl: https://es.wikipedia.org/wiki/Partido_Socialista_de_Euskadi-Euskadiko_Ezkerra
