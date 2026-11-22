@@ -1,4 +1,5 @@
 import type { Chamber, Language } from "../contract/types";
+import { isSupportedLanguage } from "../i18n/languages";
 
 export type Route =
   | { page: "home"; language: Language }
@@ -11,7 +12,6 @@ export type Route =
       partySlug: string | null;
     };
 
-const LANGUAGES: readonly string[] = ["es", "ca"];
 const CHAMBERS: readonly string[] = ["congreso", "senado"];
 const MUNICIPALITY_CODE_PATTERN = /^\d{5}$/;
 
@@ -20,8 +20,8 @@ export function parseRoute(hash: string): Route | null {
     .replace(/^#\/?/, "")
     .split("/")
     .filter((segment) => segment !== "");
-  if (!LANGUAGES.includes(language)) return null;
-  return parseSegments(language as Language, segments);
+  if (!isSupportedLanguage(language)) return null;
+  return parseSegments(language, segments);
 }
 
 function parseSegments(language: Language, segments: string[]): Route {

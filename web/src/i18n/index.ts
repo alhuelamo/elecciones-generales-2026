@@ -1,6 +1,7 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import type { Language } from "../contract/types";
+import { DEFAULT_LANGUAGE } from "./languages";
 
 type Resources = Record<string, Record<string, object>>;
 
@@ -24,7 +25,7 @@ export function initI18n(language: Language): typeof i18next {
   i18next.use(initReactI18next).init({
     resources: buildResources(),
     lng: language,
-    fallbackLng: "es",
+    fallbackLng: DEFAULT_LANGUAGE,
     defaultNS: "common",
     interpolation: { escapeValue: false },
     initAsync: false,

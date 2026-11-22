@@ -1,9 +1,8 @@
 import type { Language } from "../contract/types";
-
-const SUPPORTED_LANGUAGES: readonly Language[] = ["es", "ca"];
+import { DEFAULT_LANGUAGE, isSupportedLanguage } from "./languages";
 
 function isSupported(candidate: string | null): candidate is Language {
-  return SUPPORTED_LANGUAGES.includes(candidate as Language);
+  return candidate !== null && isSupportedLanguage(candidate);
 }
 
 function primarySubtag(languageTag: string): string {
@@ -18,5 +17,5 @@ export function detectLanguage(
     return stored;
   }
   const preferred = navigatorLanguages.map(primarySubtag).find(isSupported);
-  return preferred ?? "es";
+  return preferred ?? DEFAULT_LANGUAGE;
 }

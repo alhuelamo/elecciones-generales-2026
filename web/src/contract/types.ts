@@ -1,6 +1,7 @@
-export type Language = "es" | "ca";
+export type { Language } from "../i18n/languages";
 export type Chamber = "congreso" | "senado";
-export type LocalizedText = Record<Language, string>;
+export type LocalizedText = Record<"es" | "ca", string> &
+  Partial<Record<"eu" | "gl", string>>;
 
 export interface ConstituencySummary {
   id: string;

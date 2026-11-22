@@ -36,10 +36,23 @@ describe("parseRoute", () => {
     ["#/es/about", { page: "about", language: "es" }],
     ["#/ca", { page: "home", language: "ca" }],
     ["#/ca/", { page: "home", language: "ca" }],
+    ["#/eu", { page: "home", language: "eu" }],
+    ["#/gl/about", { page: "about", language: "gl" }],
+    ["#/eu/about", { page: "about", language: "eu" }],
+    [
+      "#/gl/15030/senado/pp",
+      {
+        page: "ballot",
+        language: "gl",
+        municipalityCode: "15030",
+        chamber: "senado",
+        partySlug: "pp",
+      },
+    ],
     ["#/es/8019", { page: "home", language: "es" }],
   ])("parses %s", (hash, route) => expect(parseRoute(hash)).toEqual(route));
 
-  it.each(["", "#", "#/en/08019", "#/"])("rejects %s", (hash) =>
+  it.each(["", "#", "#/en/08019", "#/", "#/en"])("rejects %s", (hash) =>
     expect(parseRoute(hash)).toBeNull(),
   );
 });
@@ -61,8 +74,13 @@ describe("buildHash", () => {
     expect(buildHash({ page: "about", language: "es" })).toBe("#/es/about");
   });
 
-  it("round-trips", () => {
-    const hash = "#/ca/07040/senado/pp";
+  it.each([
+    "#/ca/07040/senado/pp",
+    "#/eu/20069/congreso",
+    "#/gl/15030/senado/pp",
+    "#/eu/about",
+    "#/gl",
+  ])("round-trips %s", (hash) => {
     expect(buildHash(parseRoute(hash)!)).toBe(hash);
   });
 });
