@@ -1,5 +1,5 @@
 {
-  "back": "Volver a la papeleta",
+  "back": "Volver",
   "candidates": "Candidatos",
   "substitutes": "Suplentes",
   "substitute": "Suplente",
@@ -19,7 +19,6 @@
     "programme": "Programa",
     "wikipedia": "Wikipedia"
   },
-  "editOnGithub": "Editar en GitHub",
   "ballot": {
     "caption": "Representación orientativa, no válida para votar"
   }

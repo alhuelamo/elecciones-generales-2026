@@ -2,8 +2,6 @@ export const REPO_URL: string =
   import.meta.env.VITE_REPO_URL ??
   "https://github.com/alhuelamo/elecciones-generales-2026";
 
-export const PARTIES_EDIT_URL = `${REPO_URL}/edit/main/pipeline/data/parties.yaml`;
-
 export const ISSUES_URL = `${REPO_URL}/issues/new`;
 
 export const STORAGE_KEYS = {

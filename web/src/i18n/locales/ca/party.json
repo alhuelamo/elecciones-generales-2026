@@ -1,5 +1,5 @@
 {
-  "back": "Tornar a la papereta",
+  "back": "Tornar",
   "candidates": "Candidats",
   "substitutes": "Suplents",
   "substitute": "Suplent",
@@ -19,7 +19,6 @@
     "programme": "Programa",
     "wikipedia": "Viquipèdia"
   },
-  "editOnGithub": "Edita a GitHub",
   "ballot": {
     "caption": "Representació orientativa, no vàlida per votar"
   }

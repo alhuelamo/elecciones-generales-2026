@@ -1,6 +1,7 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { BUTTON_CLASSES } from "../design/button";
 import {
   applyTheme,
   loadThemePreference,
@@ -35,7 +36,7 @@ export function ThemeMenu() {
     <Menu as="div" className="relative">
       <MenuButton
         aria-label={t("menu.label", { choice: t(`choice.${preference}`) })}
-        className="min-h-11 min-w-11 rounded-frame text-lg transition-colors duration-150 hover:bg-kraft"
+        className={`${BUTTON_CLASSES} w-11 text-lg`}
       >
         <span aria-hidden="true">◐</span>
       </MenuButton>

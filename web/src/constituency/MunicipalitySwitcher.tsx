@@ -7,6 +7,7 @@ import {
 } from "react";
 import { useTranslation } from "react-i18next";
 import type { Municipality, MunicipalityIndex } from "../contract/types";
+import { BUTTON_CLASSES } from "../design/button";
 import { MunicipalitySearch } from "../search/MunicipalitySearch";
 
 export function MunicipalitySwitcher(props: {
@@ -43,7 +44,7 @@ export function MunicipalitySwitcher(props: {
           aria-expanded={open}
           aria-controls={panelId}
           onClick={() => (open ? close() : setOpen(true))}
-          className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-frame border border-rule px-3 text-sm font-medium transition-colors duration-150 hover:bg-kraft aria-expanded:border-accent"
+          className={`${BUTTON_CLASSES} shrink-0 aria-expanded:border-accent`}
         >
           <SwapIcon />
           {t("changeMunicipality")}

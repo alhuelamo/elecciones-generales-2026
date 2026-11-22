@@ -1,6 +1,6 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { PARTIES_EDIT_URL } from "../config";
+import { BUTTON_CLASSES } from "../design/button";
 import type { Chamber, PartyProfile } from "../contract/types";
 import {
   buildFixtureCongresoCandidacies,
@@ -97,20 +97,28 @@ describe("PartyDetail", () => {
     expect(screen.getByText("Puedes marcar 1 candidato")).toBeInTheDocument();
   });
 
-  it("omits facts but keeps the edit link without profile", () => {
+  it("omits facts and party links without profile", () => {
     renderDetail({ profile: null });
     expect(screen.queryByText(/Escaños en 2023/)).toBeNull();
-    expect(
-      screen.getByRole("link", { name: "Editar en GitHub" }),
-    ).toHaveAttribute("href", PARTIES_EDIT_URL);
+    expect(screen.queryByRole("link", { name: "Web oficial" })).toBeNull();
+    expect(screen.getByRole("link", { name: /Volver/ })).toBeInTheDocument();
   });
 
-  it("renders facts for a full profile and a safe edit link", () => {
+  it("has no GitHub edit link", () => {
     renderDetail();
-    expect(screen.getByText(/Escaños en 2023/)).toBeInTheDocument();
-    const edit = screen.getByRole("link", { name: "Editar en GitHub" });
-    expect(edit).toHaveAttribute("target", "_blank");
-    expect(edit).toHaveAttribute("rel", "noopener noreferrer");
+    expect(screen.queryByRole("link", { name: /GitHub/ })).toBeNull();
+  });
+
+  it("puts back and party links on one non-wrapping row of shared buttons", () => {
+    renderDetail();
+    const back = screen.getByRole("link", { name: /Volver/ });
+    const row = back.closest("ul")!;
+    expect(row).toHaveClass("flex", "flex-nowrap");
+    const links = row.querySelectorAll("a");
+    expect(links).toHaveLength(4);
+    for (const link of links) {
+      expect(link).toHaveClass(...BUTTON_CLASSES.split(" "));
+    }
   });
 
   it("labels coalitions", () => {
