@@ -10,15 +10,17 @@
 ## wikidata_municipality_labels.csv
 
 - Source: Wikidata SPARQL endpoint (https://query.wikidata.org/sparql), municipalities of Spain keyed by INE code (property P772, 5 digits, no control digit).
-- Retrieved: 2026-11-21. Regenerate with `cd pipeline && uv run elecciones refresh-labels`.
-- License: CC0 1.0 (Wikidata). Columns: `code`, `es` label, `ca` label (empty when Wikidata has none); sorted by code, deduplicated.
-- Query:
+- Retrieved: 2026-11-22. Regenerate with `cd pipeline && uv run elecciones refresh-labels` (about 9 minutes).
+- License: CC0 1.0 (Wikidata). Columns: `code`, `es`, `ca`, `eu`, `gl` labels (empty when Wikidata has none; a blank `es` falls back to the INE name); sorted by code, deduplicated.
+- Fetched as one query per province (52), with retries and backoff; the write is refused unless every INE municipality is present with an `es` label. Query, with `{province}` the 2-digit INE province code:
 
 ```sparql
-SELECT ?code ?es ?ca WHERE {
-  ?municipality wdt:P31/wdt:P279* wd:Q2074737 ;
-                wdt:P772 ?code .
+SELECT ?code ?es ?ca ?eu ?gl WHERE {
+  ?municipality wdt:P772 ?code .
+  FILTER(STRSTARTS(?code, "{province}") && STRLEN(?code) = 5)
   OPTIONAL { ?municipality rdfs:label ?es . FILTER(LANG(?es) = "es") }
   OPTIONAL { ?municipality rdfs:label ?ca . FILTER(LANG(?ca) = "ca") }
+  OPTIONAL { ?municipality rdfs:label ?eu . FILTER(LANG(?eu) = "eu") }
+  OPTIONAL { ?municipality rdfs:label ?gl . FILTER(LANG(?gl) = "gl") }
 }
 ```
