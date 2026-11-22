@@ -1,8 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
+import { languageFromPathname } from "./languagePath";
 import { buildHash, parseRoute, type Route } from "./route";
 
 function readCurrentRoute(): Route | null {
-  return parseRoute(window.location.hash);
+  const hashRoute = parseRoute(window.location.hash);
+  if (hashRoute) return hashRoute;
+  const pathLanguage = languageFromPathname(window.location.pathname);
+  return pathLanguage ? { page: "home", language: pathLanguage } : null;
 }
 
 export function useHashRoute(): [Route | null, (route: Route) => void] {
