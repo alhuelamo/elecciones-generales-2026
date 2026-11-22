@@ -5,9 +5,10 @@ from pathlib import Path
 
 import httpx
 
-from elecciones_pipeline.build import BuildError, BuildPaths, build_dataset
+from elecciones_pipeline.build import INE_FILE, BuildError, BuildPaths, build_dataset
 from elecciones_pipeline.fetch import USER_AGENT, fetch_sources
 from elecciones_pipeline.labels import LABELS_FILE, fetch_labels_csv, refresh_labels
+from elecciones_pipeline.municipalities import display_name, read_ine_municipalities
 
 PIPELINE_DIR = Path(__file__).parents[2]
 DATA_DIR = PIPELINE_DIR / "data"
@@ -45,7 +46,15 @@ def _fetch() -> int:
 
 
 def _refresh_labels() -> int:
-    count = refresh_labels(fetch_labels_csv, VENDOR_DIR / LABELS_FILE)
+    ine_names = {
+        municipality.code: display_name(municipality.official_name)
+        for municipality in read_ine_municipalities(RAW_DIR / INE_FILE)
+    }
+    try:
+        count = refresh_labels(fetch_labels_csv, VENDOR_DIR / LABELS_FILE, ine_names)
+    except BuildError as error:
+        print(f"refresh-labels failed: {error}", file=sys.stderr)
+        return 1
     print(f"{count} municipality labels -> {VENDOR_DIR / LABELS_FILE}")
     return 0
 
