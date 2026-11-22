@@ -38,3 +38,124 @@ junts:
   sourceUrl: "https://commons.wikimedia.org/wiki/File:Junts_per_Catalunya_(2020).svg"
   license: "Public domain"
   author: "Junts per Catalunya"
+
+adelante-andalucia:
+  file: adelante-andalucia.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Adelante_Andaluc%C3%ADa_2021_logo.svg"
+  license: "Public domain"
+  author: "Adelante Andalucía"
+agrupacion-herrena-independiente:
+  file: agrupacion-herrena-independiente.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Icono_AHI_2023.svg"
+  license: "Public domain"
+  author: "Agrupación Herreña Independiente"
+agrupacion-socialista-gomera:
+  file: agrupacion-socialista-gomera.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Agrupaci%C3%B3n_Socialista_Gomera.svg"
+  license: "Public domain"
+  author: "Santi2222"
+alhora:
+  file: alhora.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Alhora_Logo.svg"
+  license: "Public domain"
+  author: "Alhora"
+compromis:
+  file: compromis.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_coalici%C3%B3n_Comprom%C3%ADs_Front_Valenci%C3%A0.svg"
+  license: "Public domain"
+  author: "Compromís-Front Valencià"
+convergents:
+  file: convergents.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_convergents.svg"
+  license: "Public domain"
+  author: "Convergents"
+escanos-en-blanco:
+  file: escanos-en-blanco.png
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:EB_ESCA%C3%91OS-EN-BLANCO_logotipo_v3.png"
+  license: "CC BY-SA 3.0 es"
+  author: "Luis Peralta Artacho"
+frente-obrero:
+  file: frente-obrero.png
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_Frente_Obrero_espa%C3%B1ol.png"
+  license: "CC BY-SA 4.0"
+  author: "Martínez Sampayo"
+geroa-bai:
+  file: geroa-bai.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Geroa_Bai_(current_logo).svg"
+  license: "Public domain"
+  author: "KwwpCalm"
+mundo-mas-justo:
+  file: mundo-mas-justo.png
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Por_Un_Mundo_Mas_Justo.png"
+  license: "CC BY-SA 4.0"
+  author: "Por Un Mundo Más Justo"
+nuevo-extremenismo:
+  file: nuevo-extremenismo.png
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logotipo_Nuevo_Extreme%C3%B1ismo.png"
+  license: "CC0"
+  author: "Alberto Rodrevilla"
+pacma:
+  file: pacma.png
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_PACMA.png"
+  license: "CC BY-SA 4.0"
+  author: "Partido Animalista Con el Medio Ambiente"
+partido-autonomos:
+  file: partido-autonomos.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Partido_Aut%C3%B3nomos_logo.svg"
+  license: "Public domain"
+  author: "AytoEru"
+partido-humanista:
+  file: partido-humanista.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_del_Partido_Humanista_(Espa%C3%B1a).svg"
+  license: "Public domain"
+  author: "Partido Humanista"
+partido-unionista-estado-de-espana:
+  file: partido-unionista-estado-de-espana.png
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:PUEDE_logo.png"
+  license: "Public domain"
+  author: "Partido Unionista Estado de España"
+pctc:
+  file: pctc.png
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:PCTC.png"
+  license: "Public domain"
+  author: "Partit Comunista dels Treballadors de Catalunya"
+pcte:
+  file: pcte.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:PCTE_LOGO.svg"
+  license: "Public domain"
+  author: "PCTE"
+pp:
+  file: pp.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_del_PP_(2022).svg"
+  license: "Public domain"
+  author: "Partido Popular"
+prepal:
+  file: prepal.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:PREPAL_(sigloide).svg"
+  license: "Public domain"
+  author: "PREPAL"
+proyecto-alantre:
+  file: proyecto-alantre.png
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Alantre_logo.png"
+  license: "CC BY 4.0"
+  author: "Trasgux"
+sa-unio:
+  file: sa-unio.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Sa_Uni%C3%B3_de_Formentera.svg"
+  license: "Public domain"
+  author: "Sa Unió de Formentera"
+soria-ya:
+  file: soria-ya.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_Soria_Ya_2022.svg"
+  license: "Public domain"
+  author: "Soria Ya"
+teruel-existe:
+  file: teruel-existe.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Logo_Teruel_Existe_2022.svg"
+  license: "Public domain"
+  author: "Teruel Existe"
+vox:
+  file: vox.svg
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:VOX_logo.svg"
+  license: "Public domain"
+  author: "VOX"
