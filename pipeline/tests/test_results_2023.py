@@ -41,6 +41,41 @@ def test_parties_without_votes_are_skipped():
     assert not any(item.constituency_id in ("52", "99") for item in results.candidacies)
 
 
+def test_congreso_constituency_result_has_totals():
+    results = CongresoXlsxSource(EXCERPT).load()
+
+    barcelona = results.constituencies[("congreso", "08")]
+    assert barcelona.chamber == "congreso"
+    assert barcelona.constituency_id == "08"
+    assert barcelona.electorate == 4243500
+    assert barcelona.total_votes == 2688720
+    assert barcelona.valid_votes == 2667478
+    assert barcelona.blank_votes == 21059
+    assert barcelona.combined_district_name is None
+
+
+def test_congreso_constituency_parties_have_ballot_name_votes_and_seats():
+    results = CongresoXlsxSource(EXCERPT).load()
+
+    parties = results.constituencies[("congreso", "08")].parties
+    psoe = next(party for party in parties if party.votes == 952347)
+    assert (psoe.acronym, psoe.name, psoe.seats) == (
+        "PSOE",
+        "PARTIDO SOCIALISTA OBRERO ESPAÑOL",
+        13,
+    )
+
+
+def test_congreso_constituency_parties_are_sorted_by_votes_and_skip_zero_votes():
+    results = CongresoXlsxSource(EXCERPT).load()
+
+    for constituency in results.constituencies.values():
+        votes = [party.votes for party in constituency.parties]
+        assert votes == sorted(votes, reverse=True)
+        assert all(vote > 0 for vote in votes)
+    assert ("congreso", "52") not in results.constituencies
+
+
 SENADO_EXCERPT = FIXTURES / "results_2023" / "senado_excerpt.xlsx"
 SEATS = {"08": 4, "07-mallorca": 3, "07-eivissa": 1, "07-formentera": 1}
 
