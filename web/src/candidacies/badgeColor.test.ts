@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { badgeColor, contrastRatio } from "./badgeColor";
+import { contrastRatio } from "../design/contrast";
+import { badgeColor } from "./badgeColor";
 
 const SAMPLE_ACRONYMS = Array.from({ length: 50 }, (_, index) =>
   index % 2 ? `PAR${index * 7}` : `Sigla-${index * 13}`,

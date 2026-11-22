@@ -157,6 +157,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource-variable/atkinson-hyperlegible-next@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource-variable/atkinson-hyperlegible-next@npm:5.3.0"
+  checksum: 10c0/616fb9a9fc0c32a85aae59d4adb83170e27d4621207c33bfdfd7e23ac4c2411ff9a9cef362f557ff302f1c477551caa916be9b9a79bf7813ec3738af54c2ccff
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/fraunces@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource-variable/fraunces@npm:5.3.0"
+  checksum: 10c0/da14d7f20276a86a8c18ac4b083aaf6fad5b22fa64918353e53c865bfeab8ab245f278bb527496c9844a295c38319c2581ff1b781a4a29e5b2b3dde8eb3a87d7
+  languageName: node
+  linkType: hard
+
 "@headlessui/react@npm:^2.2.10":
   version: 2.2.10
   resolution: "@headlessui/react@npm:2.2.10"
@@ -2420,6 +2434,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "web@workspace:."
   dependencies:
+    "@fontsource-variable/atkinson-hyperlegible-next": "npm:^5.3.0"
+    "@fontsource-variable/fraunces": "npm:^5.3.0"
     "@headlessui/react": "npm:^2.2.10"
     "@tailwindcss/vite": "npm:^4.3.5"
     "@testing-library/dom": "npm:^10.4.2"

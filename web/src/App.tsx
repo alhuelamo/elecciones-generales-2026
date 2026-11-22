@@ -60,7 +60,7 @@ export function App() {
   const activeNotice = notice?.hash === buildHash(route) ? notice.key : null;
 
   return (
-    <div className="flex min-h-screen flex-col bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <div className="flex min-h-screen flex-col bg-paper text-ink">
       <ElectionBanner />
       <Header
         language={route.language}
