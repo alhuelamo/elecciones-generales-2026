@@ -2,6 +2,10 @@
 
 Static site where a voter finds their municipality and sees the Congreso and Senado candidacies for the 29 November 2026 general election, in Catalan and Spanish.
 
+**Live site: <https://alhuelamo.com/elecciones-generales-2026/>**
+
+Unofficial and independent: not affiliated with any party, institution or electoral administration.
+
 ## Requirements
 
 - Node 24 with corepack enabled (`corepack enable`); Yarn 4 is pinned in `web/package.json`
