@@ -109,16 +109,27 @@ describe("PartyDetail", () => {
     expect(screen.queryByRole("link", { name: /GitHub/ })).toBeNull();
   });
 
-  it("puts back and party links on one non-wrapping row of shared buttons", () => {
+  it("puts the back button beside the party heading", () => {
     renderDetail();
     const back = screen.getByRole("link", { name: /Volver/ });
-    const row = back.closest("ul")!;
+    const heading = screen.getByRole("heading", { level: 1 });
+    expect(back).toHaveClass(...BUTTON_CLASSES.split(" "));
+    expect(back.parentElement).toBe(heading.parentElement?.parentElement);
+  });
+
+  it("lists party links on one row of shared buttons below the heading", () => {
+    renderDetail();
+    const website = screen.getByRole("link", { name: "Web oficial" });
+    const row = website.closest("ul")!;
     expect(row).toHaveClass("flex", "flex-nowrap");
-    const links = row.querySelectorAll("a");
-    expect(links).toHaveLength(4);
-    for (const link of links) {
+    expect(row.querySelectorAll("a")).toHaveLength(3);
+    for (const link of row.querySelectorAll("a")) {
       expect(link).toHaveClass(...BUTTON_CLASSES.split(" "));
     }
+    expect(
+      screen.getByRole("heading", { level: 1 }).compareDocumentPosition(row) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
   });
 
   it("labels coalitions", () => {

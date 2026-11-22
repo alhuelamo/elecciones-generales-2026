@@ -20,25 +20,28 @@ export function PartyDetail(props: {
   }, []);
   return (
     <article className="space-y-6">
-      <ul className="flex flex-nowrap gap-2">
-        <li className="shrink-0">
-          <a
-            href={props.backHref}
-            className={`${BUTTON_CLASSES} w-11 sm:w-auto`}
-          >
-            <span aria-hidden="true">‹</span>
-            <span className="sr-only sm:not-sr-only">{t("back")}</span>
-          </a>
-        </li>
-        {props.profile && <PartyLinks profile={props.profile} />}
-      </ul>
-      <header>
-        <h1 className="font-display text-2xl font-bold">
-          {candidacy.denomination}
-        </h1>
-        <p className="text-ink-muted">{candidacy.acronym}</p>
-        {candidacy.isCoalition && <p className="text-sm">{t("coalition")}</p>}
+      <header className="flex items-start gap-3">
+        <a
+          href={props.backHref}
+          title={t("back")}
+          className={`${BUTTON_CLASSES} w-11 shrink-0`}
+        >
+          <span aria-hidden="true">‹</span>
+          <span className="sr-only">{t("back")}</span>
+        </a>
+        <div className="min-w-0">
+          <h1 className="font-display text-2xl font-bold">
+            {candidacy.denomination}
+          </h1>
+          <p className="text-ink-muted">{candidacy.acronym}</p>
+          {candidacy.isCoalition && <p className="text-sm">{t("coalition")}</p>}
+        </div>
       </header>
+      {props.profile && (
+        <ul className="flex flex-nowrap gap-2">
+          <PartyLinks profile={props.profile} />
+        </ul>
+      )}
       {props.profile && <PartyFacts profile={props.profile} />}
       <BallotPaper
         candidacy={candidacy}
