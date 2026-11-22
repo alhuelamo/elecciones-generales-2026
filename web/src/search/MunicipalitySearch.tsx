@@ -13,6 +13,8 @@ import type {
 } from "../contract/types";
 import { createMunicipalitySearch } from "./createMunicipalitySearch";
 
+const INPUT_ID = "municipality-search";
+
 interface MunicipalitySearchProps {
   index: MunicipalityIndex;
   onSelect: (municipality: Municipality) => void;
@@ -44,33 +46,32 @@ export function MunicipalitySearch({
       onChange={(municipality) => municipality && onSelect(municipality)}
       onClose={() => setQuery("")}
     >
-      <label className="block">
-        <span className="sr-only">{t("label")}</span>
-        <ComboboxInput
-          className="w-full rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
-          placeholder={t("placeholder")}
-          autoFocus
-          onChange={(event) => setQuery(event.target.value)}
-        />
+      <label htmlFor={INPUT_ID} className="mb-2 block text-sm font-semibold">
+        {t("label")}
       </label>
+      <ComboboxInput
+        id={INPUT_ID}
+        className="h-14 w-full border-0 border-b-2 border-ink bg-transparent text-lg focus:border-accent focus:outline-none"
+        placeholder={t("placeholder")}
+        autoFocus
+        onChange={(event) => setQuery(event.target.value)}
+      />
       {query.trim() && (
         <ComboboxOptions
           static
-          className="mt-1 rounded border border-gray-300 bg-white dark:border-gray-600 dark:bg-gray-800"
+          className="mt-1 border border-rule bg-paper-raised"
         >
           {results.length === 0 && (
-            <p className="px-3 py-2 text-gray-600 dark:text-gray-300">
-              {t("noResults")}
-            </p>
+            <p className="px-3 py-2 text-ink-muted">{t("noResults")}</p>
           )}
           {results.map((municipality) => (
             <ComboboxOption
               key={municipality.code}
               value={municipality}
-              className="cursor-pointer px-3 py-2 text-gray-900 data-[focus]:bg-gray-100 dark:text-gray-100 dark:data-[focus]:bg-gray-700"
+              className="min-h-11 cursor-pointer px-3 py-2 data-focus:bg-kraft"
             >
               <span>{municipality.name[language]}</span>{" "}
-              <span className="text-sm text-gray-600 dark:text-gray-300">
+              <span className="text-sm text-ink-muted">
                 {provinceName(municipality)}
               </span>
             </ComboboxOption>

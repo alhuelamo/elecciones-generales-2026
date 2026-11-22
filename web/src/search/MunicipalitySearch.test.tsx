@@ -23,6 +23,21 @@ describe("MunicipalitySearch", () => {
     );
   });
 
+  it("renders a visible label for the focused combobox", () => {
+    renderSearch();
+    expect(screen.getByText("Buscar municipio")).not.toHaveClass("sr-only");
+    const input = screen.getByLabelText("Buscar municipio");
+    expect(input).toBe(screen.getByRole("combobox"));
+    expect(input).toHaveFocus();
+    expect(input).toHaveClass("h-14", "border-b-2");
+  });
+
+  it("gives each option a comfortable tap target", async () => {
+    renderSearch();
+    await userEvent.type(screen.getByRole("combobox"), "palma");
+    expect(await screen.findByRole("option")).toHaveClass("min-h-11");
+  });
+
   it("shows the municipality with its province", async () => {
     renderSearch();
     await userEvent.type(screen.getByRole("combobox"), "palma");
