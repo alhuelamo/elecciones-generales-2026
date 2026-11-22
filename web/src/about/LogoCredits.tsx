@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import type { PartyCatalog, PartyProfile } from "../contract/types";
+import { ExternalLink } from "../design/ExternalLink";
 
 type ProfileWithLogo = PartyProfile & {
   logo: NonNullable<PartyProfile["logo"]>;
@@ -26,13 +27,12 @@ export function LogoCredits(props: { partyCatalog: PartyCatalog | null }) {
           <li key={profile.key}>
             {profile.name} · {profile.logo.license} ·{" "}
             {t("logos.by", { author: profile.logo.author })} ·{" "}
-            <a
+            <ExternalLink
               href={profile.logo.sourceUrl}
-              rel="noopener noreferrer"
               className="text-accent underline"
             >
               {t("logos.source")}
-            </a>
+            </ExternalLink>
           </li>
         ))}
       </ul>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SOURCE_URLS } from "../config";
 import { electionPhase } from "./electionPhase";
+import { ExternalLink } from "../design/ExternalLink";
 
 const REFRESH_INTERVAL_MS = 60_000;
 
@@ -30,13 +31,12 @@ export function ElectionBanner(props: { now?: () => Date }) {
         ) : (
           <>
             {t("electionBanner.over")}{" "}
-            <a
+            <ExternalLink
               href={SOURCE_URLS.interior}
-              rel="noopener noreferrer"
               className="inline-block min-h-11 py-3 font-medium text-accent underline"
             >
               {t("electionBanner.results")}
-            </a>
+            </ExternalLink>
           </>
         )}
       </p>

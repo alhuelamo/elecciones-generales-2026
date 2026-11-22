@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { SOURCE_URLS } from "../config";
 import type { Language } from "../contract/types";
 import { buildHash } from "../routing/route";
+import { ExternalLink } from "../design/ExternalLink";
 
 const SOURCE_LINKS = [
   ["boe", SOURCE_URLS.boeCandidacies],
@@ -19,13 +20,12 @@ export function Footer(props: { language: Language }) {
           <ul className="flex flex-wrap gap-x-4 gap-y-1">
             {SOURCE_LINKS.map(([key, url]) => (
               <li key={key}>
-                <a
+                <ExternalLink
                   href={url}
-                  rel="noopener noreferrer"
                   className="inline-flex min-h-11 items-center text-accent underline underline-offset-2"
                 >
                   {t(`footer.sources.${key}`)}
-                </a>
+                </ExternalLink>
               </li>
             ))}
             <li>

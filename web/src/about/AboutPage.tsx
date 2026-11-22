@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { ISSUES_URL, SOURCE_URLS } from "../config";
 import type { PartyCatalog } from "../contract/types";
 import { LogoCredits } from "./LogoCredits";
+import { ExternalLink } from "../design/ExternalLink";
 
 interface AboutPageProps {
   generatedAt: string;
@@ -34,41 +35,34 @@ export function AboutPage({ generatedAt, partyCatalog }: AboutPageProps) {
         <ul>
           {LINKED_SOURCES.map(([key, url]) => (
             <li key={key}>
-              <a
-                href={url}
-                rel="noopener noreferrer"
-                className="text-accent underline"
-              >
+              <ExternalLink href={url} className="text-accent underline">
                 {t(`sources.${key}`)}
-              </a>
+              </ExternalLink>
             </li>
           ))}
           <li>
-            <a
+            <ExternalLink
               href={SOURCE_URLS.codeForSpain}
-              rel="noopener noreferrer"
               className="text-accent underline"
             >
               {t("sources.islands")}
-            </a>
+            </ExternalLink>
           </li>
           <li>
-            <a
+            <ExternalLink
               href={SOURCE_URLS.commons}
-              rel="noopener noreferrer"
               className="text-accent underline"
             >
               Wikimedia Commons
-            </a>
+            </ExternalLink>
           </li>
           <li>
-            <a
+            <ExternalLink
               href={SOURCE_URLS.partiesYaml}
-              rel="noopener noreferrer"
               className="text-accent underline"
             >
               {t("sources.parties")}
-            </a>{" "}
+            </ExternalLink>{" "}
             {t("sources.partiesHint")}
           </li>
         </ul>
@@ -82,13 +76,9 @@ export function AboutPage({ generatedAt, partyCatalog }: AboutPageProps) {
       </p>
       <section className="border-t border-rule pt-4">
         <h2 className="font-display text-xl">{t("report.title")}</h2>
-        <a
-          href={ISSUES_URL}
-          rel="noopener noreferrer"
-          className="text-accent underline"
-        >
+        <ExternalLink href={ISSUES_URL} className="text-accent underline">
           {t("report.link")}
-        </a>
+        </ExternalLink>
       </section>
       <p>{t("license")}</p>
     </article>
