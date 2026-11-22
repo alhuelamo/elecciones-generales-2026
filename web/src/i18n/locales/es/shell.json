@@ -17,10 +17,6 @@
     "unknownMunicipality": "No encontramos ese municipio. Búscalo de nuevo.",
     "unknownParty": "No encontramos esa candidatura en esta circunscripción. Te mostramos todas."
   },
-  "home": {
-    "title": "Encuentra tu municipio",
-    "intro": "Consulta las candidaturas al Congreso y al Senado del 29 de noviembre de 2026."
-  },
   "electionBanner": {
     "today": "Hoy es el día de las elecciones.",
     "over": "La jornada electoral ha terminado.",

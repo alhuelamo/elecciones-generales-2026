@@ -1,0 +1,14 @@
+{
+  "title": "Què hi ha a la teva papereta?",
+  "subtitle": "Cerca el teu municipi i consulta les candidatures al Congrés i al Senat del 29 de novembre.",
+  "countdown": {
+    "before_one": "Falta <days>{{count}}</days> dia · diumenge 29 de novembre",
+    "before_other": "Falten <days>{{count}}</days> dies · diumenge 29 de novembre"
+  },
+  "cards": {
+    "whereToVote": "On votar",
+    "howToVote": "Com es vota",
+    "congreso": "Congrés: papereta i sobre blancs. Tries una candidatura.",
+    "senado": "Senat: papereta i sobre sèpia. Marques candidats amb una creu."
+  }
+}

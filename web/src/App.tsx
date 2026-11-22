@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AboutPage } from "./about/AboutPage";
-import type { Candidacy, Chamber, Language } from "./contract/types";
+import type { Candidacy, Chamber } from "./contract/types";
 import { ConstituencyView } from "./constituency/ConstituencyView";
 import { PartyDetail } from "./party/PartyDetail";
 import { buildHash, type Route } from "./routing/route";
-import { WhereToVote } from "./constituency/WhereToVote";
-import { MunicipalitySearch } from "./search/MunicipalitySearch";
+import { HomePage } from "./home/HomePage";
 import { DemoBanner } from "./shell/DemoBanner";
 import { ElectionBanner } from "./shell/ElectionBanner";
 import { Footer } from "./shell/Footer";
@@ -81,7 +80,7 @@ function NoticeMessage(props: { noticeKey: NoticeKey }) {
   return (
     <p
       role="alert"
-      className="mb-4 rounded border border-amber-400 bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-950 dark:text-amber-100"
+      className="mb-4 rounded border border-rule-strong bg-kraft px-3 py-2 text-ink"
     >
       {t(`notice.${props.noticeKey}`)}
     </p>
@@ -118,33 +117,6 @@ function Page(props: {
     );
   }
   return <BallotPage route={route} data={data} />;
-}
-
-function HomePage(props: {
-  language: Language;
-  data: BallotData;
-  navigate: (route: Route) => void;
-}) {
-  const { t } = useTranslation("shell");
-  return (
-    <section className="flex flex-col gap-4">
-      <h1 className="text-2xl font-bold">{t("home.title")}</h1>
-      <p>{t("home.intro")}</p>
-      <MunicipalitySearch
-        index={props.data.index!}
-        onSelect={(municipality) =>
-          props.navigate({
-            page: "ballot",
-            language: props.language,
-            municipalityCode: municipality.code,
-            chamber: "congreso",
-            partySlug: null,
-          })
-        }
-      />
-      <WhereToVote />
-    </section>
-  );
 }
 
 function BallotPage(props: { route: BallotRoute; data: BallotData }) {

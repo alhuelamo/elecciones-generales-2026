@@ -1,0 +1,14 @@
+{
+  "title": "¿Qué hay en tu papeleta?",
+  "subtitle": "Busca tu municipio y consulta las candidaturas al Congreso y al Senado del 29 de noviembre.",
+  "countdown": {
+    "before_one": "Falta <days>{{count}}</days> día · domingo 29 de noviembre",
+    "before_other": "Faltan <days>{{count}}</days> días · domingo 29 de noviembre"
+  },
+  "cards": {
+    "whereToVote": "Dónde votar",
+    "howToVote": "Cómo se vota",
+    "congreso": "Congreso: papeleta y sobre blancos. Eliges una candidatura.",
+    "senado": "Senado: papeleta y sobre sepia. Marcas candidatos con una cruz."
+  }
+}

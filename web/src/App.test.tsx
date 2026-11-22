@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import i18next from "i18next";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -43,6 +49,8 @@ async function openAt(hash: string) {
 }
 
 beforeEach(async () => {
+  vi.useFakeTimers({ toFake: ["Date"] });
+  vi.setSystemTime(new Date("2026-11-21T12:00:00+01:00"));
   localStorage.clear();
   window.history.replaceState(null, "", "/");
   await i18next.changeLanguage("es");
@@ -56,6 +64,7 @@ beforeEach(async () => {
 });
 
 afterEach(() => {
+  vi.useRealTimers();
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
 });
@@ -113,7 +122,7 @@ describe("App", () => {
     );
     expect(window.location.hash).toBe("#/es");
     expect(
-      screen.getByRole("heading", { name: "Encuentra tu municipio" }),
+      screen.getByRole("heading", { name: "¿Qué hay en tu papeleta?" }),
     ).toBeVisible();
   });
 
@@ -184,7 +193,7 @@ describe("App", () => {
   it("hides demo banner for real dataset", async () => {
     mockData({ ...fixtureIndex, dataset: "boe-2026" });
     await openAt("#/es");
-    await screen.findByText("Encuentra tu municipio");
+    await screen.findByText("¿Qué hay en tu papeleta?");
     expect(screen.queryByText(/Datos de demostración/)).toBeNull();
   });
 
@@ -199,11 +208,13 @@ describe("App", () => {
     );
   });
 
-  it("links about from header", async () => {
+  it("links about from the footer", async () => {
     await openAt("#/ca");
-    await screen.findByText("Troba el teu municipi");
+    await screen.findByText("Què hi ha a la teva papereta?");
     expect(
-      screen.getAllByRole("link", { name: "Sobre aquesta web" })[0],
+      within(screen.getByRole("contentinfo")).getByRole("link", {
+        name: "Sobre aquesta web",
+      }),
     ).toHaveAttribute("href", "#/ca/about");
   });
 });
